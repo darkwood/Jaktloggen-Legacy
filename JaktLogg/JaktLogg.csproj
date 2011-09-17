@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{321BD748-81B0-4E86-957B-189A24418B82}</ProjectGuid>
+    <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>JaktLogg</RootNamespace>
+    <MainNibFile>MainWindow.xib</MainNibFile>
+    <AssemblyName>Jaktloggen</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <BundleIdentifier>no.toremorkved.jaktloggen</BundleIdentifier>
+    <BundleVersion>1.2</BundleVersion>
+    <BundleDisplayName>Jaktloggen</BundleDisplayName>
+    <BundleIcon>icon_57.png</BundleIcon>
+    <BundleIconHigh>Icon_114.png</BundleIconHigh>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchMinimumOS>3.0</MtouchMinimumOS>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchMinimumOS>3.0</MtouchMinimumOS>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchDebug>True</MtouchDebug>
+    <CodesignKey>iPhone Developer: Tore Morkved (22N95SP9EK)</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchMinimumOS>4.0</MtouchMinimumOS>
+    <MtouchI18n />
+    <CodesignProvision>5E43557E-A2B5-4805-8472-C1F7E81F7318</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Distribution: Tore Morkved</CodesignKey>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <CodesignProvision>D7B84FF1-59BF-459E-A912-BECD073D206E</CodesignProvision>
+    <MtouchMinimumOS>4.0</MtouchMinimumOS>
+    <MtouchI18n />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="JaktLoggen.pidb" />
+    <None Include="JaktLogg.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainWindow.xib.designer.cs">
+      <DependentUpon>MainWindow.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs" />
+    <Compile Include="StatistikkNavigationController.xib.designer.cs">
+      <DependentUpon>StatistikkNavigationController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="StatistikkNavigationController.xib.cs">
+      <DependentUpon>StatistikkNavigationController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Statistikk.xib.designer.cs">
+      <DependentUpon>Statistikk.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Statistikk.xib.cs">
+      <DependentUpon>Statistikk.xib</DependentUpon>
+    </Compile>
+    <Compile Include="JegereNavigationController.xib.designer.cs">
+      <DependentUpon>JegereNavigationController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="JegereNavigationController.xib.cs">
+      <DependentUpon>JegereNavigationController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="JaktScreen.xib.designer.cs">
+      <DependentUpon>JaktScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="JaktScreen.xib.cs">
+      <DependentUpon>JaktScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Forside.xib.designer.cs">
+      <DependentUpon>Forside.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Forside.xib.cs">
+      <DependentUpon>Forside.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Arter.xib.designer.cs">
+      <DependentUpon>Arter.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Arter.xib.cs">
+      <DependentUpon>Arter.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Base\UIJaktNavigationController.cs" />
+    <Compile Include="Base\UIJaktTableViewCell.cs" />
+    <Compile Include="Base\UIJaktTableViewController.cs" />
+    <Compile Include="Base\UIJaktViewController.cs" />
+    <Compile Include="HelperClasses\ExtensionMethods.cs" />
+    <Compile Include="HelperClasses\HTTPUtility.cs" />
+    <Compile Include="HelperClasses\Location.cs" />
+    <Compile Include="HelperClasses\Reachability.cs" />
+    <Compile Include="HelperClasses\RowItemMapping.cs" />
+    <Compile Include="HelperClasses\Utils.cs" />
+    <Compile Include="Repositories\FileJaktRepository.cs" />
+    <Compile Include="Repositories\IJaktRepository.cs" />
+    <Compile Include="Repositories\MockJaktRepository.cs" />
+    <Compile Include="Screens\Reports\ReportJakt.xib.cs">
+      <DependentUpon>ReportJakt.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Reports\ReportJakt.xib.designer.cs">
+      <DependentUpon>ReportJakt.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldArtPickerScreen.xib.cs">
+      <DependentUpon>FieldArtPickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldArtPickerScreen.xib.designer.cs">
+      <DependentUpon>FieldArtPickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldDatePickerScreen.xib.cs">
+      <DependentUpon>FieldDatePickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldDatePickerScreen.xib.designer.cs">
+      <DependentUpon>FieldDatePickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldImagePickerScreen.xib.cs">
+      <DependentUpon>FieldImagePickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldImagePickerScreen.xib.designer.cs">
+      <DependentUpon>FieldImagePickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldLocationScreen.xib.cs">
+      <DependentUpon>FieldLocationScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldLocationScreen.xib.designer.cs">
+      <DependentUpon>FieldLocationScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldLoggCatch.xib.cs">
+      <DependentUpon>FieldLoggCatch.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldLoggCatch.xib.designer.cs">
+      <DependentUpon>FieldLoggCatch.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldNumberPickerScreen.xib.cs">
+      <DependentUpon>FieldNumberPickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldNumberPickerScreen.xib.designer.cs">
+      <DependentUpon>FieldNumberPickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldSingleChoiceListScreen.xib.cs">
+      <DependentUpon>FieldSingleChoiceListScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldSingleChoiceListScreen.xib.designer.cs">
+      <DependentUpon>FieldSingleChoiceListScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldStringScreen.xib.cs">
+      <DependentUpon>FieldStringScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldStringScreen.xib.designer.cs">
+      <DependentUpon>FieldStringScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsArter.xib.cs">
+      <DependentUpon>StatsArter.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsArter.xib.designer.cs">
+      <DependentUpon>StatsArter.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsBesteJegere.xib.cs">
+      <DependentUpon>StatsBesteJegere.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsBesteJegere.xib.designer.cs">
+      <DependentUpon>StatsBesteJegere.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsFrontpage.xib.cs">
+      <DependentUpon>StatsFrontpage.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsFrontpage.xib.designer.cs">
+      <DependentUpon>StatsFrontpage.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsGenericWebView.xib.cs">
+      <DependentUpon>StatsGenericWebView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsGenericWebView.xib.designer.cs">
+      <DependentUpon>StatsGenericWebView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsHitrate.xib.cs">
+      <DependentUpon>StatsHitrate.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsHitrate.xib.designer.cs">
+      <DependentUpon>StatsHitrate.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsLoggMap.xib.cs">
+      <DependentUpon>StatsLoggMap.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsLoggMap.xib.designer.cs">
+      <DependentUpon>StatsLoggMap.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsTimeOfDay.xib.cs">
+      <DependentUpon>StatsTimeOfDay.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsTimeOfDay.xib.designer.cs">
+      <DependentUpon>StatsTimeOfDay.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableCells\CellDeleteButton.xib.cs">
+      <DependentUpon>CellDeleteButton.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableCells\CellDeleteButton.xib.designer.cs">
+      <DependentUpon>CellDeleteButton.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableCells\CellSkuddTreffArt.xib.cs">
+      <DependentUpon>CellSkuddTreffArt.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableCells\CellSkuddTreffArt.xib.designer.cs">
+      <DependentUpon>CellSkuddTreffArt.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableCells\TextInputCell.xib.cs">
+      <DependentUpon>TextInputCell.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableCells\TextInputCell.xib.designer.cs">
+      <DependentUpon>TextInputCell.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\FooterStatsArter.xib.cs">
+      <DependentUpon>FooterStatsArter.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\FooterStatsArter.xib.designer.cs">
+      <DependentUpon>FooterStatsArter.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\HeaderJaktItem.xib.cs">
+      <DependentUpon>HeaderJaktItem.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\HeaderJaktItem.xib.designer.cs">
+      <DependentUpon>HeaderJaktItem.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\HeaderJeger.xib.cs">
+      <DependentUpon>HeaderJeger.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\HeaderJeger.xib.designer.cs">
+      <DependentUpon>HeaderJeger.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\HeaderLoggItem.xib.cs">
+      <DependentUpon>HeaderLoggItem.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\HeaderLoggItem.xib.designer.cs">
+      <DependentUpon>HeaderLoggItem.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\HeaderStatsArter.xib.cs">
+      <DependentUpon>HeaderStatsArter.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\HeaderStatsArter.xib.designer.cs">
+      <DependentUpon>HeaderStatsArter.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\HeaderTableSection.xib.cs">
+      <DependentUpon>HeaderTableSection.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\HeaderTableSection.xib.designer.cs">
+      <DependentUpon>HeaderTableSection.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Views\FirstLoadJaktView.xib.cs">
+      <DependentUpon>FirstLoadJaktView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Views\FirstLoadJaktView.xib.designer.cs">
+      <DependentUpon>FirstLoadJaktView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Views\FirstLoadJegereView.xib.cs">
+      <DependentUpon>FirstLoadJegereView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Views\FirstLoadJegereView.xib.designer.cs">
+      <DependentUpon>FirstLoadJegereView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Views\FirstLoadLoggView.xib.cs">
+      <DependentUpon>FirstLoadLoggView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Views\FirstLoadLoggView.xib.designer.cs">
+      <DependentUpon>FirstLoadLoggView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Helpers\LoadingView.cs" />
+    <Compile Include="Screens\Helpers\MessageBox.cs" />
+    <Compile Include="TableSources\ArterTableSource.cs" />
+    <Compile Include="TableSources\FieldStringTableSource.cs" />
+    <Compile Include="TableSources\JaktItemTableSource.cs" />
+    <Compile Include="TableSources\JaktTableSource.cs" />
+    <Compile Include="TableSources\JegerePickerSource.cs" />
+    <Compile Include="TableSources\JegereTableSource.cs" />
+    <Compile Include="TableSources\JegerItemTableSource.cs" />
+    <Compile Include="TableSources\LoggerTableSource.cs" />
+    <Compile Include="TableSources\LoggItemTableSource.cs" />
+    <Compile Include="TableSources\StatsFrontpageTableSource.cs" />
+    <Compile Include="ViewModel\Art.cs" />
+    <Compile Include="ViewModel\ArtGroup.cs" />
+    <Compile Include="ViewModel\Jakt.cs" />
+    <Compile Include="ViewModel\JaktLoggApp.cs" />
+    <Compile Include="ViewModel\Jeger.cs" />
+    <Compile Include="ViewModel\Logg.cs" />
+    <Compile Include="Screens\ArterTableScreen.xib.cs">
+      <DependentUpon>ArterTableScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ArterTableScreen.xib.designer.cs">
+      <DependentUpon>ArterTableScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ArtScreen.xib.cs">
+      <DependentUpon>ArtScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ArtScreen.xib.designer.cs">
+      <DependentUpon>ArtScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ArtWebViewController.xib.cs">
+      <DependentUpon>ArtWebViewController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ArtWebViewController.xib.designer.cs">
+      <DependentUpon>ArtWebViewController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\FeedbackScreen.xib.cs">
+      <DependentUpon>FeedbackScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\FeedbackScreen.xib.designer.cs">
+      <DependentUpon>FeedbackScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\JaktItemScreen.xib.cs">
+      <DependentUpon>JaktItemScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\JaktItemScreen.xib.designer.cs">
+      <DependentUpon>JaktItemScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\JaktTableScreen.xib.cs">
+      <DependentUpon>JaktTableScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\JaktTableScreen.xib.designer.cs">
+      <DependentUpon>JaktTableScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\JegereScreen.xib.cs">
+      <DependentUpon>JegereScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\JegereScreen.xib.designer.cs">
+      <DependentUpon>JegereScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\JegerPickerScreen.xib.cs">
+      <DependentUpon>JegerPickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\JegerPickerScreen.xib.designer.cs">
+      <DependentUpon>JegerPickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\JegerScreen.xib.cs">
+      <DependentUpon>JegerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\JegerScreen.xib.designer.cs">
+      <DependentUpon>JegerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\LoggerScreen.xib.cs">
+      <DependentUpon>LoggerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\LoggerScreen.xib.designer.cs">
+      <DependentUpon>LoggerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\LoggItemScreen.xib.cs">
+      <DependentUpon>LoggItemScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\LoggItemScreen.xib.designer.cs">
+      <DependentUpon>LoggItemScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldNotesScreen.xib.cs">
+      <DependentUpon>FieldNotesScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Fields\FieldNotesScreen.xib.designer.cs">
+      <DependentUpon>FieldNotesScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableCells\MultilineTextinputCell.xib.cs">
+      <DependentUpon>MultilineTextinputCell.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableCells\MultilineTextinputCell.xib.designer.cs">
+      <DependentUpon>MultilineTextinputCell.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Reports\UploadScreen.xib.cs">
+      <DependentUpon>UploadScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Reports\UploadScreen.xib.designer.cs">
+      <DependentUpon>UploadScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\LoggSetupTableSource.cs" />
+    <Compile Include="ViewModel\LoggType.cs" />
+    <Compile Include="Screens\LoggSetupScreen.xib.cs">
+      <DependentUpon>LoggSetupScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\LoggSetupScreen.xib.designer.cs">
+      <DependentUpon>LoggSetupScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="LoggFields.xib.cs">
+      <DependentUpon>LoggFields.xib</DependentUpon>
+    </Compile>
+    <Compile Include="LoggFields.xib.designer.cs">
+      <DependentUpon>LoggFields.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsGenericTableView.xib.cs">
+      <DependentUpon>StatsGenericTableView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Statistics\StatsGenericTableView.xib.designer.cs">
+      <DependentUpon>StatsGenericTableView.xib</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainWindow.xib" />
+    <Page Include="StatistikkNavigationController.xib" />
+    <Page Include="Statistikk.xib" />
+    <Page Include="JegereNavigationController.xib" />
+    <Page Include="JaktScreen.xib" />
+    <Page Include="Forside.xib" />
+    <Page Include="Arter.xib" />
+    <Page Include="Screens\Reports\ReportJakt.xib" />
+    <Page Include="Screens\Fields\FieldArtPickerScreen.xib" />
+    <Page Include="Screens\Fields\FieldDatePickerScreen.xib" />
+    <Page Include="Screens\Fields\FieldImagePickerScreen.xib" />
+    <Page Include="Screens\Fields\FieldLocationScreen.xib" />
+    <Page Include="Screens\Fields\FieldLoggCatch.xib" />
+    <Page Include="Screens\Fields\FieldNumberPickerScreen.xib" />
+    <Page Include="Screens\Fields\FieldSingleChoiceListScreen.xib" />
+    <Page Include="Screens\Fields\FieldStringScreen.xib" />
+    <Page Include="Screens\Statistics\StatsArter.xib" />
+    <Page Include="Screens\Statistics\StatsBesteJegere.xib" />
+    <Page Include="Screens\Statistics\StatsFrontpage.xib" />
+    <Page Include="Screens\Statistics\StatsGenericWebView.xib" />
+    <Page Include="Screens\Statistics\StatsHitrate.xib" />
+    <Page Include="Screens\Statistics\StatsLoggMap.xib" />
+    <Page Include="Screens\Statistics\StatsTimeOfDay.xib" />
+    <Page Include="Screens\TableCells\CellDeleteButton.xib" />
+    <Page Include="Screens\TableCells\CellSkuddTreffArt.xib" />
+    <Page Include="Screens\TableCells\TextInputCell.xib" />
+    <Page Include="Screens\TableHeaders\FooterStatsArter.xib" />
+    <Page Include="Screens\TableHeaders\HeaderJaktItem.xib" />
+    <Page Include="Screens\TableHeaders\HeaderJeger.xib" />
+    <Page Include="Screens\TableHeaders\HeaderLoggItem.xib" />
+    <Page Include="Screens\TableHeaders\HeaderStatsArter.xib" />
+    <Page Include="Screens\TableHeaders\HeaderTableSection.xib" />
+    <Page Include="Screens\Views\FirstLoadJaktView.xib" />
+    <Page Include="Screens\Views\FirstLoadJegereView.xib" />
+    <Page Include="Screens\Views\FirstLoadLoggView.xib" />
+    <Page Include="Screens\ArterTableScreen.xib" />
+    <Page Include="Screens\ArtScreen.xib" />
+    <Page Include="Screens\ArtWebViewController.xib" />
+    <Page Include="Screens\FeedbackScreen.xib" />
+    <Page Include="Screens\JaktItemScreen.xib" />
+    <Page Include="Screens\JaktTableScreen.xib" />
+    <Page Include="Screens\JegereScreen.xib" />
+    <Page Include="Screens\JegerPickerScreen.xib" />
+    <Page Include="Screens\JegerScreen.xib" />
+    <Page Include="Screens\LoggerScreen.xib" />
+    <Page Include="Screens\LoggItemScreen.xib" />
+    <Page Include="Screens\Fields\FieldNotesScreen.xib" />
+    <Page Include="Screens\TableCells\MultilineTextinputCell.xib" />
+    <Page Include="Screens\Reports\UploadScreen.xib" />
+    <Page Include="Screens\LoggSetupScreen.xib" />
+    <Page Include="LoggFields.xib" />
+    <Page Include="Screens\Statistics\StatsGenericTableView.xib" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties InternalTargetFrameworkVersion="IPhone" />
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+    <Folder Include="Base\" />
+    <Folder Include="Screens\" />
+    <Folder Include="HelperClasses\" />
+    <Folder Include="TableSources\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Images\" />
+    <Folder Include="Data\" />
+    <Folder Include="Images\Icons\" />
+    <Folder Include="Images\Backgrounds\" />
+    <Folder Include="Images\Buttons\" />
+    <Folder Include="Images\Icons\Tabs\" />
+    <Folder Include="Screens\Views\" />
+    <Folder Include="Screens\TableHeaders\" />
+    <Folder Include="Screens\TableCells\" />
+    <Folder Include="Screens\Statistics\" />
+    <Folder Include="Screens\Reports\" />
+    <Folder Include="Screens\Fields\" />
+    <Folder Include="Screens\Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Backgrounds\Stripes.png" />
+    <Content Include="Images\Buttons\Delete.png" />
+    <Content Include="Images\Icons\calendar.png" />
+    <Content Include="Images\Icons\camera.png" />
+    <Content Include="Images\Icons\gps.png" />
+    <Content Include="Images\Icons\icon_checked.png" />
+    <Content Include="Images\Icons\icon_unchecked.png" />
+    <Content Include="Images\Icons\notepad.png" />
+    <Content Include="Images\Icons\pictureframe.png" />
+    <Content Include="Images\Icons\pictureplaceholder.png" />
+    <Content Include="Images\Icons\pin.png" />
+    <Content Include="Images\Icons\radar.png" />
+    <Content Include="Images\Icons\signpost.png" />
+    <Content Include="Images\Icons\target.png" />
+    <Content Include="Images\Icons\user.png" />
+    <Content Include="Images\Icons\Tabs\Arter.png">
+    </Content>
+    <Content Include="Images\Icons\Tabs\Feedback.png">
+    </Content>
+    <Content Include="Images\Icons\Tabs\Info.png">
+    </Content>
+    <Content Include="Images\Icons\Tabs\Jaktloggen.png">
+    </Content>
+    <Content Include="Images\Icons\Tabs\Jegere.png">
+    </Content>
+    <Content Include="Images\Icons\Tabs\Statistics.png">
+    </Content>
+    <Content Include="icon_256.png" />
+    <Content Include="Icon_114.png" />
+    <Content Include="icon_72.png" />
+    <Content Include="icon_57.png" />
+    <Content Include="Default%402x.png" />
+    <Content Include="Default.png" />
+    <Content Include="Data\arter.xml" />
+    <Content Include="Data\artgroup.xml" />
+    <Content Include="Images\Backgrounds\App_BG.png" />
+    <Content Include="Images\Backgrounds\App_BG%402x.png" />
+    <Content Include="Images\Backgrounds\NavBarTile.png" />
+    <Content Include="Data\loggtyper.xml" />
+    <Content Include="Images\Icons\Tabs\Felter.png" />
+  </ItemGroup>
+</Project>

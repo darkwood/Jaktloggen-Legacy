@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfLoggType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<LoggType>
+	  <ID>1</ID>
+	   <Navn>Vær</Navn>
+	   <Beskrivelse>Værforhold, enkel tekst</Beskrivelse>
+	   <GroupId>1</GroupId>
+	</LoggType>
+	<LoggType>
+	  <ID>2</ID>
+	   <Navn>Alder</Navn>
+	   <Beskrivelse>Alder, gruppert etter beregning på storvilt.</Beskrivelse>
+	   <GroupId>2</GroupId>
+	</LoggType>
+	<LoggType>
+	  <ID>3</ID>
+	   <Navn>Vekt</Navn>
+	   <Beskrivelse>Vekt i kilo</Beskrivelse>
+	   <GroupId>2</GroupId>
+	</LoggType>
+	<LoggType>
+	  <ID>4</ID>
+	   <Navn>Kjønn</Navn>
+	   <Beskrivelse>Hukjønn eller hankjønn</Beskrivelse>
+	   <GroupId>1</GroupId>
+	</LoggType>
+	<LoggType>
+	  <ID>5</ID>
+	   <Navn>Tagger</Navn>
+	   <Beskrivelse>Antall tagger på gevir</Beskrivelse>
+	   <GroupId>2</GroupId>
+	</LoggType>
+</ArrayOfLoggType>
