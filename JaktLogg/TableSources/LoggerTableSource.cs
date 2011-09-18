@@ -6,6 +6,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.CoreGraphics;
 using System.IO;
+using System.Drawing;
 
 namespace JaktLogg
 {
@@ -149,13 +150,32 @@ namespace JaktLogg
 		
 		public override UIView GetViewForHeader (UITableView tableView, int section)
 		{
+			if(_logger.Count == 0){
+				var firstView = new UIView();
+				var imgview = new UIImageView(new UIImage("Images/Backgrounds/RypeHagle.png"));
+				imgview.UserInteractionEnabled = true;
+				//imgview.Frame = new RectangleF(0,0,320f,367f);
+				
+				var btnNew = UIButton.FromType(UIButtonType.RoundedRect);
+				btnNew.Frame = new RectangleF(20f, 20f, 280f, 40f);
+				btnNew.SetTitle("Opprett første loggføring", UIControlState.Normal);
+				btnNew.TouchUpInside += _controller.NewItemClicked;
+				imgview.AddSubview(btnNew);
+				firstView.AddSubview(imgview);
+				return firstView;
+			
+			}
 			var title = TitleForHeader(tableView, section);
 			var hView = new HeaderTableSection(title);
 			return hView.View;
 		}
-		
+
+
 		public override float GetHeightForHeader (UITableView tableView, int section)
 		{
+			if(_logger.Count == 0)
+				return 367.0f;
+			
 			if(datelist.Count() <= section)
 				return 0f;
 			

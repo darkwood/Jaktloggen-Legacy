@@ -17,6 +17,8 @@ namespace JaktLogg {
 		
 		private MonoTouch.UIKit.UIView __mt_view;
 		
+		private MonoTouch.UIKit.UIButton __mt_btNew;
+		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("view")]
 		private MonoTouch.UIKit.UIView view {
@@ -27,6 +29,18 @@ namespace JaktLogg {
 			set {
 				this.__mt_view = value;
 				this.SetNativeField("view", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("btNew")]
+		private MonoTouch.UIKit.UIButton btNew {
+			get {
+				this.__mt_btNew = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btNew")));
+				return this.__mt_btNew;
+			}
+			set {
+				this.__mt_btNew = value;
+				this.SetNativeField("btNew", value);
 			}
 		}
 	}

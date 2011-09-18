@@ -13,6 +13,8 @@ namespace JaktLogg
 	{
 		public Dictionary<int, MKAnnotation> Pins;
 		private List<Logg> _loggItems;
+		public string Filter = "";
+		
 		public StatsLoggMap (List<Logg> loggItems) : base("StatsLoggMap", null)
 		{
 			_loggItems = loggItems;
@@ -24,22 +26,81 @@ namespace JaktLogg
 			
 			mapView.Delegate = new MapViewDelegate(this);
 			mapView.ShowsUserLocation = true;
-			AddPinsToMap();
-			ZoomToShowAllPins();
+			RefreshMap();
 			
+			btRefresh.Clicked += delegate(object sender, EventArgs e) {
+				RefreshMap();
+			};
+			btPageCurl.Clicked += HandleBtPageCurlClicked;
+			mapTypeControl.ValueChanged += HandleMapTypeControlValueChanged;
 			base.ViewDidLoad ();
 		}
+
+		void HandleBtPageCurlClicked (object sender, EventArgs e)
+		{
+			var actionSheet = new UIActionSheet("") {"Treff", "Bom", "Observasjoner", "Alle loggføringer"};
+			actionSheet.Title = "Vis bare:";
+			actionSheet.CancelButtonIndex = 3;
+			actionSheet.ShowFromTabBar(JaktLoggApp.instance.TabBarController.TabBar);
+			
+			actionSheet.Clicked += delegate(object s, UIButtonEventArgs evt) {
+
+				switch (evt.ButtonIndex)
+				{
+				case 0:
+					Filter = "Treff";
+					break;
+				case 1:
+					Filter = "Bom";
+				break;
+				case 2:
+					Filter = "Obs";
+				break;
+				case 3:
+				default:
+					Filter = "";
+				break;
+				}
+				
+				RefreshMap();
+			};
+		}
+	
+
+		void HandleMapTypeControlValueChanged (object sender, EventArgs e)
+		{
+			switch (mapTypeControl.SelectedSegment)
+		    {
+		        case 1: 
+		            mapView.MapType = MKMapType.Satellite;
+					break;
+				case 2:
+		            mapView.MapType = MKMapType.Hybrid;
+					break;
+		        default:
+		            mapView.MapType = MKMapType.Standard;
+					break;
+		    }
+		}
+		
+		
+		private void RefreshMap(){
+			AddPinsToMap();
+			ZoomToShowAllPins();
+		}
+		
 		
 		protected void AddPinsToMap()
 		{	
+			if(Pins != null){
+				while(Pins.Count > 0){
+					RemoveLocation(Pins.First().Value, Pins.First().Key);
+				}
+			}
 			Pins = new Dictionary<int, MKAnnotation>();
 			foreach(var logg in _loggItems.Where(l => l.Latitude != "" && l.Longitude != ""))
 			{
-				AddLocation(logg.ID, 
-				            double.Parse(logg.Latitude), 
-				            double.Parse(logg.Longitude), 
-				            logg.Dato.ToNorwegianDateString() + " kl." +logg.Dato.ToNorwegianTimeString(), 
-				            GetPinDescription(logg));
+				AddLocation(logg);
 			}
 		}
 		
@@ -60,9 +121,25 @@ namespace JaktLogg
 			return desc;
 		}
 		
-		protected void AddLocation(int id, double lat, double lon, string title, string description)
+		protected void AddLocation(Logg logg)
 		{
+			if(Filter != "")
+			{
+				if(Filter == "Treff" && logg.Treff == 0)
+					return;
+				if(Filter == "Bom" && (logg.Skudd == 0 || logg.Treff > 0))
+					return;
+				if(Filter == "Obs" && (logg.Sett == 0 || logg.Skudd > 0 || logg.Treff > 0))
+					return;
+			}
+			var id = logg.ID;
+			var lat = double.Parse(logg.Latitude);
+			var lon = double.Parse(logg.Longitude);
+			var title = logg.Dato.ToNorwegianDateString() + " kl." +logg.Dato.ToNorwegianTimeString();
+			var description = GetPinDescription(logg);
+			
 			var a = new MyAnnotation(new CLLocationCoordinate2D(lat,lon), title, description);
+			a.CurrentLogg = logg;
 			Pins.Add(id, a);
 			mapView.AddAnnotation(a);
 		}
@@ -125,17 +202,26 @@ namespace JaktLogg
 		   {
 				if(annotation is MonoTouch.MapKit.MKUserLocation)
 				  	return null;
+				var a = annotation as MyAnnotation;
 				
 				MKPinAnnotationView anv = new MKPinAnnotationView(annotation, "thisLocation");
 				anv.CanShowCallout = true;
-				anv.AnimatesDrop = false;
-				anv.PinColor = MKPinAnnotationColor.Green;
+				anv.AnimatesDrop = true;
+				
+				if(a.CurrentLogg.Treff > 0)
+					anv.PinColor = MKPinAnnotationColor.Green;
+				else if(a.CurrentLogg.Skudd > 0)
+					anv.PinColor = MKPinAnnotationColor.Red;
+				else
+					anv.PinColor = MKPinAnnotationColor.Purple;
+					
 				return anv;
 		   }
 		}
 		
 	    class MyAnnotation : MKAnnotation
 	    {
+			public Logg CurrentLogg;
 			private CLLocationCoordinate2D _coordinate;
 	        private string _title, _subtitle;
 	    	public override CLLocationCoordinate2D Coordinate {

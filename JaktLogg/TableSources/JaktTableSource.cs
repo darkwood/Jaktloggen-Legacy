@@ -70,13 +70,14 @@ namespace JaktLogg
 		
 		public override UIView GetViewForHeader (UITableView tableView, int section)
 		{
+			
 			var title = TitleForHeader(tableView, section);
 			var hView = new HeaderTableSection(title);
 			return hView.View;
 		}
 		
 		public override float GetHeightForHeader (UITableView tableView, int section)
-		{
+		{		
 			return 40.0f;
 		}
 		

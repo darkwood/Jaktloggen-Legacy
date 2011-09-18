@@ -9,9 +9,16 @@ namespace JaktLogg
 {
 	public partial class FirstLoadJegereView : UIJaktViewController
 	{
-		public FirstLoadJegereView () : base("FirstLoadJegereView", null)
+		private EventHandler HandleBtNewTouchUpInside;
+		public FirstLoadJegereView (EventHandler buttonEvent) : base("FirstLoadJegereView", null)
 		{
-
+			HandleBtNewTouchUpInside = buttonEvent;
+		}
+		
+		public override void ViewDidLoad ()
+		{
+			btNew.TouchUpInside += HandleBtNewTouchUpInside;
+			base.ViewDidLoad ();
 		}
 	}
 }

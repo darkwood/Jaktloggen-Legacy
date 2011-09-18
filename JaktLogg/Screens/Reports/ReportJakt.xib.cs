@@ -13,34 +13,54 @@ namespace JaktLogg
 	public partial class ReportJakt: UIJaktViewController
 	{
 		public Jakt jakt;
+		public string html = "";
 		MFMailComposeViewController _mail;
 		public ReportJakt (Jakt j) : base("ReportJakt", null)
 		{
 			jakt = j;
+			
 		}
 		
 		public override void ViewDidLoad ()
 		{
-			var doneButton = new UIBarButtonItem("Lagre", UIBarButtonItemStyle.Done, DoneBarButtonClicked);
+			Title = "Forhåndsvisning";
+			var doneButton = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneBarButtonClicked);
 			navigationBar.LeftBarButtonItem = doneButton;
 			
-			var rightbtn = new UIBarButtonItem(UIBarButtonSystemItem.Compose, RightBarButtonClicked);
+			var rightbtn = new UIBarButtonItem("Send", UIBarButtonItemStyle.Done, RightBarButtonClicked);
 			NavigationItem.RightBarButtonItem = rightbtn;
 			
-			var html = GenerateHtml();
-			
+			html = GenerateHtml();
+			CreateMail(html);
 			webView.LoadHtmlString(html, new NSUrl());
 			base.ViewDidLoad ();
 		}
 		
-		private void RightBarButtonClicked(object sender, EventArgs args)
+		private void RightBarButtonClicked(object sender, EventArgs args){
+			CreateMail(html);
+		}
+		
+		private void CreateMail(string html)
 		{
 			if (MFMailComposeViewController.CanSendMail) {
 	            _mail = new MFMailComposeViewController ();
+				_mail.NavigationBar.BarStyle = UIBarStyle.Black;
 				_mail.Title = "Send e-post";
 				_mail.SetSubject("Jaktrapport for " + jakt.Sted + " " + jakt.DatoFra.ToNorwegianDateAndYearString());
-	            _mail.SetMessageBody (GenerateHtml(), true);
+	            _mail.SetMessageBody (html, true);
 	            _mail.Finished += HandleMailFinished;
+				
+				if(jakt.JegerIds.Count > 0){
+					List<string> emails = new List<string>();
+					foreach(var jegerId in jakt.JegerIds){
+						var jeger = JaktLoggApp.instance.JegerList.Where(j => j.ID == jegerId).FirstOrDefault();
+						if(jeger.Email != "")
+							emails.Add(jeger.Email);
+					}
+					if(emails.Count > 0)
+						_mail.SetToRecipients(emails.ToArray());
+				}
+				
 	            this.PresentModalViewController (_mail, true);
 	        } 
 			else {
@@ -85,11 +105,10 @@ namespace JaktLogg
 				}
 				s.Append("</ul>");
 			}
-			s.Append("<hr/>");
 			
 			//RESULTAT
 			s.Append("<h2>Jaktresultat</h2>");
-			s.Append("<table><tr><th>Art</th><th>Sett</th><th>Skudd</th><th>Treff</th></tr>");
+			s.Append("<table cellspacing='0'><tr><th>Art</th><th>Sett</th><th>Skudd</th><th>Treff</th></tr>");
 			foreach(int artid in logger.Select(a => a.ArtId).Distinct())
 			{
 				var l = logger.Where(a => a.ArtId == artid);
@@ -106,7 +125,6 @@ namespace JaktLogg
 				s.Append("</tr>");
 			}
 			s.Append("</table>");
-			s.Append("<hr/>");
 			
 			//RESULTAT PR JEGER
 			if(jegere.Count() > 1)
@@ -115,7 +133,7 @@ namespace JaktLogg
 				foreach(var jeger in jegere)
 				{
 					s.Append("<h3>-"+jeger.Navn + "-</h3>");
-					s.Append("<table><tr><th>Art</th><th>Sett</th><th>Skudd</th><th>Treff</th></tr>");
+					s.Append("<table cellspacing='0'><tr><th>Art</th><th>Sett</th><th>Skudd</th><th>Treff</th></tr>");
 					foreach(var artid in logger.Where(l => l.JegerId == jeger.ID).Select(a => a.ArtId).Distinct())
 					{
 						var l = logger.Where(a => a.ArtId == artid);
@@ -134,14 +152,13 @@ namespace JaktLogg
 					s.Append("</table>");
 				}
 				
-				s.Append("<hr/>");
 			}
 			
 			//LOGGFØRINGER
 			s.Append("<h2>Loggføringer</h2>");
 			
 			
-			s.Append("<table>");
+			s.Append("<table cellspacing='0'>");
 			
 			s.Append("<tr>");
 			
@@ -157,7 +174,7 @@ namespace JaktLogg
 			
 			foreach(var loggTypeId in JaktLoggApp.instance.SelectedLoggTypeIds)
 			{
-				var lt = JaktLoggApp.instance.LoggTypeList.Where(x => x.ID == loggTypeId).FirstOrDefault();
+				var lt = JaktLoggApp.instance.LoggTypeList.Where(x => x.Key == loggTypeId).FirstOrDefault();
 				if(lt != null){
 					s.Append("<th>" + lt.Navn + "</th>");
 				}
@@ -194,9 +211,9 @@ namespace JaktLogg
 			
 			foreach(var loggTypeId in JaktLoggApp.instance.SelectedLoggTypeIds)
 			{
-				var lt = JaktLoggApp.instance.LoggTypeList.Where(x => x.ID == loggTypeId).FirstOrDefault();
+				var lt = JaktLoggApp.instance.LoggTypeList.Where(x => x.Key == loggTypeId).FirstOrDefault();
 				if(lt != null){
-					s.Append("<th>" +  + "</th>");
+					s.Append("<td>"+logg.GetType().GetProperty(lt.Key).GetValue(logg, null)+"</td>");
 				}
 			}
 			
@@ -217,12 +234,14 @@ namespace JaktLogg
 		{
 			StringBuilder s = new StringBuilder();
 			s.Append("<style type='text/css'>");
-			s.Append(@" body { font-size:12px; font-family: Arial, Helvetica, Verdana; background-color:#EFEFEF; color:#353535 }
-						h1,h2,h3,p,hr,ul,li{ margin:0, padding:0; }
-						h1,h2,h3{ line-height:1.3em;}
-						hr { border:slid 1px #666; }
-						li {list-style-type:none;padding-left:0px;margin-left:0px;}
-						td,th {font-size:11px; border-bottom:solid 1px #989898; }
+			s.Append(@" body { font-size:12px; font-family: Arial, Helvetica, Verdana; color:#353535 }
+						h1,h2,h3,p,hr,ul,li{ margin:0; padding:0; }
+						h1,h2,h3{ line-height:1.3em; margin:10px 0px;}
+						hr { border:solid 1px #666; }
+						li {list-style-type:none; }
+						td,th {font-size:11px;}
+						table, td {border:solid 1px #989898; }
+		
 						");
 			s.Append("</style>");
 			return s.ToString();

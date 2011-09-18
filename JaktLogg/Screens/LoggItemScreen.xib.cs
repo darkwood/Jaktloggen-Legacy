@@ -44,7 +44,7 @@ namespace JaktLogg
 			
 			/*
 			if(IsNewItem){
-				var rightBarButton = new UIBarButtonItem("Lagre", UIBarButtonItemStyle.Done, ItemSaveClicked);
+				var rightBarButton = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, ItemSaveClicked);
 				NavigationItem.RightBarButtonItem = rightBarButton;
 			}*/
 			base.ViewDidLoad ();

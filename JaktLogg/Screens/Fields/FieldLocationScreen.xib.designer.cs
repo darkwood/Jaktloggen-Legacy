@@ -25,6 +25,8 @@ namespace JaktLogg {
 		
 		private MonoTouch.UIKit.UILabel __mt_txtLocation;
 		
+		private MonoTouch.UIKit.UISegmentedControl __mt_mapTypeControl;
+		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("view")]
 		private MonoTouch.UIKit.UIView view {
@@ -83,6 +85,18 @@ namespace JaktLogg {
 			set {
 				this.__mt_txtLocation = value;
 				this.SetNativeField("txtLocation", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("mapTypeControl")]
+		private MonoTouch.UIKit.UISegmentedControl mapTypeControl {
+			get {
+				this.__mt_mapTypeControl = ((MonoTouch.UIKit.UISegmentedControl)(this.GetNativeField("mapTypeControl")));
+				return this.__mt_mapTypeControl;
+			}
+			set {
+				this.__mt_mapTypeControl = value;
+				this.SetNativeField("mapTypeControl", value);
 			}
 		}
 	}

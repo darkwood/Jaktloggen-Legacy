@@ -24,7 +24,7 @@ namespace JaktLogg
 			
 			var section1 = new SectionMapping("", "");
 			var section2 = new SectionMapping("", "");
-			var section3 = new SectionMapping("Tilpassede felter", "Du kan legge til/fjerne felter under 'Felter' i menyen");
+			var section3 = new SectionMapping("Ekstra felter", "");
 			var sectionSlett = new SectionMapping("", "");
 			
 			section1.Rows.Add(new RowItemMapping {
@@ -64,7 +64,7 @@ namespace JaktLogg
 					return string.IsNullOrEmpty(loggItem.Latitude) ? "Ikke satt" : "Se i kart";
 				},
 				RowSelected = () => {
-					var fieldScreen = new FieldLocationScreen("Posisjon", loggItem.Latitude, loggItem.Longitude, screen => {
+					var fieldScreen = new FieldLocationScreen(loggItem, screen => {
 						loggItem.Latitude = screen.Latitude;
 						loggItem.Longitude = screen.Longitude;
 						_controller.Refresh();
@@ -175,7 +175,7 @@ namespace JaktLogg
 			
 			foreach(var selectedLoggTypeId in JaktLoggApp.instance.SelectedLoggTypeIds)
 			{
-				var item = JaktLoggApp.instance.LoggTypeList.SingleOrDefault(i => i.ID == selectedLoggTypeId);
+				var item = JaktLoggApp.instance.LoggTypeList.SingleOrDefault(i => i.Key == selectedLoggTypeId);
 				switch(item.Navn){
 					case "Vær":
 					
@@ -196,6 +196,7 @@ namespace JaktLogg
 									loggItem.Weather = screen.SelectedKey;
 									_controller.Refresh();
 								});
+							fieldScreen.SelectedKey = loggItem.Weather;
 								_controller.NavigationController.PushViewController(fieldScreen, true);
 							}
 						
@@ -230,15 +231,15 @@ namespace JaktLogg
 						section3.Rows.Add(new RowItemMapping {
 						Label = "Tagger på geviret",
 						GetValue = () => {
-							return loggItem.Tagger.ToString();
+							return loggItem.Tags == 0 ? "" : loggItem.Tags.ToString();
 						},
 						RowSelected = () => 
 							{
 								var fieldScreen = new FieldNumberPickerScreen(screen => {
-									loggItem.Tagger = Int32.Parse(screen.Value);
+									loggItem.Tags = Int32.Parse(screen.Value);
 									_controller.Refresh();
 								});
-							fieldScreen.Value = loggItem.Tagger.ToString();
+							fieldScreen.Value = loggItem.Tags.ToString();
 							fieldScreen.Title = "Antall tagger på gevir";
 							fieldScreen.LabelExtension = " tagger";
 							
@@ -289,10 +290,98 @@ namespace JaktLogg
 							fieldScreen.Value = loggItem.Weight.ToString();
 							fieldScreen.Title = "Vekt i kilo";
 							fieldScreen.LabelExtension = " kg";
-								_controller.NavigationController.PushViewController(fieldScreen, true);
+							_controller.NavigationController.PushViewController(fieldScreen, true);
 							}
 						
 						});
+					break;
+					
+					case "Slaktevekt":
+					
+						section3.Rows.Add(new RowItemMapping {
+						Label = "Slaktevekt",
+						GetValue = () => {
+							return loggItem.ButchWeight == 0 ? "" : loggItem.ButchWeight + " kg";
+						},
+						RowSelected = () => 
+							{
+								var fieldScreen = new FieldNumberPickerScreen(screen => {
+									loggItem.ButchWeight = Int32.Parse(screen.Value);
+									_controller.Refresh();
+								});
+							fieldScreen.Value = loggItem.ButchWeight.ToString();
+							fieldScreen.Title = "Slaktevekt i kilo";
+							fieldScreen.LabelExtension = " kg";
+							_controller.NavigationController.PushViewController(fieldScreen, true);
+							}
+						
+						});
+					break;
+					
+					case "Våpentype":
+					
+						section3.Rows.Add(new RowItemMapping {
+							Label = "Våpentype",
+							GetValue = () => {
+								return loggItem.WeaponType;
+							},
+							RowSelected = () => {
+								var fieldScreen = new FieldStringScreen("Våpentype", screen => {
+									loggItem.WeaponType = screen.Value;
+									_controller.Refresh();
+								});
+								fieldScreen.Placeholder = "Skriv inn våpentype";
+								fieldScreen.Value = loggItem.WeaponType;
+								//autosuggest:
+								var autoitems = (from x in JaktLoggApp.instance.LoggList
+								              where x.WeaponType != string.Empty
+											  select x.WeaponType.ToUpper()).Distinct();
+								var autosuggests = new List<ItemCount>();
+								foreach(var autoitem in autoitems){
+									autosuggests.Add(new ItemCount{
+										Name = autoitem,
+										Count = JaktLoggApp.instance.LoggList.Where(y => y.WeaponType.ToUpper() == autoitem).Count()
+									});
+								}
+								fieldScreen.AutoSuggestions = autosuggests.OrderByDescending( o => o.Count ).ToList();          
+								_controller.NavigationController.PushViewController(fieldScreen, true);
+							},
+							ImageFile = ""
+						});
+					
+					break;
+					
+					case "Hund":
+					
+						section3.Rows.Add(new RowItemMapping {
+							Label = "Hund",
+							GetValue = () => {
+								return loggItem.Dog;
+							},
+							RowSelected = () => {
+								var fieldScreen = new FieldStringScreen("Hund", screen => {
+									loggItem.Dog = screen.Value;
+									_controller.Refresh();
+								});
+								fieldScreen.Placeholder = "Skriv inn hundenavn";
+								fieldScreen.Value = loggItem.Dog;
+								//autosuggest:
+								var autoitems = (from x in JaktLoggApp.instance.LoggList
+								              where x.Dog != string.Empty
+											  select x.Dog.ToUpper()).Distinct();
+								var autosuggests = new List<ItemCount>();
+								foreach(var autoitem in autoitems){
+									autosuggests.Add(new ItemCount{
+										Name = autoitem,
+										Count = JaktLoggApp.instance.LoggList.Where(y => y.Dog.ToUpper() == autoitem).Count()
+									});
+								}
+								fieldScreen.AutoSuggestions = autosuggests.OrderByDescending( o => o.Count ).ToList();          
+								_controller.NavigationController.PushViewController(fieldScreen, true);
+							},
+							ImageFile = ""
+						});
+					
 					break;
 				}
 			}
@@ -431,7 +520,7 @@ namespace JaktLogg
 		public override UIView GetViewForHeader (UITableView tableView, int section)
 		{
 			if(section > 0)
-				return tableView.TableHeaderView;
+				return new HeaderTableSection(TitleForHeader(tableView, section)).View;
 			
 			var headerView = new HeaderLoggItem(loggItem);
 			headerView.HandleButtonImageTouchUpInside = HandleButtonImageTouchUpInside;
@@ -445,11 +534,14 @@ namespace JaktLogg
 		
 		public override float GetHeightForHeader (UITableView tableView, int section)
 		{
-			if(section > 0)
+			if(section > 0 && TitleForHeader(tableView, section).Length > 0)
 				return 40f;
+			else if(section > 0)
+				return 0f;
 			
 			return 130f;
 		}
+		
 		
 		public override int NumberOfSections (UITableView tableView)
 		{

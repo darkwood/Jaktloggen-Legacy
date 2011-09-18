@@ -52,7 +52,7 @@ namespace JaktLogg
 			var leftBtn = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBtn;
 			
-			var rightBtn = new UIBarButtonItem("Lagre", UIBarButtonItemStyle.Done, DoneClicked);
+			var rightBtn = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneClicked);
 			NavigationItem.RightBarButtonItem = rightBtn;
 			
 			pickerViewModel = new FieldLoggCatchPickerViewModel(this);

@@ -28,7 +28,7 @@ namespace JaktLogg
 		private List<int> SelectedArtIdList = new List<int>();
 		
 		private List<LoggType> LoggTypeList = new List<LoggType>();
-		private List<int> SelectedLoggTypeIdList = new List<int>();
+		private List<string> SelectedLoggTypeIdList = new List<string>();
 		
 		
 		private string path;
@@ -92,19 +92,19 @@ namespace JaktLogg
 			return SelectedArtIdList;
 		}
 		
-		public List<int> GetSelectedLoggTypeIdList ()
+		public List<string> GetSelectedLoggTypeIdList ()
 		{	
 			string filePath = Path.Combine(path, FILE_SELECTED_LOGGTYPEIDS);
 			if(!File.Exists(filePath)){
 				
 				return SelectedLoggTypeIdList;
 			}
-			XmlSerializer serializer = new XmlSerializer( typeof(List<int>) );
+			XmlSerializer serializer = new XmlSerializer( typeof(List<string>) );
 			FileStream stream = new FileStream(filePath, FileMode.Open);
 			if(stream.Length > 0)
-				SelectedLoggTypeIdList = (List<int>) serializer.Deserialize(stream);
+				SelectedLoggTypeIdList = (List<string>) serializer.Deserialize(stream);
 			else
-				SelectedLoggTypeIdList = new List<int>();
+				SelectedLoggTypeIdList = new List<string>();
 			
 			stream.Close();
 			return SelectedLoggTypeIdList;
@@ -170,10 +170,10 @@ namespace JaktLogg
 		public List<LoggType> GetAllLoggTypeItems ()
 		{	
 			string filePath = Path.Combine(path, FILE_LOGGTYPER);
-			if(!File.Exists(filePath))
-			{
+			//if(!File.Exists(filePath))
+			//{
 				File.Copy("Data/loggtyper.xml", filePath, true);
-			}
+			//}
 			
 			XmlSerializer serializer = new XmlSerializer( typeof(List<LoggType>) );
 			FileStream stream = new FileStream(filePath, FileMode.Open);
@@ -245,11 +245,11 @@ namespace JaktLogg
 			Console.WriteLine("Art SelectedArtIdList saved to file.");
 		}
 		
-		public void SaveSelectedLoggTypeIdList (List<int> item)
+		public void SaveSelectedLoggTypeIdList (List<string> item)
 		{
 			SelectedLoggTypeIdList = item;
 			string filePath = Path.Combine(path, FILE_SELECTED_LOGGTYPEIDS);
-			XmlSerializer serializer = new XmlSerializer( typeof(List<int>) );
+			XmlSerializer serializer = new XmlSerializer( typeof(List<string>) );
 	        TextWriter writer = new StreamWriter(filePath);
 	        serializer.Serialize(writer, SelectedLoggTypeIdList);
 			writer.Close();

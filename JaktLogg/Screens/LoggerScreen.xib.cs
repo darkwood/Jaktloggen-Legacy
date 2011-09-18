@@ -12,7 +12,6 @@ namespace JaktLogg
 		public List<Logg> LoggList = new List<Logg>();
 		private int _jaktId;
 		private FirstLoadLoggView firstView;
-		
 		public LoggerScreen (int jaktId) : base("LoggerScreen", null)
 		{
 			_jaktId = jaktId;
@@ -52,7 +51,7 @@ namespace JaktLogg
 			}
 		}
 		
-		private void NewItemClicked(object sender, EventArgs e){
+		public void NewItemClicked(object sender, EventArgs e){
 			/*
 			var loggItem = new Logg();
 			var fieldScreen = new FieldLoggCatch("Ny skuddlogg", screen => {

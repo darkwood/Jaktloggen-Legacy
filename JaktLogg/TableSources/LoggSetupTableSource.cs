@@ -27,7 +27,7 @@ namespace JaktLogg
 					cell = new UIJaktTableViewCell(UITableViewCellStyle.Subtitle, "LoggSetupTableCell");
 
 			var item = LoggTypes.ElementAt(indexPath.Row);
-			var icon = JaktLoggApp.instance.SelectedLoggTypeIds.Contains(item.ID) ? "icon_checked.png" : "icon_unchecked.png";
+			var icon = JaktLoggApp.instance.SelectedLoggTypeIds.Contains(item.Key) ? "icon_checked.png" : "icon_unchecked.png";
 			var file = "Images/Icons/"+icon;
 			cell.ImageView.Image = new UIImage(file);
 			cell.ImageView.Layer.MasksToBounds = true;
@@ -69,11 +69,11 @@ namespace JaktLogg
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{	
 			var item = LoggTypes.ElementAt(indexPath.Row);
-			if(JaktLoggApp.instance.SelectedLoggTypeIds.Contains(item.ID))
+			if(JaktLoggApp.instance.SelectedLoggTypeIds.Contains(item.Key))
 			{
 				for(var i=0; i<JaktLoggApp.instance.SelectedLoggTypeIds.Count; i++)
 				{
-					if(JaktLoggApp.instance.SelectedLoggTypeIds[i] == item.ID)
+					if(JaktLoggApp.instance.SelectedLoggTypeIds[i] == item.Key)
 					{
 						JaktLoggApp.instance.SelectedLoggTypeIds.RemoveAt(i);
 					}
@@ -81,12 +81,12 @@ namespace JaktLogg
 			}
 			else
 			{
-				JaktLoggApp.instance.SelectedLoggTypeIds.Add(item.ID);
+				JaktLoggApp.instance.SelectedLoggTypeIds.Add(item.Key);
 			}
 			
 			tableView.DeselectRow(indexPath, true);
 			
-			var icon = JaktLoggApp.instance.SelectedLoggTypeIds.Contains(item.ID) ? "icon_checked.png" : "icon_unchecked.png";
+			var icon = JaktLoggApp.instance.SelectedLoggTypeIds.Contains(item.Key) ? "icon_checked.png" : "icon_unchecked.png";
 			var file = "Images/Icons/"+icon;
 			tableView.CellAt(indexPath).ImageView.Image = new UIImage(file);
 			

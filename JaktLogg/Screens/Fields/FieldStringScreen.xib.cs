@@ -13,6 +13,7 @@ namespace JaktLogg
 		public UIKeyboardType KeyboardType = UIKeyboardType.Default;
 		public string Value = "";
 		public string Placeholder = "Skriv inn tekst";
+		public List<ItemCount> AutoSuggestions = new List<ItemCount>();
 		
 		public FieldStringScreen (string title, Action<FieldStringScreen> callback) : base("FieldStringScreen", null)
 		{
@@ -34,10 +35,11 @@ namespace JaktLogg
 			var leftBtn = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBtn;
 			
-			var rightBtn = new UIBarButtonItem("Lagre", UIBarButtonItemStyle.Done, DoneClicked);
+			var rightBtn = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneClicked);
 			NavigationItem.RightBarButtonItem = rightBtn;
 			
 			tableSource = new FieldStringTableSource(this);
+			tableSource.AutoSuggestions = AutoSuggestions;
 			TableView.Source = tableSource;
 			
 		}

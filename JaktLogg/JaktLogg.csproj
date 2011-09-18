@@ -10,7 +10,6 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>JaktLogg</RootNamespace>
     <MainNibFile>MainWindow.xib</MainNibFile>
-    <AssemblyName>Jaktloggen</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <BundleIdentifier>no.toremorkved.jaktloggen</BundleIdentifier>
     <BundleVersion>1.2</BundleVersion>
@@ -34,6 +33,7 @@
     <MtouchArch>ARMv6</MtouchArch>
     <MtouchMinimumOS>3.0</MtouchMinimumOS>
     <MtouchI18n />
+    <AssemblyName>Jaktloggen</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -50,6 +50,7 @@
     <MtouchArch>ARMv6</MtouchArch>
     <MtouchMinimumOS>3.0</MtouchMinimumOS>
     <MtouchI18n />
+    <AssemblyName>Jaktloggen</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,6 +70,7 @@
     <MtouchMinimumOS>4.0</MtouchMinimumOS>
     <MtouchI18n />
     <CodesignProvision>5E43557E-A2B5-4805-8472-C1F7E81F7318</CodesignProvision>
+    <AssemblyName>Jaktloggen</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -85,6 +87,23 @@
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <CodesignProvision>D7B84FF1-59BF-459E-A912-BECD073D206E</CodesignProvision>
     <MtouchMinimumOS>4.0</MtouchMinimumOS>
+    <MtouchI18n />
+    <AssemblyName>Jaktloggen</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchMinimumOS>3.0</MtouchMinimumOS>
+    <MtouchDebug>False</MtouchDebug>
+    <CodesignKey>iPhone Distribution: Tore Morkved</CodesignKey>
+    <AssemblyName>JaktLogg</AssemblyName>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchArch>ARMv6</MtouchArch>
+    <CodesignProvision>C6C7C489-AFB0-4845-A713-128ED5B61D1C</CodesignProvision>
     <MtouchI18n />
   </PropertyGroup>
   <ItemGroup>
@@ -444,6 +463,7 @@
     <Compile Include="Screens\Statistics\StatsGenericTableView.xib.designer.cs">
       <DependentUpon>StatsGenericTableView.xib</DependentUpon>
     </Compile>
+    <Compile Include="HelperClasses\ItemCount.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
@@ -562,10 +582,15 @@
     <Content Include="Default.png" />
     <Content Include="Data\arter.xml" />
     <Content Include="Data\artgroup.xml" />
-    <Content Include="Images\Backgrounds\App_BG.png" />
-    <Content Include="Images\Backgrounds\App_BG%402x.png" />
     <Content Include="Images\Backgrounds\NavBarTile.png" />
     <Content Include="Data\loggtyper.xml" />
     <Content Include="Images\Icons\Tabs\Felter.png" />
+    <Content Include="Images\Backgrounds\YellowTile.png" />
+    <Content Include="Images\Backgrounds\MountainsHunter%402x.png" />
+    <Content Include="Images\Backgrounds\MountainsHunter.png" />
+    <Content Include="Images\Backgrounds\RypeHagle.png" />
+    <Content Include="Images\Backgrounds\RypeHagle%402x.png" />
+    <Content Include="Images\Backgrounds\Hunter.png" />
+    <Content Include="Images\Backgrounds\Hunter%402x.png" />
   </ItemGroup>
 </Project>

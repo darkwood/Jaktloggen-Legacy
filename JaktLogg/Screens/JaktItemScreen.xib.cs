@@ -38,7 +38,7 @@ namespace JaktLogg
 		
 		private void RightBarButtonClicked(object sender, EventArgs args)
 		{
-			var actionSheet = new UIActionSheet("") {"Send rapport på mail", "Avbryt"};
+			var actionSheet = new UIActionSheet("") {"Lag jaktrapport for e-post", "Avbryt"};
 			actionSheet.Title = "Lag rapporter fra jakta.";
 			//actionSheet.DestructiveButtonIndex = 0;
 			actionSheet.CancelButtonIndex = 2;

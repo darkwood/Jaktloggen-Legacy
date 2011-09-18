@@ -22,12 +22,7 @@ namespace JaktLogg
 			var sectionLogg = new SectionMapping("", " ");
 			var sectionDetaljer = new SectionMapping("", "");
 			var sectionSlett = new SectionMapping("", "");
-						
 			
-			sections.Add(sectionJakt);
-			sections.Add(sectionLogg);
-			sections.Add(sectionDetaljer);
-			sections.Add(sectionSlett);
 			
 			sectionJakt.Rows.Add(new RowItemMapping {
 				Label = "Jaktsted",
@@ -41,6 +36,20 @@ namespace JaktLogg
 					});
 					fieldScreen.Placeholder = "Skriv inn jaktsted";
 					fieldScreen.Value = jakt.Sted;
+					//autosuggest:
+					var steder = (from x in JaktLoggApp.instance.JaktList
+					              where x.Sted != string.Empty
+								  select x.Sted.ToUpper()).Distinct();
+					var autosuggests = new List<ItemCount>();
+					foreach(var sted in steder){
+						autosuggests.Add(new ItemCount{
+							Name = sted,
+							Count = JaktLoggApp.instance.JaktList.Where(y => y.Sted.ToUpper() == sted).Count()
+						});
+					}
+					fieldScreen.AutoSuggestions = autosuggests.OrderByDescending( o => o.Count ).ToList();          
+					
+					
 					_controller.NavigationController.PushViewController(fieldScreen, true);
 				},
 				ImageFile = "Images/Icons/signpost.png"
@@ -76,29 +85,6 @@ namespace JaktLogg
 				},
 				ImageFile = "Images/Icons/Tabs/Jaktloggen.png"
 			});
-			
-			
-			
-			/*
-			sectionDetaljer.Rows.Add(new RowItemMapping {
-				Label = "Posisjon",
-				GetValue = () => {
-					return string.IsNullOrEmpty(jakt.Latitude) ? "Ikke satt" : "Se i kart";
-				},
-				RowSelected = () => {
-					var fieldScreen = new FieldLocationScreen(jakt.Sted, jakt.Latitude, jakt.Longitude, screen => {
-						jakt.Latitude = screen.Latitude;
-						jakt.Longitude = screen.Longitude;
-						_controller.Refresh();
-					});
-					fieldScreen.Latitude = jakt.Latitude;
-					fieldScreen.Longitude = jakt.Longitude;
-					_controller.NavigationController.PushViewController(fieldScreen, true);
-				},
-				ImageFile = "Images/Icons/Pin.png"
-			});
-			*/
-			
 			
 			sectionDetaljer.Rows.Add(new RowItemMapping {
 				Label = "Dato fra",
@@ -179,6 +165,17 @@ namespace JaktLogg
 					}
 				});
 			}
+			if(sectionJakt.Rows.Count > 0)
+				sections.Add(sectionJakt);
+			
+			if(sectionLogg.Rows.Count > 0)
+				sections.Add(sectionLogg);
+			
+			if(sectionDetaljer.Rows.Count > 0)
+				sections.Add(sectionDetaljer);
+			
+			if(sectionSlett.Rows.Count > 0)
+				sections.Add(sectionSlett);
 			
 		}
 		
@@ -219,6 +216,10 @@ namespace JaktLogg
 			return 110f;
 		}
 		
+		public override float GetHeightForFooter (UITableView tableView, int section)
+		{
+			return 0.0f;
+		}
 		public override int NumberOfSections (UITableView tableView)
 		{
 			return sections.Count;

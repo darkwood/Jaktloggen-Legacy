@@ -67,7 +67,7 @@ namespace JaktLogg
 			
 			if(JaktLoggApp.instance.JegerList.Count == 0)
 			{
-				firstView = new FirstLoadJegereView();
+				firstView = new FirstLoadJegereView(NewItemClicked);
 				TableView.AddSubview(firstView.View);
 			}
 		}

@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">768</int>
-		<string key="IBDocument.SystemVersion">10J869</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">851</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -80,12 +80,12 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Art</string>
-						<object class="NSColor" key="IBUITextColor" id="943303095">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
-						</object>
+						<reference key="IBUITextColor" ref="935909914"/>
 						<reference key="IBUIHighlightedColor" ref="935909914"/>
-						<reference key="IBUIShadowColor" ref="935909914"/>
+						<object class="NSColor" key="IBUIShadowColor" id="366242306">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
+						</object>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
@@ -100,9 +100,9 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Jeger</string>
-						<reference key="IBUITextColor" ref="943303095"/>
+						<reference key="IBUITextColor" ref="935909914"/>
 						<reference key="IBUIHighlightedColor" ref="935909914"/>
-						<reference key="IBUIShadowColor" ref="935909914"/>
+						<reference key="IBUIShadowColor" ref="366242306"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
@@ -117,9 +117,9 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Notater</string>
-						<reference key="IBUITextColor" ref="943303095"/>
+						<reference key="IBUITextColor" ref="935909914"/>
 						<reference key="IBUIHighlightedColor" ref="935909914"/>
-						<reference key="IBUIShadowColor" ref="935909914"/>
+						<reference key="IBUIShadowColor" ref="366242306"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
@@ -134,9 +134,9 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Posisjon</string>
-						<reference key="IBUITextColor" ref="943303095"/>
+						<reference key="IBUITextColor" ref="935909914"/>
 						<reference key="IBUIHighlightedColor" ref="935909914"/>
-						<reference key="IBUIShadowColor" ref="935909914"/>
+						<reference key="IBUIShadowColor" ref="366242306"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
@@ -151,9 +151,9 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Skudd/Treff</string>
-						<reference key="IBUITextColor" ref="943303095"/>
+						<reference key="IBUITextColor" ref="935909914"/>
 						<reference key="IBUIHighlightedColor" ref="935909914"/>
-						<reference key="IBUIShadowColor" ref="935909914"/>
+						<reference key="IBUIShadowColor" ref="366242306"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
@@ -168,9 +168,9 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Bilde</string>
-						<reference key="IBUITextColor" ref="943303095"/>
+						<reference key="IBUITextColor" ref="935909914"/>
 						<reference key="IBUIHighlightedColor" ref="935909914"/>
-						<reference key="IBUIShadowColor" ref="935909914"/>
+						<reference key="IBUIShadowColor" ref="366242306"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>

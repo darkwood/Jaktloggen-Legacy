@@ -29,7 +29,7 @@ namespace JaktLogg
 			var leftBarButton = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBarButton;
 			
-			var rightBarButton = new UIBarButtonItem("Lagre", UIBarButtonItemStyle.Done, SaveClicked);
+			var rightBarButton = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, SaveClicked);
 			NavigationItem.RightBarButtonItem = rightBarButton;
 		}
 		

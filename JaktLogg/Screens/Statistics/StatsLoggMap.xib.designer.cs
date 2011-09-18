@@ -19,6 +19,12 @@ namespace JaktLogg {
 		
 		private MonoTouch.MapKit.MKMapView __mt_mapView;
 		
+		private MonoTouch.UIKit.UISegmentedControl __mt_mapTypeControl;
+		
+		private MonoTouch.UIKit.UIBarButtonItem __mt_btPageCurl;
+		
+		private MonoTouch.UIKit.UIBarButtonItem __mt_btRefresh;
+		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("view")]
 		private MonoTouch.UIKit.UIView view {
@@ -41,6 +47,42 @@ namespace JaktLogg {
 			set {
 				this.__mt_mapView = value;
 				this.SetNativeField("mapView", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("mapTypeControl")]
+		private MonoTouch.UIKit.UISegmentedControl mapTypeControl {
+			get {
+				this.__mt_mapTypeControl = ((MonoTouch.UIKit.UISegmentedControl)(this.GetNativeField("mapTypeControl")));
+				return this.__mt_mapTypeControl;
+			}
+			set {
+				this.__mt_mapTypeControl = value;
+				this.SetNativeField("mapTypeControl", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("btPageCurl")]
+		private MonoTouch.UIKit.UIBarButtonItem btPageCurl {
+			get {
+				this.__mt_btPageCurl = ((MonoTouch.UIKit.UIBarButtonItem)(this.GetNativeField("btPageCurl")));
+				return this.__mt_btPageCurl;
+			}
+			set {
+				this.__mt_btPageCurl = value;
+				this.SetNativeField("btPageCurl", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("btRefresh")]
+		private MonoTouch.UIKit.UIBarButtonItem btRefresh {
+			get {
+				this.__mt_btRefresh = ((MonoTouch.UIKit.UIBarButtonItem)(this.GetNativeField("btRefresh")));
+				return this.__mt_btRefresh;
+			}
+			set {
+				this.__mt_btRefresh = value;
+				this.SetNativeField("btRefresh", value);
 			}
 		}
 	}

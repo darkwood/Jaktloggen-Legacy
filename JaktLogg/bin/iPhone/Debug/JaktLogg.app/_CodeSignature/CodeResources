@@ -30,19 +30,23 @@
 		</data>
 		<key>Data/arter.xml</key>
 		<data>
-		Zx0xn4PO53Tr495ZXFidn+xFCeY=
+		0hwLhjJDw8PAj2gUeE3UDj5H+5A=
 		</data>
 		<key>Data/artgroup.xml</key>
 		<data>
 		6pKEtaOfutFhZvqa5xUQgg7TKaw=
 		</data>
+		<key>Data/loggtyper.xml</key>
+		<data>
+		LFqPKL//+K1AQvJp0TrL7nesdEg=
+		</data>
 		<key>Default.png</key>
 		<data>
-		8wfizOfltwyAWGg22yFPeBnEMr8=
+		tswpEGEn1e35FkyTIu3aAXYe7PU=
 		</data>
 		<key>Default@2x.png</key>
 		<data>
-		UrAph7rT+Dqts2rGP2LMdeENNpg=
+		+++nBvljzQjSMsK7oLjc1Z4l+WI=
 		</data>
 		<key>FeedbackScreen.nib</key>
 		<data>
@@ -62,11 +66,11 @@
 		</data>
 		<key>FieldLocationScreen.nib</key>
 		<data>
-		/oZncg+1IBr8XtlmbKGoCW/ELwk=
+		O7JNSs55rROzLQ+rMlChDQAgeaI=
 		</data>
 		<key>FieldLoggCatch.nib</key>
 		<data>
-		Y0tqU6tNxbf+wulFFFJAex7zfYQ=
+		Jk0ZKAGOffxvE4KjEsikqP5RbcU=
 		</data>
 		<key>FieldNotesScreen.nib</key>
 		<data>
@@ -74,7 +78,7 @@
 		</data>
 		<key>FieldNumberPickerScreen.nib</key>
 		<data>
-		KT2Hi8E5aO2vX8okxVV9xAr3AjY=
+		sH/GhRS/g3E4KhumnbJws4lm1HM=
 		</data>
 		<key>FieldSingleChoiceListScreen.nib</key>
 		<data>
@@ -86,11 +90,11 @@
 		</data>
 		<key>FirstLoadJaktView.nib</key>
 		<data>
-		deSty7PAz38AAMkhZyYcKkopdL0=
+		aES5QrLqlBlYbakdegS8kIQyf3g=
 		</data>
 		<key>FirstLoadJegereView.nib</key>
 		<data>
-		YvDlIrxqnA1E8ALRTNj3c4PBv5w=
+		prr1xzgP0rEHoltWAA//vNobRZU=
 		</data>
 		<key>FirstLoadLoggView.nib</key>
 		<data>
@@ -106,15 +110,15 @@
 		</data>
 		<key>HeaderJaktItem.nib</key>
 		<data>
-		kgDnzhcpfMdagCTwFrgHuhwdoDc=
+		1bSUviuF9uESF3mfPvj6NlfaXPo=
 		</data>
 		<key>HeaderJeger.nib</key>
 		<data>
-		MN7JYqrhfY4mAPUmPKcmQpIJHRs=
+		G+B7rqZ9AiBKFyZMK/8eY2z3CZg=
 		</data>
 		<key>HeaderLoggItem.nib</key>
 		<data>
-		SYPt1SldKsiDUmMvxYTDB+cKEh4=
+		v8jvPWQ70gYOmAzwht7ClXwhhlw=
 		</data>
 		<key>HeaderStatsArter.nib</key>
 		<data>
@@ -122,7 +126,7 @@
 		</data>
 		<key>HeaderTableSection.nib</key>
 		<data>
-		9Jr66WIiFBYwxyAG8cTzt0eMDXU=
+		G8UjXGw/aQ8CfFOZ63Pvl6GVJV4=
 		</data>
 		<key>Icon.png</key>
 		<data>
@@ -142,15 +146,43 @@
 		</data>
 		<key>Images/Backgrounds/App_BG@2x.png</key>
 		<data>
-		yv1HECxzYYHIEmoA7GnUDn6Z234=
+		fWvduOX+34xiqkg0frni4af3lAs=
+		</data>
+		<key>Images/Backgrounds/Hunter.png</key>
+		<data>
+		Y9/g+tSFdee4j518oXlfRyISsqk=
+		</data>
+		<key>Images/Backgrounds/Hunter@2x.png</key>
+		<data>
+		rBtNaT4msRLQCVUoUQ+8mJTLJJU=
+		</data>
+		<key>Images/Backgrounds/MountainsHunter.png</key>
+		<data>
+		Xy5DGFCljv3KyQiytRpTjmHljcA=
+		</data>
+		<key>Images/Backgrounds/MountainsHunter@2x.png</key>
+		<data>
+		kFhnGZhUY/qUNp12N8F852JGgKQ=
 		</data>
 		<key>Images/Backgrounds/NavBarTile.png</key>
 		<data>
 		mMafg9AEj64Z8UEUFo0SQOlXk6U=
 		</data>
+		<key>Images/Backgrounds/RypeHagle.png</key>
+		<data>
+		1KEd8rA+AF6ga8gKDmZ/0aIxtlo=
+		</data>
+		<key>Images/Backgrounds/RypeHagle@2x.png</key>
+		<data>
+		o4WJAKQlJcT2vQ4U8KKqrc8tdtQ=
+		</data>
 		<key>Images/Backgrounds/Stripes.png</key>
 		<data>
-		J7GRnTPfotNb/HzNdmLM3ivtMlY=
+		u8Aa+RSYtONZO0tzuG+uhu23Ddg=
+		</data>
+		<key>Images/Backgrounds/YellowTile.png</key>
+		<data>
+		AE0/hIIR/HVYe16zzrGjtP7ak6w=
 		</data>
 		<key>Images/Buttons/Delete.png</key>
 		<data>
@@ -163,6 +195,10 @@
 		<key>Images/Icons/Tabs/Feedback.png</key>
 		<data>
 		dgqEa1W4wIFBI+UEVMbmOf2CmcI=
+		</data>
+		<key>Images/Icons/Tabs/Felter.png</key>
+		<data>
+		zwWuX5vzo0040QQ8AnsupUk1nGs=
 		</data>
 		<key>Images/Icons/Tabs/Info.png</key>
 		<data>
@@ -246,11 +282,11 @@
 		</data>
 		<key>Jaktloggen.exe</key>
 		<data>
-		egwiiAXBOspmDf9nVxbS9z7VsoU=
+		nZzB8kRN+EqvMDxxEFr5vBxCc/Y=
 		</data>
 		<key>Jaktloggen.exe.mdb</key>
 		<data>
-		l6NQvVmcbUTzldK71IfcpoQi7XY=
+		UZNzOf4Flx4wYixGiWtxI9I4fKk=
 		</data>
 		<key>JegerPickerScreen.nib</key>
 		<data>
@@ -268,9 +304,17 @@
 		<data>
 		xeyRUeu19NQ97E5RsG+KW+8Hi6c=
 		</data>
+		<key>LoggFields.nib</key>
+		<data>
+		Ivm6JP4zepfTk89FS6/uRgf/NgQ=
+		</data>
 		<key>LoggItemScreen.nib</key>
 		<data>
 		AUJGoGcAuqK90Ud8TgC3mrXJ7AE=
+		</data>
+		<key>LoggSetupScreen.nib</key>
+		<data>
+		t7U0rcyzURypoZr9yM/mpeesi84=
 		</data>
 		<key>LoggerScreen.nib</key>
 		<data>
@@ -278,19 +322,19 @@
 		</data>
 		<key>MainWindow.nib</key>
 		<data>
-		EMgc7o9ecQzIcO07ilfJNePleXQ=
+		wIar1O4Aiz+GEHXZ6m/fsqEhF+k=
 		</data>
 		<key>Mono.Security.dll</key>
 		<data>
-		aLN6bjTE+Kyr4O20jrA553GmaBw=
+		hflIOsryUDneO9iqy+Tb7BiV4Jk=
 		</data>
 		<key>Mono.Security.dll.mdb</key>
 		<data>
-		YEZ4l5mWs+iDwyS9zMdklsHVfJM=
+		s10GjxwF3Jer/1z11iNZg6YSQto=
 		</data>
 		<key>MultilineTextinputCell.nib</key>
 		<data>
-		ymjuPpSwwGOVUN10AqGSXmlTgok=
+		PrOOP+WjamrjX6Q2JurshhPfpYI=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -324,6 +368,10 @@
 		<data>
 		AUJGoGcAuqK90Ud8TgC3mrXJ7AE=
 		</data>
+		<key>StatsGenericTableView.nib</key>
+		<data>
+		iqNtTt1JMecX4VQcCMEHE2g5hBg=
+		</data>
 		<key>StatsGenericWebView.nib</key>
 		<data>
 		eRwyNKDBTXoQ4GOw/f8sJuUKFCc=
@@ -334,7 +382,7 @@
 		</data>
 		<key>StatsLoggMap.nib</key>
 		<data>
-		0hN/UaxGOXryPI1TZgzHS0xiJdY=
+		IzFSazjY9BV4KK+770xquc0vreI=
 		</data>
 		<key>StatsTimeOfDay.nib</key>
 		<data>
@@ -342,35 +390,35 @@
 		</data>
 		<key>System.Core.dll</key>
 		<data>
-		RdHmZseWsDeqRlAPV0v7f19hCnw=
+		2c7n3rFa1UjjtIUYrCb9oQcl9Ms=
 		</data>
 		<key>System.Core.dll.mdb</key>
 		<data>
-		MIe0TWl3N0O6w/4qOpfs1M/P9Tw=
+		n/PdCbdhADeKae+TwPSgSJ1uVCQ=
 		</data>
 		<key>System.Web.Services.dll</key>
 		<data>
-		cdZ8rHh7fv/j49iHe8mqwRV1h3M=
+		PVhH9V5IU5EdVjyqC+CaQ3smY9A=
 		</data>
 		<key>System.Web.Services.dll.mdb</key>
 		<data>
-		Jqy73aZF5+oxcfWtVjdyZgprWi8=
+		e0aWNdnIQCnrbHPpRcmHt6aVCoQ=
 		</data>
 		<key>System.Xml.dll</key>
 		<data>
-		hKwGw2XwIOFDVqAOxU8Ovd2n2PY=
+		Z+ptXqQJCVxp09qbooLqnQZfVAg=
 		</data>
 		<key>System.Xml.dll.mdb</key>
 		<data>
-		j5Uc1sVk+MIjFigTcxRSlwoKAVo=
+		ZW4VQEQ+ejAktQ6LIiWtQwJoFIE=
 		</data>
 		<key>System.dll</key>
 		<data>
-		0sEj1z7P6diScXarkcaVJpNgruY=
+		YyRfn+9EyU8Zn8niPeqjHiqNEws=
 		</data>
 		<key>System.dll.mdb</key>
 		<data>
-		4aN84+8pvn+R9deX3HFgZyuGPNk=
+		USRDUxQO0J3W9JGAkwB1hURCBn0=
 		</data>
 		<key>TextInputCell.nib</key>
 		<data>
@@ -398,19 +446,19 @@
 		</data>
 		<key>monotouch.dll</key>
 		<data>
-		BYSg6rAu0od+IM3hSjS9kSiuKmg=
+		Qh5tYQNSOdzaNu/DmazJ/6btchY=
 		</data>
 		<key>monotouch.dll.mdb</key>
 		<data>
-		nVffNl4s4Vlx7lZtKtRr+MclDFc=
+		dEEvqk1k9s++JjFikW51WgW+H/s=
 		</data>
 		<key>mscorlib.dll</key>
 		<data>
-		N3zESAb5+x+24mkcswo6qJ6XDjQ=
+		HdaPzjl8y6t2Vt3oKVD/XgotTic=
 		</data>
 		<key>mscorlib.dll.mdb</key>
 		<data>
-		l2O2+/Q1w4hpFCGxvs+hwa5gxwA=
+		9FwBTEYYbv2Hte5OGsX13lxg2jM=
 		</data>
 	</dict>
 	<key>rules</key>

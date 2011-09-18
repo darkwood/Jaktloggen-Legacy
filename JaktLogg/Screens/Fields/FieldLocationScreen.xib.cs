@@ -13,16 +13,18 @@ namespace JaktLogg
 	{
 		public string Longitude;
 		public string Latitude;
+		public Logg CurrentLogg;
 		public CLLocationManager locationManager;
 		public LocationManagerDelegate locationManagerDelegate;
 		private Action<FieldLocationScreen> _callback;
 
-		public FieldLocationScreen (string title, string lat, string lng, Action<FieldLocationScreen> callback) : base("FieldLocationScreen", null)
+		public FieldLocationScreen (Logg _logg, Action<FieldLocationScreen> callback) : base("FieldLocationScreen", null)
 		{
-			Title = title;
+			Title = "Posisjon";
 			_callback = callback;
-			Latitude = lat;
-			Longitude = lng;
+			CurrentLogg = _logg;
+			Latitude = CurrentLogg.Latitude;
+			Longitude = CurrentLogg.Longitude;
 		}
 
 		public override void ViewDidLoad ()
@@ -40,15 +42,31 @@ namespace JaktLogg
 			var leftBtn = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBtn;
 			
-			var rightBtn = new UIBarButtonItem("Lagre", UIBarButtonItemStyle.Done, DoneClicked);
+			var rightBtn = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneClicked);
 			NavigationItem.RightBarButtonItem = rightBtn;
 			
 			btnGps.Clicked += GpsClicked;
 			btnClear.Clicked += ClearClicked;
+			mapTypeControl.ValueChanged += HandleMapTypeControlValueChanged;
 			
 			base.ViewDidLoad ();
 		}
 		
+		void HandleMapTypeControlValueChanged (object sender, EventArgs e)
+		{
+			switch (mapTypeControl.SelectedSegment)
+		    {
+		        case 1: 
+		            mapView.MapType = MKMapType.Satellite;
+					break;
+				case 2:
+		            mapView.MapType = MKMapType.Hybrid;
+					break;
+		        default:
+		            mapView.MapType = MKMapType.Standard;
+					break;
+		    }
+		}
 				
 		public override void ViewDidAppear (bool animated)
 		{	
@@ -150,12 +168,19 @@ namespace JaktLogg
 		
 	   public override MKAnnotationView GetViewForAnnotation(MKMapView mapView, NSObject annotation)
 	   {
-	      MKPinAnnotationView anv = new MKPinAnnotationView(annotation, "thisLocation");
-
-	      anv.CanShowCallout = true;
-		  anv.AnimatesDrop = false;
-		  anv.Draggable = true;
-		  anv.PinColor = MKPinAnnotationColor.Green;
+			MKPinAnnotationView anv = new MKPinAnnotationView(annotation, "thisLocation");
+			
+			anv.CanShowCallout = true;
+			anv.AnimatesDrop = false;
+			anv.Draggable = true;
+			
+			if(_controller.CurrentLogg.Treff > 0)
+				anv.PinColor = MKPinAnnotationColor.Green;
+			else if(_controller.CurrentLogg.Skudd > 0)
+				anv.PinColor = MKPinAnnotationColor.Red;
+			else
+				anv.PinColor = MKPinAnnotationColor.Purple;
+						
 	      return anv;
 	   }
 	}

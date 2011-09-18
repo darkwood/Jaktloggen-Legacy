@@ -34,7 +34,7 @@ namespace JaktLogg
 			var leftBtn = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBtn;
 			
-			var rightBtn = new UIBarButtonItem("Lagre", UIBarButtonItemStyle.Done, DoneClicked);
+			var rightBtn = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneClicked);
 			NavigationItem.RightBarButtonItem = rightBtn;
 			
 			tableSource = new FieldNotesTableSource(this);
@@ -88,7 +88,7 @@ namespace JaktLogg
 		
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			return 160f;
+			return 180f;
 		}
 		public override int RowsInSection (UITableView tableview, int section)
 		{
@@ -97,7 +97,7 @@ namespace JaktLogg
 		
 		public override int NumberOfSections (UITableView tableView)
 		{
-			return 2;
+			return 1;
 		}
 		
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)

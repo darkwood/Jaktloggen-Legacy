@@ -19,7 +19,7 @@ namespace JaktLogg
 		public List<ArtGroup> ArtGroupList = new List<ArtGroup>();
 		public List<Logg> LoggList = new List<Logg>();
 		public List<int> SelectedArtIds = new List<int>();
-		public List<int> SelectedLoggTypeIds = new List<int>();
+		public List<string> SelectedLoggTypeIds = new List<string>();
 		public List<LoggType> LoggTypeList = new List<LoggType>();
 		
 		public Jakt CurrentJakt = new Jakt();
