@@ -39,7 +39,7 @@ namespace JaktLogg
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
 			if(section == 1 && AutoSuggestions.Count > 0) //autosuggest
-				return "Forslag";
+				return "Tidligere brukt:";
 			
 			return "";
 		}

@@ -16,6 +16,8 @@ namespace JaktLogg
 		public override void ViewDidLoad ()
 		{
 			TableView.BackgroundColor = UIColor.Clear;
+			TableView.SeparatorColor = UIColor.DarkGray;
+			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.SingleLineEtched;
 			base.ViewDidLoad ();
 		}
 	}

@@ -56,21 +56,7 @@ namespace JaktLogg
 				}
 			});
 			
-			sectionJeger.Rows.Add(new RowItemMapping {
-				Label = "E-post",
-				GetValue = () => {
-					return _jeger.Email;
-				},
-				RowSelected = () => {
-					var fieldScreen = new FieldStringScreen("E-post", screen => {
-						_jeger.Email = screen.Value;
-						_controller.Refresh();
-					}); 
-					fieldScreen.Value = _jeger.Email;
-					fieldScreen.KeyboardType = UIKeyboardType.EmailAddress;
-					_controller.NavigationController.PushViewController(fieldScreen, true);
-				}
-			});
+			
 			/*
 			sectionJeger.Rows.Add(new RowItemMapping {
 				Label = "Telefon",
@@ -97,6 +83,22 @@ namespace JaktLogg
 					ShowImageView();
 				},
 				ImageFile = "Images/Icons/camera.png"
+			});
+			
+			sectionJeger.Rows.Add(new RowItemMapping {
+				Label = "E-post",
+				GetValue = () => {
+					return _jeger.Email;
+				},
+				RowSelected = () => {
+					var fieldScreen = new FieldStringScreen("E-post", screen => {
+						_jeger.Email = screen.Value;
+						_controller.Refresh();
+					}); 
+					fieldScreen.Value = _jeger.Email;
+					fieldScreen.KeyboardType = UIKeyboardType.EmailAddress;
+					_controller.NavigationController.PushViewController(fieldScreen, true);
+				}
 			});
 			
 			if(!_controller.IsNewItem){

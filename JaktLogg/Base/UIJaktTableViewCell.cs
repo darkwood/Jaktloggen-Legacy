@@ -21,7 +21,7 @@ namespace JaktLogg
 			}
 			if(DetailTextLabel != null){
 				DetailTextLabel.BackgroundColor = UIColor.Clear;
-				DetailTextLabel.TextColor = UIColor.DarkGray;
+				DetailTextLabel.TextColor = UIColor.FromRGB(0.2f, 0.2f, 0.2f);
 				//DetailTextLabel.ShadowColor = UIColor.White;
 				
 			}

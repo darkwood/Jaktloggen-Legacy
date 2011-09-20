@@ -43,6 +43,24 @@ namespace JaktLogg
 			return "";//"Velg jaktlaget for denne jakta. Legg til ny jeger ved å klikke på \"+\"-knappen";
 		}
 		
+		public override string TitleForFooter (UITableView tableView, int section)
+		{
+			return _controller.Footer;
+		}
+		
+		public override UIView GetViewForFooter (UITableView tableView, int section)
+		{
+			return new HeaderTableSection(TitleForFooter(tableView, section)).View;
+		}
+		
+		public override float GetHeightForFooter (UITableView tableView, int section)
+		{
+			if(!string.IsNullOrEmpty(_controller.Footer))
+				return 40.0f;
+			
+			return 0.0f;
+		}
+		
 		public override int NumberOfSections (UITableView tableView)
 		{
 			return 1;

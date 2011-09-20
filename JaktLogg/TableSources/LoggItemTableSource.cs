@@ -427,6 +427,9 @@ namespace JaktLogg
 			foreach(var i in JaktLoggApp.instance.CurrentJakt.JegerIds)
 			{
 				var j = JaktLoggApp.instance.GetJeger(i);
+				if(j == null)
+					continue;
+				
 				var item = new SingleSelectRowItem();
 				item.Key = j.ID.ToString();
 				item.TextLabel = j.Navn;

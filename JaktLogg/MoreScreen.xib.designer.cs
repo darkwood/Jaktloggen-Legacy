@@ -12,14 +12,10 @@ namespace JaktLogg {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("FirstLoadLoggView")]
-	public partial class FirstLoadLoggView {
+	[MonoTouch.Foundation.Register("MoreScreen")]
+	public partial class MoreScreen {
 		
 		private MonoTouch.UIKit.UIView __mt_view;
-		
-		private MonoTouch.UIKit.UIButton __mt_btNew;
-		
-		private MonoTouch.UIKit.UIImageView __mt_img;
 		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("view")]
@@ -31,30 +27,6 @@ namespace JaktLogg {
 			set {
 				this.__mt_view = value;
 				this.SetNativeField("view", value);
-			}
-		}
-		
-		[MonoTouch.Foundation.Connect("btNew")]
-		private MonoTouch.UIKit.UIButton btNew {
-			get {
-				this.__mt_btNew = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btNew")));
-				return this.__mt_btNew;
-			}
-			set {
-				this.__mt_btNew = value;
-				this.SetNativeField("btNew", value);
-			}
-		}
-		
-		[MonoTouch.Foundation.Connect("img")]
-		private MonoTouch.UIKit.UIImageView img {
-			get {
-				this.__mt_img = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("img")));
-				return this.__mt_img;
-			}
-			set {
-				this.__mt_img = value;
-				this.SetNativeField("img", value);
 			}
 		}
 	}

@@ -15,6 +15,8 @@ namespace JaktLogg
 		private Action<JegerPickerScreen> _callback;
 		private FirstLoadJegereView firstView;
 		private UIBarButtonItem saveBarButton, newBarButton;
+		public string Footer = string.Empty;
+		public string Tittel;
 		public JegerPickerScreen (List<int> _jegerIds, Action<JegerPickerScreen> callback) : base("JegerPickerScreen", null)
 		{
 			jegerIds = _jegerIds;
@@ -23,7 +25,7 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
-			Title = "Velg jegere";
+			Title = Tittel ?? "Velg jegere";
 			
 			saveBarButton = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, Save);
 			newBarButton = new UIBarButtonItem(UIBarButtonSystemItem.Add, NewItemClicked);

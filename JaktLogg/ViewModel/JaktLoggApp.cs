@@ -21,6 +21,7 @@ namespace JaktLogg
 		public List<int> SelectedArtIds = new List<int>();
 		public List<string> SelectedLoggTypeIds = new List<string>();
 		public List<LoggType> LoggTypeList = new List<LoggType>();
+		public List<LoggTypeGroup> LoggTypeGroupList = new List<LoggTypeGroup>();
 		
 		public Jakt CurrentJakt = new Jakt();
 		
@@ -117,6 +118,7 @@ namespace JaktLogg
 				//LoadingView.Show("Henter arter...");
 				ArtList = _repository.GetAllArtItems();
 				ArtGroupList = _repository.GetAllArtGroupItems();
+				LoggTypeGroupList = _repository.GetAllLoggtypeGroupItems();
 				LoggTypeList = _repository.GetAllLoggTypeItems();
 				
 				//LoadingView.Hide();

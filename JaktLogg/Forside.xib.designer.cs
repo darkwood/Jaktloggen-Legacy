@@ -21,6 +21,8 @@ namespace JaktLogg {
 		
 		private MonoTouch.UIKit.UITextView __mt_labelDescription;
 		
+		private MonoTouch.UIKit.UIButton __mt_buttonRating;
+		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("view")]
 		private MonoTouch.UIKit.UIView view {
@@ -55,6 +57,18 @@ namespace JaktLogg {
 			set {
 				this.__mt_labelDescription = value;
 				this.SetNativeField("labelDescription", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("buttonRating")]
+		private MonoTouch.UIKit.UIButton buttonRating {
+			get {
+				this.__mt_buttonRating = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("buttonRating")));
+				return this.__mt_buttonRating;
+			}
+			set {
+				this.__mt_buttonRating = value;
+				this.SetNativeField("buttonRating", value);
 			}
 		}
 	}

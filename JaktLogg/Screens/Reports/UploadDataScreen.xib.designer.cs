@@ -12,14 +12,14 @@ namespace JaktLogg {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("FirstLoadLoggView")]
-	public partial class FirstLoadLoggView {
+	[MonoTouch.Foundation.Register("UploadDataScreen")]
+	public partial class UploadDataScreen {
 		
 		private MonoTouch.UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btNew;
+		private MonoTouch.UIKit.UIButton __mt_btUpload;
 		
-		private MonoTouch.UIKit.UIImageView __mt_img;
+		private MonoTouch.UIKit.UITextView __mt_lblOutput;
 		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("view")]
@@ -34,27 +34,27 @@ namespace JaktLogg {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btNew")]
-		private MonoTouch.UIKit.UIButton btNew {
+		[MonoTouch.Foundation.Connect("btUpload")]
+		private MonoTouch.UIKit.UIButton btUpload {
 			get {
-				this.__mt_btNew = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btNew")));
-				return this.__mt_btNew;
+				this.__mt_btUpload = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btUpload")));
+				return this.__mt_btUpload;
 			}
 			set {
-				this.__mt_btNew = value;
-				this.SetNativeField("btNew", value);
+				this.__mt_btUpload = value;
+				this.SetNativeField("btUpload", value);
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("img")]
-		private MonoTouch.UIKit.UIImageView img {
+		[MonoTouch.Foundation.Connect("lblOutput")]
+		private MonoTouch.UIKit.UITextView lblOutput {
 			get {
-				this.__mt_img = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("img")));
-				return this.__mt_img;
+				this.__mt_lblOutput = ((MonoTouch.UIKit.UITextView)(this.GetNativeField("lblOutput")));
+				return this.__mt_lblOutput;
 			}
 			set {
-				this.__mt_img = value;
-				this.SetNativeField("img", value);
+				this.__mt_lblOutput = value;
+				this.SetNativeField("lblOutput", value);
 			}
 		}
 	}

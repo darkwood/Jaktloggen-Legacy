@@ -17,6 +17,7 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
+			btNew.SetBackgroundImage(new UIImage("Images/Buttons/Gray.png").StretchableImage(10, 0), UIControlState.Normal);
 			btNew.TouchUpInside += HandleBtNewTouchUpInside;
 			base.ViewDidLoad ();
 		}

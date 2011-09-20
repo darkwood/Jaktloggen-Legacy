@@ -31,7 +31,7 @@ namespace JaktLogg
 			NavigationItem.RightBarButtonItem = rightbtn;
 			
 			html = GenerateHtml();
-			CreateMail(html);
+			//CreateMail(html);
 			webView.LoadHtmlString(html, new NSUrl());
 			base.ViewDidLoad ();
 		}
@@ -50,18 +50,32 @@ namespace JaktLogg
 	            _mail.SetMessageBody (html, true);
 	            _mail.Finished += HandleMailFinished;
 				
-				if(jakt.JegerIds.Count > 0){
-					List<string> emails = new List<string>();
-					foreach(var jegerId in jakt.JegerIds){
-						var jeger = JaktLoggApp.instance.JegerList.Where(j => j.ID == jegerId).FirstOrDefault();
-						if(jeger.Email != "")
-							emails.Add(jeger.Email);
-					}
-					if(emails.Count > 0)
-						_mail.SetToRecipients(emails.ToArray());
-				}
 				
-	            this.PresentModalViewController (_mail, true);
+				//Get e-mails:
+				var selectedJegerIds = new List<int>();
+				var jegerScreen = new JegerPickerScreen(jakt.JegerIds, screen => {
+					selectedJegerIds = screen.jegerIds;
+					//get email pr. jegerid
+					if(selectedJegerIds.Count > 0){
+						List<string> emails = new List<string>();
+						foreach(var jegerId in selectedJegerIds){
+							var jeger = JaktLoggApp.instance.JegerList.Where(j => j.ID == jegerId).FirstOrDefault();
+							if(jeger.Email != "")
+								emails.Add(jeger.Email);
+							else
+								MessageBox.Show("Kan ikke legge til e-post for " + jeger.Fornavn, "E-post adresse mangler i jegeroppsettet.");
+						}
+						if(emails.Count > 0)
+							_mail.SetToRecipients(emails.ToArray());
+						
+					}
+					this.PresentModalViewController (_mail, true);
+				});
+				jegerScreen.Title = "Velg mottakere";
+				jegerScreen.Footer = "Jegerne du velger må ha registrert e-post";
+				this.NavigationController.PushViewController(jegerScreen, true);
+
+	            
 	        } 
 			else {
 	        	MessageBox.Show("Beklager", "Denne enheten kan desverre ikke sende e-post");

@@ -44,9 +44,9 @@ namespace JaktLogg
 				firstView = null;
 			}
 			
-			if(JaktLoggApp.instance.LoggList.Count == 0)
+			if(LoggList.Count == 0)
 			{
-				firstView = new FirstLoadLoggView();
+				firstView = new FirstLoadLoggView(NewItemClicked);
 				TableView.AddSubview(firstView.View);
 			}
 		}

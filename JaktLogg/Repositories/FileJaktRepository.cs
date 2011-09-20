@@ -8,7 +8,7 @@ using System.Text;
 
 namespace JaktLogg
 {
-	public class FileJaktRepository : IJaktRepository
+	public class FileJaktRepository
 	{
 		private static string FILE_JAKT = "jakt.xml";
 		private static string FILE_SELECTED_ARTIDS = "selectedartids.xml";
@@ -18,6 +18,7 @@ namespace JaktLogg
 		private static string FILE_JEGER = "jegere.xml";
 		private static string FILE_LOGG = "logger.xml";
 		private static string FILE_LOGGTYPER = "loggtyper.xml";
+		private static string FILE_LOGGTYPE_GROUP = "loggtypegroup.xml";
 		
 		private List<Jakt> JaktList = new List<Jakt>();
 		private List<Jeger> JegerList = new List<Jeger>();
@@ -28,6 +29,7 @@ namespace JaktLogg
 		private List<int> SelectedArtIdList = new List<int>();
 		
 		private List<LoggType> LoggTypeList = new List<LoggType>();
+		private List<LoggTypeGroup> LoggTypeGroupList = new List<LoggTypeGroup>();
 		private List<string> SelectedLoggTypeIdList = new List<string>();
 		
 		
@@ -146,6 +148,25 @@ namespace JaktLogg
 			
 			stream.Close();
 			return ArtGroupList;
+		}
+		
+		public List<LoggTypeGroup> GetAllLoggtypeGroupItems ()
+		{
+			string filePath = Path.Combine(path, FILE_LOGGTYPE_GROUP);
+			//if(!File.Exists(filePath))
+			//{
+				File.Copy("Data/loggtypegroup.xml", filePath, true);
+			//}
+				
+			XmlSerializer serializer = new XmlSerializer( typeof(List<LoggTypeGroup>) );
+			FileStream stream = new FileStream(filePath, FileMode.Open);
+			if(stream.Length > 0)
+				LoggTypeGroupList = (List<LoggTypeGroup>) serializer.Deserialize(stream);
+			else
+				LoggTypeGroupList = new List<LoggTypeGroup>();
+			
+			stream.Close();
+			return LoggTypeGroupList;
 		}
 		
 		public List<Logg> GetAllLoggItems ()

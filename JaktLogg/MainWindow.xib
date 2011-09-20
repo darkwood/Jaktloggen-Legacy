@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="8"/>
 			<integer value="22"/>
+			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -168,31 +168,9 @@
 					</object>
 					<object class="IBUIViewController" id="246835778">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="70848056">
-							<string key="IBUITitle">Ekstra felter</string>
-							<object class="NSCustomResource" key="IBUIImage">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">Images/Icons/Tabs/Felter.png</string>
-							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							<reference key="IBUITabBar"/>
-						</object>
-						<reference key="IBUIParentViewController" ref="670945613"/>
-						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-						<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
-							<int key="interfaceOrientation">1</int>
-						</object>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIHorizontal">NO</bool>
-					</object>
-					<object class="IBUIViewController" id="946012335">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1073678099">
-							<string key="IBUITitle">Om Appen</string>
-							<object class="NSCustomResource" key="IBUIImage">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">Images/Icons/Tabs/Feedback.png</string>
-							</object>
-							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							<reference key="IBUITabBar"/>
+							<int key="IBUISystemItemIdentifier">0</int>
 						</object>
 						<reference key="IBUIParentViewController" ref="670945613"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -294,7 +272,6 @@
 							<reference ref="130953447"/>
 							<reference ref="200323378"/>
 							<reference ref="47735308"/>
-							<reference ref="946012335"/>
 							<reference ref="487980527"/>
 							<reference ref="858955589"/>
 							<reference ref="246835778"/>
@@ -377,20 +354,6 @@
 						<reference key="parent" ref="462272372"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">34</int>
-						<reference key="object" ref="946012335"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="1073678099"/>
-						</object>
-						<reference key="parent" ref="670945613"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">35</int>
-						<reference key="object" ref="1073678099"/>
-						<reference key="parent" ref="946012335"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">36</int>
 						<reference key="object" ref="246835778"/>
 						<object class="NSMutableArray" key="children">
@@ -428,9 +391,6 @@
 					<string>24.IBPluginDependency</string>
 					<string>26.IBPluginDependency</string>
 					<string>26.IBViewBoundsToFrameTransform</string>
-					<string>34.CustomClassName</string>
-					<string>34.IBEditorWindowLastContentRect</string>
-					<string>34.IBPluginDependency</string>
 					<string>36.CustomClassName</string>
 					<string>36.IBPluginDependency</string>
 					<string>4.CustomClassName</string>
@@ -467,10 +427,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAw9sAAA</bytes>
 					</object>
-					<string>Forside</string>
-					<string>{{42, 319}, {320, 480}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>LoggFields</string>
+					<string>MoreScreen</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>AppDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -567,16 +524,12 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>Images/Backgrounds/Stripes.png</string>
 				<string>Images/Icons/Tabs/Arter.png</string>
-				<string>Images/Icons/Tabs/Feedback.png</string>
-				<string>Images/Icons/Tabs/Felter.png</string>
 				<string>Images/Icons/Tabs/Jaktloggen.png</string>
 				<string>Images/Icons/Tabs/Jegere.png</string>
 				<string>Images/Icons/Tabs/Statistics.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{16, 16}</string>
-				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>

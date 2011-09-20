@@ -25,8 +25,9 @@ namespace JaktLogg
 			var cell = tableView.DequeueReusableCell("LoggSetupTableCell");
 			if(cell == null)
 					cell = new UIJaktTableViewCell(UITableViewCellStyle.Subtitle, "LoggSetupTableCell");
-
-			var item = LoggTypes.ElementAt(indexPath.Row);
+			
+			var loggtypesInSection = LoggTypes.Where(a => a.GroupId == JaktLoggApp.instance.LoggTypeGroupList[indexPath.Section].ID);
+			var item = loggtypesInSection.ElementAt(indexPath.Row);
 			var icon = JaktLoggApp.instance.SelectedLoggTypeIds.Contains(item.Key) ? "icon_checked.png" : "icon_unchecked.png";
 			var file = "Images/Icons/"+icon;
 			cell.ImageView.Image = new UIImage(file);
@@ -50,25 +51,27 @@ namespace JaktLogg
 		
 		public override int NumberOfSections (UITableView tableView)
 		{
-			return 1;
+			return JaktLoggApp.instance.LoggTypeGroupList.Count();
 		}
 		
 		public override int RowsInSection (UITableView tableview, int section)
 		{
-			var rowsForSection = LoggTypes.Count();
+			var rowsForSection = LoggTypes.Where(a => a.GroupId == JaktLoggApp.instance.LoggTypeGroupList[section].ID).Count();
 			return rowsForSection;
 		}
 		
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
-			var title = "Tilpass loggen etter ditt behov";
+			var title = JaktLoggApp.instance.LoggTypeGroupList[section].Navn;
 			
 			return title;
 		}
 		
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{	
-			var item = LoggTypes.ElementAt(indexPath.Row);
+			var itemsInSection = LoggTypes.Where(a => a.GroupId == JaktLoggApp.instance.LoggTypeGroupList[indexPath.Section].ID);
+			var item = itemsInSection.ElementAt(indexPath.Row);
+		
 			if(JaktLoggApp.instance.SelectedLoggTypeIds.Contains(item.Key))
 			{
 				for(var i=0; i<JaktLoggApp.instance.SelectedLoggTypeIds.Count; i++)
