@@ -15,46 +15,18 @@ namespace JaktLogg {
 	[MonoTouch.Foundation.Register("UploadDataScreen")]
 	public partial class UploadDataScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
-		
-		private MonoTouch.UIKit.UIButton __mt_btUpload;
-		
-		private MonoTouch.UIKit.UITextView __mt_lblOutput;
+		private MonoTouch.UIKit.UITableView __mt_view;
 		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		private MonoTouch.UIKit.UITableView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((MonoTouch.UIKit.UITableView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
 				this.__mt_view = value;
 				this.SetNativeField("view", value);
-			}
-		}
-		
-		[MonoTouch.Foundation.Connect("btUpload")]
-		private MonoTouch.UIKit.UIButton btUpload {
-			get {
-				this.__mt_btUpload = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btUpload")));
-				return this.__mt_btUpload;
-			}
-			set {
-				this.__mt_btUpload = value;
-				this.SetNativeField("btUpload", value);
-			}
-		}
-		
-		[MonoTouch.Foundation.Connect("lblOutput")]
-		private MonoTouch.UIKit.UITextView lblOutput {
-			get {
-				this.__mt_lblOutput = ((MonoTouch.UIKit.UITextView)(this.GetNativeField("lblOutput")));
-				return this.__mt_lblOutput;
-			}
-			set {
-				this.__mt_lblOutput = value;
-				this.SetNativeField("lblOutput", value);
 			}
 		}
 	}

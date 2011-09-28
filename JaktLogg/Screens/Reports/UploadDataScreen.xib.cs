@@ -5,10 +5,11 @@ using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Threading;
+using System.Collections.Specialized;
 
 namespace JaktLogg
 {
-	public partial class UploadDataScreen : UIJaktViewController
+	public partial class UploadDataScreen : UIJaktTableViewController
 	{
 		private string response;
 		public UploadDataScreen () : base("UploadDataScreen", null)
@@ -18,35 +19,55 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
-			btUpload.TouchUpInside += HandleBtUploadTouchUpInside;
-			
+			TableView.Source = new UploadDataTableSource(this);
+			TableView.ReloadData();
 			base.ViewDidLoad ();
 		}
 		
 		public override void ViewDidAppear (bool animated)
 		{
-			lblOutput.Text = "Sjekker siste backup...";
-			var datestring = DataService.GetLastUploadedJakt();
-			if(datestring != ""){
-				lblOutput.Text = "Siste backup: " + datestring;
-			}
-			else{
-				lblOutput.Text = "En feil skjedde ved lesing av data.";
-			}
-			
 			base.ViewDidAppear (animated);
 		}
-		void HandleBtUploadTouchUpInside (object sender, EventArgs e)
+		public void HandleBtUploadTouchUpInside (object sender, EventArgs e)
 		{
-			lblOutput.Text ="Laster opp data... vennligst vent...";
+			Console.WriteLine("Laster opp data, vennligst vent...");
 			var timeStart = DateTime.Now;
 			UploadData(() => {
 				InvokeOnMainThread(() => {
 					//MessageBox.Show("Data lastet opp", "http://jaktloggen.no/Jaktbok/?jaktid=1");
 					var timeStop = DateTime.Now;
-					lblOutput.Text = string.Format("Data lastet opp! ({0})", Math.Round((timeStop-timeStart).TotalMilliseconds/1000,2));
+					Console.WriteLine(string.Format("Data lastet opp! ({0})", Math.Round((timeStop-timeStart).TotalMilliseconds/1000,2)));
+					Console.WriteLine("Laster opp bilder:");
+					var results = UploadJaktImages();
+					foreach(string key in results.Keys)
+					{
+						var values = results.GetValues(key);
+		                foreach (string value in values)
+		                {
+		                    Console.WriteLine(key + " : " + value == "1" ? "Lastet opp!" : "Feil: " + value);
+		                }
+						
+					}
 				});
 			});
+		}
+		
+		private NameValueCollection UploadJaktImages()
+		{
+			var uploadStatusCollection = new NameValueCollection();
+			foreach(var item in JaktLoggApp.instance.JaktList){
+				var status = DataService.UploadImage(Utils.GetPath("jakt_" + item.ID + ".jpg"));
+				uploadStatusCollection.Add(item.Sted, status);
+			}
+			foreach(var item in JaktLoggApp.instance.LoggList){
+				var status = DataService.UploadImage(Utils.GetPath("jaktlogg_" + item.ID + ".jpg"));
+				uploadStatusCollection.Add("loggføring, "+item.Dato.ToShortDateString(), status);
+			}
+			foreach(var item in JaktLoggApp.instance.JegerList){
+				var status = DataService.UploadImage(Utils.GetPath("jeger_" + item.ID + ".jpg"));
+				uploadStatusCollection.Add(item.Fornavn, status);
+			}
+			return uploadStatusCollection;
 		}
 		
 		private void UploadData(Action callback)
@@ -54,6 +75,7 @@ namespace JaktLogg
 			ThreadPool.QueueUserWorkItem(a => {
 				
 				response = DataService.UploadAllData();
+				
 				callback();
 			});
 		}

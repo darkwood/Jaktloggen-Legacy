@@ -8,11 +8,44 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Text;
+using System.Collections.Specialized;
 
 namespace JaktLogg
 {
 	public static class DataService
 	{
+		public static string UserId {
+			get{
+				return UIDevice.CurrentDevice.UniqueIdentifier;
+			}
+		}
+		public static string UploadImage(string filePath)
+		{
+			if(!File.Exists(filePath))
+				return "Fil ikke funnet.";
+			
+			var url = "http://www.jaktloggen.no/customers/tore/jalo/services/uploadimage.ashx";
+			using(WebClient client = new WebClient()) 
+			{
+				var nameValueCollection = new NameValueCollection();
+				nameValueCollection.Add("userid",UserId);
+				
+				client.QueryString = nameValueCollection;
+				try
+				{
+				    byte[] responseArray = client.UploadFile(url, filePath);
+					return Encoding.Default.GetString(responseArray);
+						
+				}
+				catch(WebException ex)
+				{
+					Console.WriteLine(ex.Message);
+				}
+					
+			}
+			return "Error";
+		}
+		
 		public static string GetLastUploadedJakt()
 		{ 
 			var url = "http://www.jaktloggen.no/customers/tore/jalo/services/getjaktdata.ashx";

@@ -483,6 +483,13 @@
       <DependentUpon>UploadDataScreen.xib</DependentUpon>
     </Compile>
     <Compile Include="DataServices\DataService.cs" />
+    <Compile Include="Screens\TableHeaders\UploadDataHeader.xib.cs">
+      <DependentUpon>UploadDataHeader.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TableHeaders\UploadDataHeader.xib.designer.cs">
+      <DependentUpon>UploadDataHeader.xib</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\UploadDataTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
@@ -540,6 +547,7 @@
     <Page Include="MoreScreen.xib" />
     <Page Include="Screens\MoreTableScreen.xib" />
     <Page Include="Screens\Reports\UploadDataScreen.xib" />
+    <Page Include="Screens\TableHeaders\UploadDataHeader.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

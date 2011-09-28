@@ -1,6 +1,47 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Jaktlogg/Screens/TableHeaders/UploadDataHeader.xib.cs">
+    <Files>
+      <File FileName="Jaktlogg/Screens/Reports/UploadDataScreen.xib.cs" Line="31" Column="10" />
+      <File FileName="Jaktlogg/Screens/TableHeaders/UploadDataHeader.xib.cs" Line="16" Column="22" />
+      <File FileName="Jaktlogg/Screens/TableHeaders/HeaderTableSection.xib.cs" Line="33" Column="4" />
+      <File FileName="Jaktlogg/Screens/TableHeaders/HeaderLoggItem.xib.cs" Line="42" Column="4" />
+      <File FileName="Jaktlogg/TableSources/UploadDataTableSource.cs" Line="18" Column="3" />
+      <File FileName="Jaktlogg/TableSources/JaktItemTableSource.cs" Line="209" Column="4" />
+      <File FileName="Jaktlogg/DataServices/DataService.cs" Line="15" Column="2" />
+      <File FileName="Jaktlogg/Screens/JaktItemScreen.xib.cs" Line="31" Column="20" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="JaktLogg" expanded="True">
+            <Node name="DataServices" expanded="True" />
+            <Node name="Repositories" expanded="True" />
+            <Node name="Screens" expanded="True">
+              <Node name="Reports" expanded="True">
+                <Node name="UploadDataScreen.xib" expanded="True" />
+              </Node>
+              <Node name="TableHeaders" expanded="True">
+                <Node name="HeaderLoggItem.xib" expanded="True" />
+                <Node name="UploadDataHeader.xib.cs" selected="True" />
+              </Node>
+              <Node name="JaktItemScreen.xib" expanded="True" />
+            </Node>
+            <Node name="TableSources" expanded="True" />
+            <Node name="ViewModel" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>ex</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

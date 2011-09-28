@@ -193,7 +193,7 @@ namespace JaktLogg
 				DeleteLogg(logg);
 			}
 			
-			DeleteFile(item.ImagePath);
+			DeleteFile(Utils.GetPath(item.ImagePath));
 			
 			JaktList.Remove(item);
 			_repository.SaveJaktList(JaktList);
@@ -202,7 +202,7 @@ namespace JaktLogg
 			
 		public void DeleteLogg(Logg item)
 		{
-			DeleteFile(item.ImagePath);
+			DeleteFile(Utils.GetPath(item.ImagePath));
 			LoggList.Remove(item);
 			_repository.SaveLoggList(LoggList);
 		}
@@ -222,8 +222,7 @@ namespace JaktLogg
 			}
 			
 			//remove jeger images
-			string filepath = Path.Combine(Environment.GetFolderPath (Environment.SpecialFolder.Personal), item.ImagePath);
-			DeleteFile(filepath);
+			DeleteFile(Utils.GetPath(item.ImagePath));
 			               
 			//remove jeger from jegerlist
 			JegerList.Remove(item);

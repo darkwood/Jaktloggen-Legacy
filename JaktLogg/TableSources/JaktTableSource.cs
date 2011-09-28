@@ -137,8 +137,14 @@ namespace JaktLogg
 				{
 				case 0:
 					//Slett
-					var jaktItem = JaktList.ElementAt(indexPath.Row);
-					JaktLoggApp.instance.DeleteJakt(jaktItem);
+					var row = indexPath.Row;
+					var section = indexPath.Section;
+					var datelist = (from item in JaktList
+										select item.DatoFra.Year).Distinct().ToList();
+					var currentItems = JaktList.Where(l => l.DatoFra.Year == datelist.ElementAt(section));
+					
+					var jakt = currentItems.ElementAt(row);
+					JaktLoggApp.instance.DeleteJakt(jakt);
 					_controller.Refresh();
 					break;
 				case 1:
