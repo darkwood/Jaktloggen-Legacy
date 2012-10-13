@@ -26,10 +26,10 @@ namespace JaktLogg
 			datePicker.Date = Utils.DateTimeToNSDate(Date);
 			datePicker.Mode = Mode;
 			
-			var leftBarButton = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
+			var leftBarButton = new UIBarButtonItem(Utils.Translate("cancel"), UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBarButton;
 			
-			var rightBarButton = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, SaveClicked);
+			var rightBarButton = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, SaveClicked);
 			NavigationItem.RightBarButtonItem = rightBarButton;
 		}
 		

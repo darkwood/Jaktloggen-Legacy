@@ -303,4 +303,9 @@
 	   <Navn>Jerv</Navn>
 	   <GroupId>7</GroupId>
 	</Art>
+	<Art>
+	  <ID>61</ID>
+	   <Navn>Sel</Navn>
+	   <GroupId>9</GroupId>
+	</Art>
 </ArrayOfArt>

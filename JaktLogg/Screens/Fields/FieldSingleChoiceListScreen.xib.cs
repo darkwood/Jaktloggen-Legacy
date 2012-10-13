@@ -28,10 +28,7 @@ namespace JaktLogg
 			
 			var rightButton = new UIBarButtonItem(UIBarButtonSystemItem.Trash, SelectNoneClicked);
 			if(ItemList.Count() > 0)
-				NavigationItem.RightBarButtonItem = rightButton;
-			else{			
-				MessageBox.Show("Ingen jegere med i jakt", "For å legge til, gå tilbake til jaktsiden og velg \"Jegere\".");
-			}	
+				NavigationItem.RightBarButtonItem = rightButton;	
 			
 			base.ViewDidLoad ();
 		}
@@ -69,17 +66,6 @@ namespace JaktLogg
 			return ItemList.Count;
 		}
 		
-		/*public override string TitleForHeader (UITableView tableView, int section)
-		{
-			var s = "";
-			if(ItemList.Count == 0){
-				s = "Ingen jegere er tatt med i denne jakta." + Environment.NewLine + Environment.NewLine;
-				s += "Gå tilbake til hovedsiden for denne jakta og velg \"Jegere\" for å legge til.";
-			}
-			
-			return s;
-		}*/
-		
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var currentItem = ItemList.ElementAt(indexPath.Row);
@@ -88,7 +74,6 @@ namespace JaktLogg
 				cell = new UIJaktTableViewCell(currentItem.CellStyle, "ItemPickerCell");
 			
 			cell.TextLabel.Text = currentItem.TextLabel;
-			//cell.DetailTextLabel.Text = currentItem.Key.ToString();
 			
 			if(currentItem.Image != null)
 				cell.ImageView.Image = currentItem.Image;

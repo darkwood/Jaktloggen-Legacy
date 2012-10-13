@@ -9,21 +9,21 @@ namespace JaktLogg
             return str.Split(new char[] { ' ', '.', '?' }, 
                              StringSplitOptions.RemoveEmptyEntries).Length;
         }
-		public static string ToNorwegianDateString(this DateTime dt)
+		public static string ToLocalDateString(this DateTime dt)
         {
-            CultureInfo ci = new CultureInfo("nb-NO");
+            var ci = Utils.GetCurrentCultureInfo();
 			return dt.ToString("d. MMMM", ci);
         }
 		
-		public static string ToNorwegianDateAndYearString(this DateTime dt)
+		public static string ToLocalDateAndYearString(this DateTime dt)
         {
-            CultureInfo ci = new CultureInfo("nb-NO");
+            var ci = Utils.GetCurrentCultureInfo();
 			return dt.ToString("d. MMMM yyyy", ci);
         }
 		
-		public static string ToNorwegianTimeString(this DateTime dt)
+		public static string ToLocalTimeString(this DateTime dt)
         {
-            CultureInfo ci = new CultureInfo("nb-NO");
+            var ci = Utils.GetCurrentCultureInfo();
 			return dt.ToString("HH:mm", ci);
         }
 	}

@@ -10,7 +10,7 @@ namespace JaktLogg
 	public partial class StatsGenericTableView : UIJaktTableViewController
 	{
 		public Jeger SelectedJeger;
-		public string Tittel = "Antall felt vilt";
+		public string Tittel = "";
 		public string Mode = "Felt";
 
 		public StatsGenericTableView (string tittel) : base("StatsGenericTableView", null)

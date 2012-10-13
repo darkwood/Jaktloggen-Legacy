@@ -25,7 +25,7 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
-			Title = IsNewItem ? "Ny jakt" : jakt.Sted;
+			Title = IsNewItem ? Utils.Translate("jakt.newhunt") : jakt.Sted;
 			
 			_tableSource = new JaktItemTableSource(this, jakt);
 			TableView.Source = _tableSource;
@@ -38,8 +38,8 @@ namespace JaktLogg
 		
 		private void RightBarButtonClicked(object sender, EventArgs args)
 		{
-			var actionSheet = new UIActionSheet("") {"Send på e-post", "Avbryt"};
-			actionSheet.Title = "Lag rapporter fra jakta";
+			var actionSheet = new UIActionSheet("") {Utils.Translate("email.sendbymail"), Utils.Translate("cancel")};
+			actionSheet.Title = Utils.Translate("actionsheet.reportheader");
 			//actionSheet.DestructiveButtonIndex = 0;
 			actionSheet.CancelButtonIndex = 2;
 			actionSheet.ShowFromTabBar(JaktLoggApp.instance.TabBarController.TabBar);
@@ -69,31 +69,13 @@ namespace JaktLogg
 				}
 			};
 			
-			//var reportScreen = new ReportJakt(jakt);
-			
-			
-			//reportScreen.ModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
-			
 		}
 		
 		public override void ViewDidAppear (bool animated)
 		{
-			/*if(IsNewItem){
-				IsNewItem = false;
-				var fieldScreen = new FieldStringScreen("Nytt jaktsted", screen => {
-					jakt.Sted = screen.Value;
-					Refresh();
-				});
-				
-				fieldScreen.Placeholder = "Skriv inn navn på jaktsted";
-				fieldScreen.Value = jakt.Sted;
-				NavigationController.PushViewController(fieldScreen, true);
-			}
-			else
-			{*/
-				_tableSource.jakt = jakt;
-				TableView.ReloadData();
-			//}
+			_tableSource.jakt = jakt;
+			TableView.ReloadData();
+		
 			base.ViewDidAppear (animated);
 		}
 		

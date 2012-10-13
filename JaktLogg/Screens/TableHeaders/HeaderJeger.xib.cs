@@ -26,7 +26,7 @@ namespace JaktLogg
 				var hits = jegerloggs.Sum(l=> l.Treff);
 				if(shots > 0){
 					var percent = shots > 0 ? Decimal.Round(hits*100/shots) : 0;
-					labelNotes.Text = "Treffsikkerhet: " + percent + "%";
+					labelNotes.Text = Utils.Translate("jeger.header.accuracy") +" " + percent + "%";
 				}
 				else
 				{

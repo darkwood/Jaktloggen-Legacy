@@ -39,7 +39,7 @@ namespace JaktLogg
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
 			if(section == 1 && AutoSuggestions.Count > 0) //autosuggest
-				return "Tidligere brukt:";
+				return Utils.Translate("jakt.location.earlierused");
 			
 			return "";
 		}
@@ -94,7 +94,7 @@ namespace JaktLogg
 				if(cell == null)
 					cell = new UIJaktTableViewCell(UITableViewCellStyle.Default, "FieldCancelCell");
 				
-				cell.TextLabel.Text = "Avbryt";
+				cell.TextLabel.Text = Utils.Translate("cancel");
 				cell.TextLabel.TextAlignment = UITextAlignment.Center;
 				cell.Hidden = _tableViewController.NavigationController != null;
 				return cell;

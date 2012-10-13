@@ -12,8 +12,9 @@ namespace JaktLogg
 		private Action<FieldStringScreen> _callback;
 		public UIKeyboardType KeyboardType = UIKeyboardType.Default;
 		public string Value = "";
-		public string Placeholder = "Skriv inn tekst";
+		public string Placeholder = Utils.Translate("entertext");
 		public List<ItemCount> AutoSuggestions = new List<ItemCount>();
+		public bool UseCapitalLetter = true;
 		
 		public FieldStringScreen (string title, Action<FieldStringScreen> callback) : base("FieldStringScreen", null)
 		{
@@ -32,10 +33,10 @@ namespace JaktLogg
 		{
 			base.ViewDidLoad ();
 			
-			var leftBtn = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
+			var leftBtn = new UIBarButtonItem(Utils.Translate("cancel"), UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBtn;
 			
-			var rightBtn = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneClicked);
+			var rightBtn = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, DoneClicked);
 			NavigationItem.RightBarButtonItem = rightBtn;
 			
 			tableSource = new FieldStringTableSource(this);
@@ -63,7 +64,9 @@ namespace JaktLogg
 		}
 		public void SaveAndClose(string value)
 		{
-			Value = Utils.UppercaseFirst(value);
+			if(UseCapitalLetter)
+				Value = Utils.UppercaseFirst(value);
+			
 			_callback(this);
 			
 			if(NavigationController == null)

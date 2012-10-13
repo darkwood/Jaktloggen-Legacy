@@ -17,8 +17,10 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
+			Title = Utils.Translate("log.new.title");
 			btNew.SetBackgroundImage(new UIImage("Images/Buttons/Gray.png").StretchableImage(10, 0), UIControlState.Normal);
 			btNew.TouchUpInside += HandleBtNewTouchUpInside;
+			btNew.SetTitle(Utils.Translate("log.new.button"),UIControlState.Normal);
 			
 			var pics = new List<string>();
 			pics.Add("Hunter");

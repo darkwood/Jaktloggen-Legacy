@@ -16,18 +16,20 @@ namespace JaktLogg
 		private FirstLoadJegereView firstView;
 		private UIBarButtonItem saveBarButton, newBarButton;
 		public string Footer = string.Empty;
+		public string Header = string.Empty;
 		public string Tittel;
 		public JegerPickerScreen (List<int> _jegerIds, Action<JegerPickerScreen> callback) : base("JegerPickerScreen", null)
 		{
-			jegerIds = _jegerIds;
+			jegerIds = new List<int>();
+			jegerIds.AddRange(_jegerIds);
 			_callback = callback;
 		}
 		
 		public override void ViewDidLoad ()
 		{
-			Title = Tittel ?? "Velg jegere";
+			Title = Utils.Translate("jegere.choose");
 			
-			saveBarButton = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, Save);
+			saveBarButton = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, Save);
 			newBarButton = new UIBarButtonItem(UIBarButtonSystemItem.Add, NewItemClicked);
 			
 			NavigationItem.RightBarButtonItem = newBarButton;
@@ -35,8 +37,6 @@ namespace JaktLogg
 		
 			_tableSource = new JegerePickerSource(this);
 			TableView.Source = _tableSource;
-			
-			//Refresh();
 			
 			base.ViewDidLoad();
 			
@@ -51,14 +51,13 @@ namespace JaktLogg
 		private void NewItemClicked(object sender, EventArgs e){
 			var jegerScreen = new JegerScreen(screen => {
 				Jeger j = screen.jeger;
-				//JaktLoggApp.instance.SaveJegerItem(j);
 				jegerIds.Add(j.ID);
-				//Refresh();
 			});
 			NavigationController.PushViewController(jegerScreen, true);
 		}
 		
-		public void Refresh(){
+		public void Refresh()
+		{
 			_tableSource.JegerIds = jegerIds;
 			TableView.ReloadData();
 			

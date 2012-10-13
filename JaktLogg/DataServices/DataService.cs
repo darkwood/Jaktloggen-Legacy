@@ -54,19 +54,12 @@ namespace JaktLogg
 			var req = (HttpWebRequest) WebRequest.Create(url + "?" + parameters);
 			req.Referer = "JaktloggenApp";
 			req.UserAgent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7";
-			
-			try{
-				var response = (HttpWebResponse)req.GetResponse();
-				using(var reader = new StreamReader(response.GetResponseStream())){
-					return reader.ReadToEnd();
-				}
+		
+			var response = (HttpWebResponse)req.GetResponse();
+			using(var reader = new StreamReader(response.GetResponseStream())){
+				return reader.ReadToEnd();
 			}
-			catch(WebException ex){
-				MessageBox.Show("Kunne ikke hente data", ex.Message);
-				
-			}
-			
-			return "";
+		
 		}
 		
 		public static string UploadAllData()

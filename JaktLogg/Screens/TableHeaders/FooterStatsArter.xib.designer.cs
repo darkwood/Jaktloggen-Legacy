@@ -19,6 +19,8 @@ namespace JaktLogg {
 		
 		private MonoTouch.UIKit.UIPickerView __mt_pickerView;
 		
+		private MonoTouch.UIKit.UIBarButtonItem __mt_btDone;
+		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("view")]
 		private MonoTouch.UIKit.UIView view {
@@ -41,6 +43,18 @@ namespace JaktLogg {
 			set {
 				this.__mt_pickerView = value;
 				this.SetNativeField("pickerView", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("btDone")]
+		private MonoTouch.UIKit.UIBarButtonItem btDone {
+			get {
+				this.__mt_btDone = ((MonoTouch.UIKit.UIBarButtonItem)(this.GetNativeField("btDone")));
+				return this.__mt_btDone;
+			}
+			set {
+				this.__mt_btDone = value;
+				this.SetNativeField("btDone", value);
 			}
 		}
 	}

@@ -34,7 +34,7 @@ namespace JaktLogg
 		public void Refresh()
 		{
 			LoggList = JaktLoggApp.instance.LoggList.Where(l => l.JaktId == _jaktId).ToList();
-			Title = "Loggføringer";
+			Title = Utils.Translate("log.new.title");
 			var tableSource = new LoggerTableSource(this, LoggList);
 			TableView.Source = tableSource;
 			TableView.ReloadData();
@@ -52,25 +52,6 @@ namespace JaktLogg
 		}
 		
 		public void NewItemClicked(object sender, EventArgs e){
-			/*
-			var loggItem = new Logg();
-			var fieldScreen = new FieldLoggCatch("Ny skuddlogg", screen => {
-				loggItem.JaktId = _jaktId;
-				loggItem.ArtId = screen.CurrentArtId;
-				loggItem.Treff = screen.CurrentHits;
-				loggItem.Skudd = screen.CurrentShots;
-				JaktLoggApp.instance.SaveLoggItem(loggItem);
-				
-				//Redirect user to the new logg screen:
-				var loggItemScreen = new LoggItemScreen(loggItem, screen2 => {
-					JaktLoggApp.instance.SaveLoggItem(screen2.logg);
-					Refresh();
-				});
-				NavigationController.PushViewController(loggItemScreen, true);
-			});
-			this.PresentModalViewController(fieldScreen, true);
-			
-			*/
 			
 			var loggItemScreen = new LoggItemScreen(_jaktId, screen => {
 					JaktLoggApp.instance.SaveLoggItem(screen.logg);

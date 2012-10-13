@@ -11,6 +11,8 @@ namespace JaktLogg
 	public partial class HeaderLoggItem: UIJaktViewController
 	{
 		public EventHandler HandleButtonImageTouchUpInside;
+		public EventHandler HandleButtonJegerTouchUpInside;
+		public EventHandler HandleButtonDogTouchUpInside;
 		private Logg _logg;
 		public HeaderLoggItem (Logg logg) : base("HeaderLoggItem", null)
 		{
@@ -19,29 +21,39 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
-			var ok = new UIImage("Images/Icons/icon_checked.png");
-			var notOk = new UIImage("Images/Icons/icon_unchecked.png");
-			
-			imgArt.Image = _logg.ArtId > 0 ? ok : notOk;
-			imgJeger.Image = _logg.JegerId > 0 ? ok : notOk;
-			imgNotater.Image = _logg.Notes.Length > 0 ? ok : notOk;
-			imgPosisjon.Image = _logg.Latitude.Length > 0 ? ok : notOk;
-			imgSkudd.Image = _logg.Skudd > 0 ? ok : notOk;
-			imgBilde.Image = _logg.ImagePath.Length > 0 ? ok : notOk;
-				
 			var imgstr = Utils.GetPath("jaktlogg_"+_logg.ID+".jpg");
+			var dogstr = Utils.GetPath("dog_"+_logg.DogId+".jpg");
+			var jegerstr = Utils.GetPath("jeger_"+_logg.JegerId+".jpg");
 			
-			if(!File.Exists(imgstr)){
-				imgstr = "Images/Icons/pictureplaceholder.png";
-				buttonImage.SetImage(new UIImage(imgstr), UIControlState.Normal);
-			}
-			else
-				buttonImage.SetImage(new UIImage(Utils.GetPath(imgstr)), UIControlState.Normal);
-			buttonImage.Layer.MasksToBounds = true;
-			buttonImage.Layer.CornerRadius = 5.0f;
+			SetButtonImage(buttonImage, imgstr, "Images/Icons/pictureplaceholder.png");
+			SetButtonImage(buttonImageDog, dogstr, "Images/Icons/dogplaceholder.png");
+			SetButtonImage(buttonImageJeger, jegerstr, "Images/Icons/jegerplaceholder.png");
+			
 			buttonImage.TouchUpInside += HandleButtonImageTouchUpInside;
+			buttonImageDog.TouchUpInside += delegate(object sender, EventArgs e) {
+				Console.WriteLine("ok");
+				HandleButtonDogTouchUpInside(sender, e);
+			};
+			buttonImageJeger.TouchUpInside += HandleButtonJegerTouchUpInside;
+			
+			if(_logg.DogId > 0)
+				lblHund.Text =  JaktLoggApp.instance.GetDog(_logg.DogId).Navn;
+			
+			if(_logg.JegerId > 0)
+				lblJeger.Text =  JaktLoggApp.instance.GetJeger(_logg.JegerId).Fornavn;
 			
 			base.ViewDidLoad ();
+		}
+		
+		private void SetButtonImage(UIButton button, string imageurl, string placeholderurl)
+		{
+			if(File.Exists(imageurl))
+				button.SetImage(new UIImage(imageurl), UIControlState.Normal);
+			else if(File.Exists(placeholderurl))
+				button.SetImage(new UIImage(placeholderurl), UIControlState.Normal);
+			
+			button.Layer.MasksToBounds = true;
+			button.Layer.CornerRadius = 5.0f;
 		}
 	}
 }

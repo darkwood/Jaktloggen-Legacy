@@ -12,7 +12,7 @@ namespace JaktLogg
 		private Action<FieldNotesScreen> _callback;
 		public UIKeyboardType KeyboardType = UIKeyboardType.Default;
 		public string Value = "";
-		public string Placeholder = "Skriv inn tekst";
+		public string Placeholder = Utils.Translate("entertext");
 	
 		public FieldNotesScreen (string title, Action<FieldNotesScreen> callback) : base("FieldNotesScreen", null)
 		{
@@ -31,10 +31,10 @@ namespace JaktLogg
 		{
 			base.ViewDidLoad ();
 			
-			var leftBtn = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
+			var leftBtn = new UIBarButtonItem(Utils.Translate("cancel"), UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBtn;
 			
-			var rightBtn = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneClicked);
+			var rightBtn = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, DoneClicked);
 			NavigationItem.RightBarButtonItem = rightBtn;
 			
 			tableSource = new FieldNotesTableSource(this);
@@ -61,7 +61,7 @@ namespace JaktLogg
 		}
 		public void SaveAndClose(string value)
 		{
-			Value = Utils.UppercaseFirst(value);
+			Value = value;
 			_callback(this);
 			
 			if(NavigationController == null)
@@ -127,7 +127,7 @@ namespace JaktLogg
 				if(cell == null)
 					cell = new UIJaktTableViewCell(UITableViewCellStyle.Default, "FieldCancelCell");
 				
-				cell.TextLabel.Text = "Avbryt";
+				cell.TextLabel.Text = Utils.Translate("cancel");
 				cell.TextLabel.TextAlignment = UITextAlignment.Center;
 				cell.Hidden = _tableViewController.NavigationController != null;
 				return cell;

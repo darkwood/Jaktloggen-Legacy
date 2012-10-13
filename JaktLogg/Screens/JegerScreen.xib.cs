@@ -34,16 +34,16 @@ namespace JaktLogg
 			
 			
 			/*if(IsNewItem){
-				var rightBarButton = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, NewItemSaveClicked);
+				var rightBarButton = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, NewItemSaveClicked);
 				NavigationItem.RightBarButtonItem = rightBarButton;
 			}*/
 		}
 		
 		public override void ViewDidAppear (bool animated)
 		{
-			var leftbtn = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneClicked);
+			var leftbtn = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, DoneClicked);
 			if(jeger.ID == 0)
-				leftbtn = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, DoneClicked);
+				leftbtn = new UIBarButtonItem(Utils.Translate("cancel"), UIBarButtonItemStyle.Plain, DoneClicked);
 			
 			NavigationItem.LeftBarButtonItem = leftbtn;
 			

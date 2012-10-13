@@ -14,14 +14,17 @@ namespace JaktLogg
 		private static string FILE_SELECTED_ARTIDS = "selectedartids.xml";
 		private static string FILE_SELECTED_LOGGTYPEIDS = "selectedloggtypeids.xml";
 		private static string FILE_ART = "arter.xml";
+		private static string FILE_MY_ART = "myspecies.xml";
 		private static string FILE_ARTGROUP = "artgroup.xml";
 		private static string FILE_JEGER = "jegere.xml";
+		private static string FILE_DOG = "dogs.xml";
 		private static string FILE_LOGG = "logger.xml";
 		private static string FILE_LOGGTYPER = "loggtyper.xml";
 		private static string FILE_LOGGTYPE_GROUP = "loggtypegroup.xml";
 		
 		private List<Jakt> JaktList = new List<Jakt>();
 		private List<Jeger> JegerList = new List<Jeger>();
+		private List<Dog> DogList = new List<Dog>();
 		private List<Logg> LoggList = new List<Logg>();
 		
 		private List<Art> ArtList = new List<Art>();
@@ -75,6 +78,24 @@ namespace JaktLogg
 			stream.Close();
 			return JegerList;
 		}
+		
+		public List<Dog> GetAllDogItems ()
+		{
+			string filePath = Path.Combine(path, FILE_DOG);
+			if(!File.Exists(filePath)){
+				DogList = new List<Dog>();
+				return DogList;
+			}
+			XmlSerializer serializer = new XmlSerializer( typeof(List<Dog>) );
+	        FileStream stream = new FileStream(filePath, FileMode.Open);
+			if(stream.Length > 0)
+				DogList = (List<Dog>) serializer.Deserialize(stream);
+			else
+				DogList = new List<Dog>();
+			
+			stream.Close();
+			return DogList;
+		}
 
 		public List<int> GetSelectedArtIdList ()
 		{	
@@ -115,32 +136,45 @@ namespace JaktLogg
 		public List<Art> GetAllArtItems ()
 		{	
 			string filePath = Path.Combine(path, FILE_ART);
-			
+			string myArtPath = Path.Combine(path, FILE_MY_ART);
+
 			//if(!File.Exists(filePath)){
 				File.Copy("Data/arter.xml", filePath, true);
 			//}
 			
 			XmlSerializer serializer = new XmlSerializer( typeof(List<Art>) );
-			FileStream stream = new FileStream(filePath, FileMode.Open);
+			//get all standard species
+			var stream = new FileStream(filePath, FileMode.Open);
 			if(stream.Length > 0)
 				ArtList = (List<Art>) serializer.Deserialize(stream);
-			else
-				ArtList = new List<Art>();
-			
+
+			stream.Close();
+
+			//get my species list
+			if(File.Exists(filePath))
+			{
+				stream = new FileStream(filePath, FileMode.Open);
+				if(stream.Length > 0){
+					var myspecies = (List<Art>) serializer.Deserialize(stream);
+					ArtList.AddRange(myspecies);
+
+				}
+			}
+
 			stream.Close();
 			return ArtList;
 		}
 		
 		public List<ArtGroup> GetAllArtGroupItems ()
 		{
-			string filePath = Path.Combine(path, FILE_ARTGROUP);
+			/*string filePath = Path.Combine(path, FILE_ARTGROUP);
 			if(!File.Exists(filePath))
 			{
 				File.Copy("Data/artgroup.xml", filePath, true);
-			}
+			}*/
 				
 			XmlSerializer serializer = new XmlSerializer( typeof(List<ArtGroup>) );
-			FileStream stream = new FileStream(filePath, FileMode.Open);
+			FileStream stream = new FileStream("Data/artgroup.xml", FileMode.Open);
 			if(stream.Length > 0)
 				ArtGroupList = (List<ArtGroup>) serializer.Deserialize(stream);
 			else
@@ -232,8 +266,19 @@ namespace JaktLogg
 			writer.Close();
 			Console.WriteLine("Jeger items saved to file.");
 		}
+		
+		public void SaveDogList (List<Dog> item)
+		{
+			DogList = item;
+			string filePath = Path.Combine(path, FILE_DOG);
+			XmlSerializer serializer = new XmlSerializer( typeof(List<Dog>) );
+	        TextWriter writer = new StreamWriter(filePath);
+	        serializer.Serialize(writer, DogList);
+			writer.Close();
+			Console.WriteLine("Dog items saved to file.");
+		}
 
-		/*public void SaveArtList (List<Art> item)
+		public void SaveArtList (List<Art> item)
 		{
 			ArtList = item;
 			string filePath = Path.Combine(path, FILE_ART);
@@ -242,7 +287,7 @@ namespace JaktLogg
 	        serializer.Serialize(writer, ArtList);
 			writer.Close();
 			Console.WriteLine("Art items saved to file.");
-		}*/
+		}
 
 		public void SaveLoggList (List<Logg> item)
 		{

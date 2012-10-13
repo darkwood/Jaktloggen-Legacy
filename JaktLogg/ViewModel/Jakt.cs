@@ -10,6 +10,7 @@ namespace JaktLogg
 		public DateTime DatoFra = DateTime.Now;
 		public DateTime DatoTil = DateTime.Now;
 		public List<int> JegerIds = new List<int>();
+		public List<int> DogIds = new List<int>();
 		public string Latitude;
 		public string Longitude;
 		public string ImagePath = string.Empty;

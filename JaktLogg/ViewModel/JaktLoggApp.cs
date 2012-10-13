@@ -8,13 +8,16 @@ namespace JaktLogg
 {
 	public class JaktLoggApp
 	{
+
 		public static JaktLoggApp instance = new JaktLoggApp();
 		public UITabBarController TabBarController = new UITabBarController();
 		public bool ShouldStartNewJakt = false;
+		public Language CurrentLanguage = Language.Norwegian;
 		//private MockJaktRepository _repository;
 		private FileJaktRepository _repository;
 		public List<Jakt> JaktList = new List<Jakt>();
 		public List<Jeger> JegerList = new List<Jeger>();
+		public List<Dog> DogList = new List<Dog>();
 		public List<Art> ArtList = new List<Art>();
 		public List<ArtGroup> ArtGroupList = new List<ArtGroup>();
 		public List<Logg> LoggList = new List<Logg>();
@@ -35,7 +38,7 @@ namespace JaktLogg
 		public void SaveJaktItem(Jakt item){
 			
 			if(item.Sted == "")
-				item.Sted = "Jakt " + item.DatoFra.ToNorwegianDateString();
+				item.Sted = Utils.Translate("jakt.jakt") + " " + item.DatoFra.ToLocalDateString();
 			
 			JaktList = JaktList.OrderBy(o => o.ID).ToList<Jakt>();
 			var itemToUpdate = JaktList.Where(j=>j.ID == item.ID).FirstOrDefault();
@@ -63,18 +66,38 @@ namespace JaktLogg
 			
 			_repository.SaveJegerList(JegerList);
 		}
-		/*public void SaveArtItem(Art item){
+		
+		public void SaveDogItem(Dog item){
+			
+			DogList = DogList.OrderBy(o => o.ID).ToList<Dog>();
+			var itemToUpdate = DogList.Where(j=>j.ID == item.ID).FirstOrDefault();
+			if(itemToUpdate == null)
+			{
+				item.ID = DogList.Count == 0 ? 1 : DogList.Last().ID + 1;
+				DogList.Add(item);
+			}
+			else
+				itemToUpdate = item;
+			
+			_repository.SaveDogList(DogList);
+		}
+
+		public void SaveArtItem(Art item){
+			
+			ArtList = ArtList.OrderBy(o => o.ID).ToList<Art>();
 			var itemToUpdate = ArtList.Where(j=>j.ID == item.ID).FirstOrDefault();
 			if(itemToUpdate == null)
 			{
 				item.ID = ArtList.Count == 0 ? 1 : ArtList.Last().ID + 1;
+
 				ArtList.Add(item);
 			}
 			else
 				itemToUpdate = item;
 			
-			_repository.SaveArtList(ArtList);
-		}*/
+			_repository.SaveArtList(ArtList.Where(w => w.GroupId == 100).ToList());
+		}
+
 		public void SaveLoggItem(Logg item){
 			LoggList = LoggList.OrderBy(o => o.ID).ToList<Logg>();
 			var itemToUpdate = LoggList.Where(j=>j.ID == item.ID).FirstOrDefault();
@@ -113,6 +136,7 @@ namespace JaktLogg
 				SelectedArtIds = _repository.GetSelectedArtIdList();
 				SelectedLoggTypeIds = _repository.GetSelectedLoggTypeIdList();
 				JegerList = _repository.GetAllJegerItems();
+				DogList = _repository.GetAllDogItems();
 				//LoadingView.Hide();
 				
 				//LoadingView.Show("Henter arter...");
@@ -187,13 +211,19 @@ namespace JaktLogg
 			return item;
 		}
 		
+		public Dog GetDog(int dogId)
+		{
+			var item = DogList.Where(j => j.ID == dogId).FirstOrDefault();
+			return item;
+		}
+		
 		public void DeleteJakt(Jakt item){
 			var logglist = LoggList.Where(x => x.JaktId == item.ID).ToList<Logg>();
 			foreach(var logg in logglist){
 				DeleteLogg(logg);
 			}
 			
-			DeleteFile(Utils.GetPath(item.ImagePath));
+			DeleteFile(Utils.GetPath("jakt_" + item.ID + ".jpg"));
 			
 			JaktList.Remove(item);
 			_repository.SaveJaktList(JaktList);
@@ -202,7 +232,7 @@ namespace JaktLogg
 			
 		public void DeleteLogg(Logg item)
 		{
-			DeleteFile(Utils.GetPath(item.ImagePath));
+			DeleteFile(Utils.GetPath("jaktlogg_" + item.ID + ".jpg"));
 			LoggList.Remove(item);
 			_repository.SaveLoggList(LoggList);
 		}
@@ -222,11 +252,46 @@ namespace JaktLogg
 			}
 			
 			//remove jeger images
-			DeleteFile(Utils.GetPath(item.ImagePath));
+			DeleteFile(Utils.GetPath("jeger_" + item.ID + ".jpg"));
 			               
 			//remove jeger from jegerlist
 			JegerList.Remove(item);
 			_repository.SaveJegerList(JegerList);
+		}
+		
+		public void DeleteDog(Dog item){
+			//remove dog from loggs
+			var logger = LoggList.Where(x => x.DogId == item.ID);
+			foreach(var logg in logger){
+				logg.DogId = 0;
+			}
+			_repository.SaveLoggList(LoggList);
+			
+			//remove dog from jakts
+			var jakts = JaktList.Where(x => x.DogIds.Contains(item.ID));
+			foreach(var jakt in jakts){
+				jakt.DogIds.Remove(item.ID);
+			}
+			
+			//remove dog images
+			DeleteFile(Utils.GetPath("dog_" + item.ID + ".jpg"));
+			               
+			//remove dog from doglist
+			DogList.Remove(item);
+			_repository.SaveDogList(DogList);
+		}
+
+		public void DeleteArt(Art item){
+			//remove art from loggs
+			var logger = LoggList.Where(x => x.ArtId == item.ID);
+			foreach(var logg in logger){
+				logg.ArtId = 0;
+			}
+			_repository.SaveLoggList(LoggList);
+
+			//remove art from doglist
+			ArtList.Remove(item);
+			_repository.SaveArtList(ArtList);
 		}
 		
 		public void DeleteFile(string filepath){

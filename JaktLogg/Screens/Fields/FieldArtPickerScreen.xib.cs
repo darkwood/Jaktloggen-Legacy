@@ -73,7 +73,6 @@ namespace JaktLogg
 			var currentArt = ArtList.ElementAt(indexPath.Row);
 				
 			cell.TextLabel.Text = currentArt.Navn;
-			//cell.DetailTextLabel.Text = currentArt.Navn +" er et fiffig dyr. Eller fugl.";
 			if(currentArt.ID == _controller.SelectedArtId){
 				cell.Accessory = UITableViewCellAccessory.Checkmark;
 			}
@@ -88,11 +87,11 @@ namespace JaktLogg
 		
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
-			return "Utvalgte arter";
+			return Utils.Translate("fieldartpickerscreen.header");
 		}
 		public override string TitleForFooter (UITableView tableView, int section)
 		{
-			return ArtList.Count + " arter. Hvis du ikke finner din art, legg den til under \"Mine arter\"";
+			return string.Format(Utils.Translate("fieldartpickerscreen.footer"), ArtList.Count);
 		}
 	}
 }

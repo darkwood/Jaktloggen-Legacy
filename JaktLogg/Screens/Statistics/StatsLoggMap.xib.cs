@@ -135,7 +135,7 @@ namespace JaktLogg
 			var id = logg.ID;
 			var lat = double.Parse(logg.Latitude);
 			var lon = double.Parse(logg.Longitude);
-			var title = logg.Dato.ToNorwegianDateString() + " kl." +logg.Dato.ToNorwegianTimeString();
+			var title = logg.Dato.ToLocalDateString() + " kl." +logg.Dato.ToLocalTimeString();
 			var description = GetPinDescription(logg);
 			
 			var a = new MyAnnotation(new CLLocationCoordinate2D(lat,lon), title, description);

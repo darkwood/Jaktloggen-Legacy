@@ -6,15 +6,14 @@ namespace JaktLogg
 {
 	public class LoadingView 
 	{
-		private const string Default_Title = "vennligst vent ...";
-		
 	    private static UIActivityIndicatorView _activityView;
 	
 		private static UIAlertView _alertView;
 		
 		public static void Show()
 		{
-			Show(Default_Title);
+			
+			Show(Utils.Translate("defaultmessage"));
 		}
 		
 	    public static void Show(string title)

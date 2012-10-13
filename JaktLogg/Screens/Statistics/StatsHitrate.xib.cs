@@ -20,7 +20,7 @@ namespace JaktLogg
 		{
 			//label1.Hidden = label2.Hidden = true;
 			label1.Text = label2.Text = "";
-			Title = "Treffprosent";
+			Title = Utils.Translate("title_hitrate");
 			GoogleGraphURI = "http://chart.apis.google.com/chart?chco=c7d7a6|374716&chs=" + 
 			imageView.Frame.Width+"x"+imageView.Frame.Height+"&cht=p3&chd=t:{0},{1}&chdl={0}%20treff|{1}%20bom";
 			
@@ -45,12 +45,13 @@ namespace JaktLogg
 			var misses = shots - hits;
 			var percent = shots > 0 ? Decimal.Round(hits*100/shots) : 0;
 
-			GoogleGraphURI += jeger != null ? "&chtt="+HttpUtility.UrlEncode(jeger.Navn)+"" : "&chtt=Alle+jegere";
+			GoogleGraphURI += jeger != null ? "&chtt="+HttpUtility.UrlEncode(jeger.Navn)+"" : "&chtt="+HttpUtility.UrlEncode(Utils.Translate("all_hunters"));
 			GoogleGraphURI += HttpUtility.UrlEncode(string.Format(": {0} skudd, {1}% treff", shots, percent));
 			var str = string.Format(GoogleGraphURI, hits, misses);
 			
-			if(Reachability.IsHostReachable("www.google.no")){
-				imageView.Image = UIImage.LoadFromData(NSData.FromUrl(NSUrl.FromString(str)));
+			if(Reachability.IsHostReachable("www.google.com")){
+				var url = NSUrl.FromString(str);
+				imageView.Image = UIImage.LoadFromData(NSData.FromUrl(url));
 				//label1.Hidden = label2.Hidden = true;
 				imageView.Hidden = false;
 			}
@@ -58,7 +59,7 @@ namespace JaktLogg
 			{
 				label1.Hidden = label2.Hidden = false;
 				imageView.Hidden = true;
-				label1.Text = string.Format("{0} treff. {1} bom.", hits, misses);
+				label1.Text = string.Format("{0} "+Utils.Translate("hits")+". {1} "+Utils.Translate("miss")+".", hits, misses);
 				label2.Text = string.Format("{0}% treff", percent);
 			}
 		}

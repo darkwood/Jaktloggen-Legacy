@@ -13,7 +13,7 @@ namespace JaktLogg
 		public UITableViewCell Cell {
 			get{ return cell; }
 		}
-		public string ButtonText = "Slett";
+		public string ButtonText = Utils.Translate("delete");
 		private Action HandleDeleteButtonTouchUpInside;
 		
 		public CellDeleteButton (Action handleDeleteButtonTouchUpInside) : base("CellDeleteButton", null)
@@ -26,7 +26,7 @@ namespace JaktLogg
 		{
 			UIButton button = new UIButton();
 			
-			button.Frame = new System.Drawing.RectangleF(9, -1, this.cell.Bounds.Size.Width-18, 46);
+			button.Frame = new System.Drawing.RectangleF(8, -2, this.cell.Bounds.Size.Width-16, 50);
 			button.SetTitle(ButtonText, UIControlState.Normal);
 			button.Font = UIFont.BoldSystemFontOfSize(20);
 			

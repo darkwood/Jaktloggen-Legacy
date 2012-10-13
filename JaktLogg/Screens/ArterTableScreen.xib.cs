@@ -23,8 +23,6 @@ namespace JaktLogg
 			
 			_tableSource = new ArterTableSource(this);
 			TableView.Source = _tableSource;
-			
-			_tableSource.ArtList = JaktLoggApp.instance.ArtList;
 			TableView.ReloadData();
 			
 			if(JaktLoggApp.instance.SelectedArtIds.Count == 0)
@@ -35,12 +33,24 @@ namespace JaktLogg
 
 				MessageBox.Show("Om artslista", title);
 			}
+
+			var rightBtn = new UIBarButtonItem(UIBarButtonSystemItem.Add, BarButtonClicked);
+			NavigationItem.RightBarButtonItem = rightBtn;
 		}
-		
-		public override void ViewDidAppear (bool animated)
+
+		void BarButtonClicked (object sender, EventArgs e)
 		{
-			base.ViewDidAppear (animated);
-			TableView.ReloadData();
+
+		}
+
+		public void ShowAddScreeen()
+		{
+			var artScreen = new ArtScreen(screen => {
+				Art a = screen.art;
+				JaktLoggApp.instance.SaveArtItem(a);
+				TableView.ReloadData();
+			});
+			NavigationController.PushViewController(artScreen, true);
 		}
 		
 		public void Save(object sender, EventArgs e)

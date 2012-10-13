@@ -17,9 +17,6 @@ namespace JaktLogg
 		public int CurrentSeen = 0;
 		#region Constructors
 
-		// The IntPtr and initWithCoder constructors are required for items that need 
-		// to be able to be created from a xib rather than from managed code
-
 		public FieldLoggCatch (IntPtr handle) : base(handle)
 		{
 			Initialize ();
@@ -49,10 +46,10 @@ namespace JaktLogg
 		{
 			Arter = JaktLoggApp.instance.ArtList.Where(a => JaktLoggApp.instance.SelectedArtIds.Contains(a.ID)).ToList<Art>();
 			
-			var leftBtn = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
+			var leftBtn = new UIBarButtonItem(Utils.Translate("cancel"), UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBtn;
 			
-			var rightBtn = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneClicked);
+			var rightBtn = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, DoneClicked);
 			NavigationItem.RightBarButtonItem = rightBtn;
 			
 			pickerViewModel = new FieldLoggCatchPickerViewModel(this);
@@ -189,7 +186,7 @@ namespace JaktLogg
 		{
 			switch(component){
 			case 0:
-				return row == 0 ? "Velg art" : _controller.Arter[row-1].Navn;
+				return row == 0 ? Utils.Translate("choosespecies") : _controller.Arter[row-1].Navn;
 			default:
 				return row == 0 ? "-" : row.ToString();
 			}

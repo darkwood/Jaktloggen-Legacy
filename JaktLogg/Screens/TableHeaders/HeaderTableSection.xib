@@ -63,6 +63,11 @@
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
 						<reference key="IBUIHighlightedColor" ref="830768167"/>
+						<object class="NSColor" key="IBUIShadowColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
+						</object>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>

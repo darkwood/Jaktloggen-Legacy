@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Drawing;
 
 namespace JaktLogg
 {
@@ -11,8 +12,8 @@ namespace JaktLogg
 	{
 		public UIJaktTableViewCell (UITableViewCellStyle style, string reuseIdentifier) : base(style, reuseIdentifier)
 		{
-			BackgroundColor = UIColor.FromPatternImage(new UIImage("Images/Backgrounds/YellowTile.png"));
-			
+			//BackgroundColor = UIColor.FromPatternImage(new UIImage("Images/Backgrounds/YellowTile.png"));
+			BackgroundColor = UIColor.FromRGB(231, 234, 196);
 			
 			if(TextLabel != null){
 				TextLabel.BackgroundColor = UIColor.Clear;
@@ -27,8 +28,6 @@ namespace JaktLogg
 			}
 			if(AccessoryView != null)
 				AccessoryView.BackgroundColor = UIColor.Clear;
-			
-			
 			
 		}
 	}

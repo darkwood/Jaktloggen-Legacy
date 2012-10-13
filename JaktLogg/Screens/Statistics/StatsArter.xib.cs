@@ -10,24 +10,26 @@ namespace JaktLogg
 	public partial class StatsArter : UIJaktTableViewController
 	{
 		public Jeger SelectedJeger;
-		public string Tittel = "Antall felt vilt";
+		public Dog SelectedDog;
+		public string Tittel = Utils.Translate("numberofkilledspecies");
 		public string Mode = "Felt";
+		public bool FilterOnlyThisYear = false;
 		public StatsArter () : base("StatsArter", null)
 		{
 			
 		}
-		private UIBarButtonItem _rightButton;
 		private StatsArterTableSource _tableSource;
+		public HeaderStatsFilter headerStatsFilter;
+		
 		public override void ViewDidLoad ()
 		{
 			Title = Tittel;
+			headerStatsFilter = new HeaderStatsFilter();
+			headerStatsFilter.HandleSegmentedControlValueChange = HandleSegmentedControlValueChange;
+			headerStatsFilter.HandleButtonFilterClicked = HandleButtonFilterClicked;
 			
-			_rightButton = new UIBarButtonItem("Alle jegere", UIBarButtonItemStyle.Done, HandleRightButtonClicked);			
-			NavigationItem.RightBarButtonItem = _rightButton;
 			_tableSource = new StatsArterTableSource(this);
 			TableView.Source = _tableSource;
-			
-			segmentedControl.ValueChanged += HandleSegmentedControlValueChange;
 			
 			base.ViewDidLoad ();
 		}
@@ -40,24 +42,39 @@ namespace JaktLogg
 			base.ViewDidAppear (animated);
 		}
 		
-		void HandleRightButtonClicked (object sender, EventArgs EventArgs)
+		public void HandleButtonFilterClicked (object sender, EventArgs EventArgs)
 		{
 			var pickerScreen = new FooterStatsArter(screen => 
             {
 				SelectedJeger = screen.SelectedJeger;
+				SelectedDog = screen.SelectedDog;
 				_tableSource.ItemList = GetRanking();
 				TableView.ReloadData();
 				
+				var labelText = Utils.Translate("showingcountfor");
+				if(SelectedJeger == null && SelectedDog == null)
+					labelText += Utils.Translate("all_hunters_dogs");
 				
-				_rightButton.Title = SelectedJeger == null ? "Alle jegere" : SelectedJeger.Fornavn;
-			},SelectedJeger);
+				if(SelectedJeger != null)
+					labelText += SelectedJeger.Fornavn;
+				
+				if(SelectedDog != null && SelectedJeger != null)
+					labelText += "/";
+				
+				if(SelectedDog != null)
+					labelText += SelectedDog.Navn;
+				
+				headerStatsFilter.SetFilterLabel(labelText);
+				
+			},SelectedJeger, SelectedDog);
 			
 			pickerScreen.ModalTransitionStyle = UIModalTransitionStyle.PartialCurl;
 			this.PresentModalViewController(pickerScreen, true);
 		}
 		
-		void HandleSegmentedControlValueChange (object sender, EventArgs e)
+		public void HandleSegmentedControlValueChange (object sender, EventArgs e)
 		{
+			FilterOnlyThisYear = (sender as UISegmentedControl).SelectedSegment > 0;
 			_tableSource.ItemList = GetRanking();
 			TableView.ReloadData();
 				
@@ -65,14 +82,14 @@ namespace JaktLogg
 		
 		private List<ArtRanking> GetRanking()
 		{
-			bool onlyThisYear = segmentedControl.SelectedSegment > 0;
+			bool onlyThisYear = FilterOnlyThisYear;
 			var logger = JaktLoggApp.instance.LoggList.Where(x => x.ArtId > 0 && x.Treff > 0);
 			if(Mode == "Sett")
 				logger = JaktLoggApp.instance.LoggList.Where(x => x.ArtId > 0 && x.Sett > 0);
 			
 			if(onlyThisYear){
-				DateTime fromDate = new DateTime(DateTime.Now.Month > 7 ? DateTime.Now.Year : DateTime.Now.Year - 1, Utils.HUNTYEAR_STARTMONTH, 1);
-				DateTime toDate = new DateTime(DateTime.Now.Month > 7 ? DateTime.Now.Year + 1 : DateTime.Now.Year, Utils.HUNTYEAR_STARTMONTH, 1);
+				DateTime fromDate = new DateTime(DateTime.Now.Month > Utils.HUNTYEAR_STARTMONTH ? DateTime.Now.Year : DateTime.Now.Year - 1, Utils.HUNTYEAR_STARTMONTH, 1);
+				DateTime toDate = new DateTime(DateTime.Now.Month > Utils.HUNTYEAR_STARTMONTH ? DateTime.Now.Year + 1 : DateTime.Now.Year, Utils.HUNTYEAR_STARTMONTH, 1);
 				
 				Console.WriteLine("date: " + DateTime.Now.Month + ", "+ fromDate.ToShortDateString() + " - " + toDate.ToShortDateString());
 				logger = logger.Where(x => x.Dato > fromDate && x.Dato < toDate);
@@ -81,6 +98,10 @@ namespace JaktLogg
 			if(SelectedJeger != null)
 			{
 				logger = logger.Where(x => x.JegerId == SelectedJeger.ID);
+			}
+			if(SelectedDog != null)
+			{
+				logger = logger.Where(x => x.DogId == SelectedDog.ID);
 			}
 			
 			logger = logger.ToList<Logg>();
@@ -121,7 +142,6 @@ namespace JaktLogg
 		public StatsArterTableSource(StatsArter controller)
 		{
 			_controller = controller;
-			
 		}
 		
 		public override int NumberOfSections (UITableView tableView)
@@ -134,6 +154,16 @@ namespace JaktLogg
 			return ItemList.Count;
 		}
 		
+		public override UIView GetViewForHeader (UITableView tableView, int section)
+		{
+			return _controller.headerStatsFilter.View;
+		}
+		
+		public override float GetHeightForHeader (UITableView tableView, int section)
+		{
+			return 90.0f;
+		}
+		
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var currentItem = ItemList.ElementAt(indexPath.Row);
@@ -143,18 +173,13 @@ namespace JaktLogg
 			
 			cell.TextLabel.Text = JaktLoggApp.instance.GetArt(currentItem.ArtId).Navn;
 			cell.DetailTextLabel.Text = currentItem.Count.ToString();
-			//cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 			return cell;
 		}
 		
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			tableView.DeselectRow(indexPath, false);
-			/*var item = ItemList.ElementAt(indexPath.Row);
-			var art = JaktLoggApp.instance.GetArt(item.ArtId);
-			var artScreen = new ArtWebViewController(art);
-			_controller.NavigationController.PushViewController(artScreen, true);
-		*/
+		
 		}
 	}
 	public class ArtRanking

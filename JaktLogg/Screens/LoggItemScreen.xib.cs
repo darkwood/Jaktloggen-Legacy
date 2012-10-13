@@ -37,25 +37,18 @@ namespace JaktLogg
 					                                logg.Dato.Minute, 
 					                                logg.Dato.Second);
 			
-			_tableSource = new LoggItemTableSource(this);
-			_tableSource.loggItem = logg;
+			_tableSource = new LoggItemTableSource(this, logg);
 			TableView.Source = _tableSource;
-			
-			
-			/*
-			if(IsNewItem){
-				var rightBarButton = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, ItemSaveClicked);
-				NavigationItem.RightBarButtonItem = rightBarButton;
-			}*/
+
 			base.ViewDidLoad ();
 		}
 
-		
-		/*private void ItemSaveClicked(object sender, EventArgs e){
-			_callback(this);
-			NavigationController.PopViewControllerAnimated(true);
-		}*/
-		
+		public override void ViewDidAppear (bool animated)
+		{
+			Refresh();
+			base.ViewDidAppear (animated);
+		}
+
 		public void Refresh()
 		{
 			logg = _tableSource.loggItem;

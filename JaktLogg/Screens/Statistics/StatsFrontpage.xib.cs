@@ -16,7 +16,7 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
-			this.Title = "Statistikk";
+			this.Title = Utils.Translate("title_statistics");
 			TableView.Source = new StatsFrontpageTableSource(this);
 			
 			base.ViewDidLoad ();

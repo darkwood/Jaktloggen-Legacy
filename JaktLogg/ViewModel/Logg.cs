@@ -12,6 +12,7 @@ namespace JaktLogg
 		public DateTime Dato = DateTime.Now;
 		public int ArtId;
 		public int JegerId;
+		public int DogId;
 		public int JaktId;
 		public string Latitude = string.Empty;
 		public string Longitude = string.Empty;
@@ -29,10 +30,6 @@ namespace JaktLogg
 			
 		private string _weapontype = string.Empty;
 		public string WeaponType { get{ return _weapontype; } set{ _weapontype = value; } }
-		
-		private string _dog = string.Empty;
-		public string Dog { get{ return _dog; } set{ _dog = value; } }
-		
 		
 		public int Weight { get; set; }
 		public int ButchWeight { get; set; }

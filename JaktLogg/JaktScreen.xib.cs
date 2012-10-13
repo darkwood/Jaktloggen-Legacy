@@ -18,13 +18,14 @@ namespace JaktLogg
 		public override void ViewDidLoad ()
 		{
 			
-			LoadingView.Show("Henter jaktdata...");
+			LoadingView.Show(Utils.Translate("dataloadmessage"));
 			JaktLoggApp.instance.InitializeAllData(() => {
 				InvokeOnMainThread(() => {
 					LoadingView.Hide();
 					
-					var jaktTableScreen = new JaktTableScreen();
-					PushViewController(jaktTableScreen, false);					
+					var jaktTableScreen = new JaktsTableScreen();
+					PushViewController(jaktTableScreen, false);	
+
 				});
 			});
 			

@@ -20,7 +20,7 @@ namespace JaktLogg
 
 		public FieldLocationScreen (Logg _logg, Action<FieldLocationScreen> callback) : base("FieldLocationScreen", null)
 		{
-			Title = "Posisjon";
+			Title = Utils.Translate("position");
 			_callback = callback;
 			CurrentLogg = _logg;
 			Latitude = CurrentLogg.Latitude;
@@ -39,10 +39,10 @@ namespace JaktLogg
 			//mapView.ShowsUserLocation = true;
 			mapView.Delegate = new MapViewDelegate(this);
 			
-			var leftBtn = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
+			var leftBtn = new UIBarButtonItem(Utils.Translate("cancel"), UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBtn;
 			
-			var rightBtn = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneClicked);
+			var rightBtn = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, DoneClicked);
 			NavigationItem.RightBarButtonItem = rightBtn;
 			
 			btnGps.Clicked += GpsClicked;
@@ -74,15 +74,15 @@ namespace JaktLogg
 			if(string.IsNullOrEmpty(Longitude)){
 				if (CLLocationManager.LocationServicesEnabled){
 					locationManager.StartUpdatingLocation();
-					SetInfo("Lokaliserer din posisjon...");	
+					SetInfo(Utils.Translate("localizingposition"));	
 				}
 				else
-					MessageBox.Show("Ingen tilgang til GPS", "Du må tillate tilgang til GPS for å lokalisere din posisjon");
+					MessageBox.Show(Utils.Translate("error_nogps"), Utils.Translate("error_nogps_details"));
 			}
 			else if(double.TryParse(Latitude, out lat) && double.TryParse(Longitude, out lng))
 			{
 				CLLocation loc = new CLLocation(lat, lng);
-				locationManagerDelegate.SetLocation(loc, Title, "Dra i pin for å endre posisjon.");
+				locationManagerDelegate.SetLocation(loc, Title, Utils.Translate("pin_dragtochange"));
 			}
 			base.ViewDidAppear (animated);
 		}
@@ -93,8 +93,8 @@ namespace JaktLogg
 		
 		private void ClearClicked(object sender, EventArgs args)
 		{
-			var actionSheet = new UIActionSheet("") {"Fjern posisjon", "Avbryt"};
-			actionSheet.Title = "Bekreft fjerning av posisjon";
+			var actionSheet = new UIActionSheet("") {Utils.Translate("removeposition"), Utils.Translate("cancel")};
+			actionSheet.Title = Utils.Translate("confirm_removeposition");
 			actionSheet.DestructiveButtonIndex = 0;
 			actionSheet.CancelButtonIndex = 1;
 			actionSheet.ShowFromTabBar(JaktLoggApp.instance.TabBarController.TabBar);
@@ -107,7 +107,7 @@ namespace JaktLogg
 					//Slett
 					Latitude = Longitude = string.Empty;	
 					locationManagerDelegate.ClearLocation();
-					SetInfo("Posisjon fjernet");
+					SetInfo(Utils.Translate("position_removed"));
 					break;
 				case 1:
 					//Avbryt
@@ -120,10 +120,10 @@ namespace JaktLogg
 		{
 			if (CLLocationManager.LocationServicesEnabled){
 				locationManager.StartUpdatingLocation();
-				SetInfo("Lokaliserer din posisjon...");		
+				SetInfo(Utils.Translate("localizingposition"));		
 			}
 			else
-				MessageBox.Show("Ingen tilgang til GPS", "Du må tillate tilgang til GPS for å tracke posisjon");
+				MessageBox.Show(Utils.Translate("error_nogps"), Utils.Translate("error_nogps_details"));
 
 		}
 		private void CancelClicked(object sender, EventArgs args)
@@ -251,7 +251,7 @@ namespace JaktLogg
 			{
 				_mapview.RemoveAnnotation(CurrentAnnotation);	
 			}
-	        MKCoordinateSpan span = new MKCoordinateSpan(0.015, 0.015);
+	        MKCoordinateSpan span = new MKCoordinateSpan(0.010, 0.010);
 	        MKCoordinateRegion region = new MKCoordinateRegion(newLocation.Coordinate, span);
 	        
 	        _mapview.SetRegion(region, true);
@@ -271,12 +271,12 @@ namespace JaktLogg
 		
 	    public override void UpdatedLocation(CLLocationManager manager, CLLocation newLocation, CLLocation oldLocation)
 	    {
-			Console.WriteLine("Accuracy: " + newLocation.HorizontalAccuracy +", " + newLocation.VerticalAccuracy);
-			_controller.SetInfo(string.Format("Funnet innenfor {0}m/{1}m radius", newLocation.HorizontalAccuracy, newLocation.VerticalAccuracy));
+	    
+			_controller.SetInfo(string.Format(Utils.Translate("posiont_found_radius"), newLocation.HorizontalAccuracy, newLocation.VerticalAccuracy));
 			_controller.Latitude = newLocation.Coordinate.Latitude.ToString();
 			_controller.Longitude = newLocation.Coordinate.Longitude.ToString();
 		
-			SetLocation(newLocation, "Din posisjon", "Trykk ned og flytt for å endre posisjon.");
+			SetLocation(newLocation, Utils.Translate("yourposition"), Utils.Translate("pin_dragtochange"));
 
 			//Stop updating location if this is close enough...
 			if(newLocation.HorizontalAccuracy <= CLLocation.AccuracyHundredMeters &&

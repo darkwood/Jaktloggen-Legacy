@@ -13,6 +13,7 @@ namespace JaktLogg
 	{
 		private UIImagePickerController picker;
 		private string _filename;
+		private bool _imagePicked = false;
 		private Action<FieldImagePickerScreen> _callback;
 		public FieldImagePickerScreen (string title, string filename, Action<FieldImagePickerScreen> callback) : base("FieldImagePickerScreen", null)
 		{
@@ -39,7 +40,7 @@ namespace JaktLogg
 			{
 				imageView.Image = new UIImage(imagePath);
 			}
-			else
+			else if(!_imagePicked)
 				PickImage();
 			
 			base.ViewDidAppear (animated);
@@ -60,8 +61,8 @@ namespace JaktLogg
 			string filepath = Path.Combine(Environment.GetFolderPath (Environment.SpecialFolder.Personal), _filename);
 			if(File.Exists(filepath))
 			{
-				var actionSheet = new UIActionSheet("") {"Slett", "Avbryt"};
-				actionSheet.Title = "Bildet blir slettet permanent.";
+				var actionSheet = new UIActionSheet("") {Utils.Translate("delete"), Utils.Translate("cancel")};
+				actionSheet.Title =  Utils.Translate("confirmdeleteimage");
 				actionSheet.DestructiveButtonIndex = 0;
 				actionSheet.CancelButtonIndex = 1;
 				actionSheet.ShowFromTabBar(JaktLoggApp.instance.TabBarController.TabBar);
@@ -90,11 +91,17 @@ namespace JaktLogg
 		}
 		
 		public void PickImage(){
-			
+
+			loadView.StartAnimating();
 			picker = new UIImagePickerController();
 			picker.Delegate = new pickerDelegate(this);
 			picker.AllowsEditing = true;
-			var actionSheet = new UIActionSheet("") {"Velg fra bibliotek", "Ta bilde", "Avbryt"};
+			var actionSheet = new UIActionSheet("") 
+									{
+										Utils.Translate("choosefromlibrary"), 
+										Utils.Translate("takepicture"), 
+										Utils.Translate("cancel")
+									};
 			actionSheet.Style = UIActionSheetStyle.Default;
 			
 			actionSheet.ShowFromTabBar(JaktLoggApp.instance.TabBarController.TabBar);
@@ -120,8 +127,15 @@ namespace JaktLogg
 			};
 			
 		}
+		public void CancelImagePicker()
+		{
+			_imagePicked = true;
+			loadView.StopAnimating();
+		}
 		public void SaveImage(UIImage image)
 		{
+			_imagePicked = true;
+
 			string filepath = Path.Combine(Environment.GetFolderPath (Environment.SpecialFolder.Personal), _filename);
 			   
 			using (NSData imageData = image.AsJPEG())
@@ -131,7 +145,7 @@ namespace JaktLogg
 			}
 			imageView.Image = image;
 			
-			LoadingView.Hide();
+			loadView.StopAnimating();
 			InitBarButtons();
 			_callback(this);
 			
@@ -165,6 +179,7 @@ namespace JaktLogg
 			
 			public override void Canceled (UIImagePickerController picker)
 			{
+				_controller.CancelImagePicker();
 				_controller.DismissModalViewControllerAnimated(true);
 			}
 			
@@ -175,7 +190,7 @@ namespace JaktLogg
 				
 				_controller.imageView.Image = image;
 				picker.DismissModalViewControllerAnimated(true);
-			}
+			}	
 			
 			private bool HasHighResScreen()
 			{

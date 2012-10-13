@@ -140,14 +140,14 @@
 					<object class="IBUILabel" id="589472886">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 166}, {280, 116}}</string>
+						<string key="NSFrame">{{20, 166}, {290, 116}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Vårt mål er å lage den beste jaktappen, og til det trenger vi din hjelp som jeger for å gjøre den enda bedre! Del med oss din erfaring etter å ha brukt den, kom gjerne med tips om det er noe du savner eller noe som ikke fungerer.</string>
+						<string key="IBUIText">Mitt mål er å lage den beste jaktappen, og til det trenger vi din hjelp som jeger for å gjøre den enda bedre! Del med oss din erfaring etter å ha brukt den, kom gjerne med tips om det er noe du savner eller noe som ikke fungerer.</string>
 						<object class="NSFont" key="IBUIFont" id="112576769">
 							<string key="NSName">GillSans</string>
 							<double key="NSSize">13</double>
@@ -166,14 +166,14 @@
 					<object class="IBUILabel" id="232926315">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 51}, {286, 125}}</string>
+						<string key="NSFrame">{{20, 51}, {290, 125}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Takk for at du har tatt i bruk Jaktloggen for å loggføre dine jaktturer. Uansett om du bruker den for å føre statistikk, turdagbok eller bare føre fangstrapport, håper vi du har både nytte og glede av den så langt! </string>
+						<string key="IBUIText">Takk for at du har tatt i bruk Jaktloggen for å loggføre dine jaktturer. Uansett om du bruker den for å føre statistikk, turdagbok eller bare føre fangstrapport, håper jeg du har både nytte og glede av den så langt! </string>
 						<reference key="IBUIFont" ref="112576769"/>
 						<object class="NSColor" key="IBUITextColor" id="954016447">
 							<int key="NSColorSpace">1</int>

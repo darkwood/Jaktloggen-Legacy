@@ -23,10 +23,10 @@ namespace JaktLogg
 		{
 			base.ViewDidLoad ();
 			
-			var leftBtn = new UIBarButtonItem("Avbryt", UIBarButtonItemStyle.Plain, CancelClicked);
+			var leftBtn = new UIBarButtonItem(Utils.Translate("cancel"), UIBarButtonItemStyle.Plain, CancelClicked);
 			NavigationItem.LeftBarButtonItem = leftBtn;
 			
-			var rightBtn = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneClicked);
+			var rightBtn = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, DoneClicked);
 			NavigationItem.RightBarButtonItem = rightBtn;
 			
 			pickerViewModel = new PickerViewModel(this);
@@ -38,7 +38,6 @@ namespace JaktLogg
 			if(Value.Length == 2)
 				Value = "0" + Value;
 			
-			Console.WriteLine("Value: " + Value);
 			int cols = Value.Length;
 			foreach(var c in Value.Reverse()){
 				cols --;

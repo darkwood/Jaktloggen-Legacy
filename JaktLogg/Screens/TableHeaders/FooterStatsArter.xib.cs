@@ -11,17 +11,25 @@ namespace JaktLogg
 	{
 		private Action<FooterStatsArter> _callback;
 		public Jeger SelectedJeger;
-		public FooterStatsArter (Action<FooterStatsArter> callback, Jeger selectedJeger) : base("FooterStatsArter", null)
+		public Dog SelectedDog;
+		public FooterStatsArter (Action<FooterStatsArter> callback, Jeger selectedJeger, Dog selectedDog) : base("FooterStatsArter", null)
 		{
 			_callback = callback;	
 			SelectedJeger = selectedJeger;
+			SelectedDog = selectedDog;
 		}
 		
 		public override void ViewDidLoad ()
 		{
 			pickerView.Model = new FooterStatsArterPickerViewModel(this);
-			
+			btDone.Clicked += HandleBtDoneClicked;
 			base.ViewDidLoad ();
+		}
+
+		void HandleBtDoneClicked (object sender, EventArgs e)
+		{
+			_callback(this);
+			this.DismissModalViewControllerAnimated(true);
 		}
 		
 		public override void ViewWillAppear (bool animated)
@@ -37,14 +45,27 @@ namespace JaktLogg
 				pickerView.Select(row , 0, true);
 			}
 			
+			if(SelectedDog != null)
+			{
+				var row = 0;
+				foreach(var d in JaktLoggApp.instance.DogList){
+					row ++;
+					if(d.ID == SelectedDog.ID)
+						break;
+				}
+				pickerView.Select(row , 1, true);
+			}
+			
+			
 			base.ViewWillAppear (animated);
 		}
 		
 		public void JegerSelected(Jeger j)
 		{
 			SelectedJeger = j;
-			_callback(this);
-			this.DismissModalViewControllerAnimated(true);
+		}
+		public void DogSelected(Dog d){
+			SelectedDog = d;
 		}
 
 	}
@@ -64,30 +85,48 @@ namespace JaktLogg
 		
 		public override void Selected (UIPickerView picker, int row, int component)
 		{
-			if(row == 0)
-				_controller.JegerSelected(null);
-			else{
-				var j = JaktLoggApp.instance.JegerList[row-1];
-				if(_controller.SelectedJeger == null || j.ID != _controller.SelectedJeger.ID)
-					_controller.JegerSelected(j);
+			if(component == 0){
+				if(row != 0)
+					_controller.JegerSelected(JaktLoggApp.instance.JegerList[row-1]);
+				else
+					_controller.JegerSelected(null);
 			}
+			else if (component == 1){
+				if(row != 0)
+					_controller.DogSelected(JaktLoggApp.instance.DogList[row-1]);
+				else
+					_controller.DogSelected(null);
+			}
+			
 		}
 		public override int GetComponentCount (UIPickerView picker)
 		{
-			return 1;
+			return 2;
 		}
 		
 		public override int GetRowsInComponent (UIPickerView picker, int component)
 		{
-			return JaktLoggApp.instance.JegerList.Count() + 1;
+			if(component == 0)
+				return JaktLoggApp.instance.JegerList.Count() + 1;
+			else
+				return JaktLoggApp.instance.DogList.Count() + 1;
 		} 
 		
 		public override string GetTitle (UIPickerView picker, int row, int component)
 		{
-			if(row == 0)
-				return "Alle jegere";	
-			else
-				return JaktLoggApp.instance.JegerList[row-1].Navn;
+			if(component == 0){
+				if(row == 0)
+					return "Alle jegere";	
+				else
+					return JaktLoggApp.instance.JegerList[row-1].Navn;
+			}
+			else{
+				if(row == 0)
+					return "Alle hunder";	
+				else
+					return JaktLoggApp.instance.DogList[row-1].Navn;
+			}
+			
 		}
 	}
 	

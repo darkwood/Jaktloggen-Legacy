@@ -23,8 +23,6 @@ namespace JaktLogg
 		{
 			label.Text = Header;
 			label.BackgroundColor = UIColor.Clear;
-			label.ShadowOffset = new SizeF(0.0f, 1.0f);
-			label.ShadowColor = UIColor.White;
 			
 			if(Header.Length == 0)
 				label.Hidden = true;

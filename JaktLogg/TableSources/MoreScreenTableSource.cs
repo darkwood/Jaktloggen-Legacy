@@ -18,36 +18,50 @@ namespace JaktLogg
 		{
 			_controller = controller;
 			var section1 = new SectionMapping("", "");
-			sections.Add(section1);
+			var section2 = new SectionMapping("", "");
+			var section3 = new SectionMapping("", "");
+
 			
 			section1.Rows.Add(new RowItemMapping {
-				Label = "Mine felter",
+				Label = "Jegere",
 				GetValue = () => {
-					return "";
+					return "Vis og rediger alle jegere";
 				},
 				RowSelected = () => {
-					var fieldScreen = new LoggSetupScreen(); 
+					var fieldScreen = new JegereScreen(new List<int>(), screen => { });
 					_controller.NavigationController.PushViewController(fieldScreen, true);
 				},
-				ImageFile = "Images/Icons/Tabs/Felter.png"
+				ImageFile = "Images/Icons/Tabs/Jegere.png"
 			});
 			
 			section1.Rows.Add(new RowItemMapping {
-				Label = "Last opp data",
+				Label = "Hunder",
 				GetValue = () => {
-					return "";
+					return "Vis og rediger alle hunder";
 				},
 				RowSelected = () => {
-					var fieldScreen = new UploadDataScreen(); 
+					var fieldScreen = new DogsScreen(new List<int>(), screen => { });
+					_controller.NavigationController.PushViewController(fieldScreen, true);
+				},
+				ImageFile = "Images/Icons/Tabs/dog-paw.png"
+			});
+			/*
+			section2.Rows.Add(new RowItemMapping {
+				Label = "Last opp data",
+				GetValue = () => {
+					return "Under utvikling. Kun for testing.";
+				},
+				RowSelected = () => {
+					var fieldScreen = new UploadJakterScreen(); 
 					_controller.NavigationController.PushViewController(fieldScreen, true);
 				},
 				ImageFile = "Images/Icons/Tabs/Jaktloggen.png"
 			});
-			
-			section1.Rows.Add(new RowItemMapping {
+			*/
+			section2.Rows.Add(new RowItemMapping {
 				Label = "Om Jaktloggen",
 				GetValue = () => {
-					return "";
+					return "Gi tilbakemelding eller rating";
 				},
 				RowSelected = () => {
 					var fieldScreen = new Forside(); 
@@ -55,6 +69,10 @@ namespace JaktLogg
 				},
 				ImageFile = "Images/Icons/Tabs/Gevir.png"
 			});
+			
+			sections.Add(section1);
+			sections.Add(section2);
+			//sections.Add(section3);
 		}
 		
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -93,7 +111,6 @@ namespace JaktLogg
 		{
 			sections.ElementAt(indexPath.Section).Rows.ElementAt(indexPath.Row).RowSelected();
 		}
-		
 		
 		private string GetCellLabel(int section, int row)
 		{

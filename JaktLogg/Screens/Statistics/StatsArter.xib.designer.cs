@@ -15,23 +15,9 @@ namespace JaktLogg {
 	[MonoTouch.Foundation.Register("StatsArter")]
 	public partial class StatsArter {
 		
-		private MonoTouch.UIKit.UISegmentedControl __mt_segmentedControl;
-		
 		private MonoTouch.UIKit.UITableView __mt_view;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("segmentedControl")]
-		private MonoTouch.UIKit.UISegmentedControl segmentedControl {
-			get {
-				this.__mt_segmentedControl = ((MonoTouch.UIKit.UISegmentedControl)(this.GetNativeField("segmentedControl")));
-				return this.__mt_segmentedControl;
-			}
-			set {
-				this.__mt_segmentedControl = value;
-				this.SetNativeField("segmentedControl", value);
-			}
-		}
-		
 		[MonoTouch.Foundation.Connect("view")]
 		private MonoTouch.UIKit.UITableView view {
 			get {

@@ -21,18 +21,24 @@ namespace JaktLogg
 			
 		}
 		
+		public ReportJakt (string _html) : base("ReportJakt", null)
+		{
+			html = _html;
+		}
+		
 		public override void ViewDidLoad ()
 		{
-			Title = "Forhåndsvisning";
-			var doneButton = new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoneBarButtonClicked);
+			Title = Utils.Translate("preview");
+			var doneButton = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, DoneBarButtonClicked);
 			navigationBar.LeftBarButtonItem = doneButton;
 			
-			var rightbtn = new UIBarButtonItem("Send", UIBarButtonItemStyle.Done, RightBarButtonClicked);
+			var rightbtn = new UIBarButtonItem(Utils.Translate("send"), UIBarButtonItemStyle.Done, RightBarButtonClicked);
 			NavigationItem.RightBarButtonItem = rightbtn;
 			
-			html = GenerateHtml();
-			//CreateMail(html);
-			webView.LoadHtmlString(html, new NSUrl());
+			if(jakt != null)
+				html = GenerateHtml();
+			
+			webView.LoadHtmlString(html, new NSUrl(""));
 			base.ViewDidLoad ();
 		}
 		
@@ -45,15 +51,23 @@ namespace JaktLogg
 			if (MFMailComposeViewController.CanSendMail) {
 	            _mail = new MFMailComposeViewController ();
 				_mail.NavigationBar.BarStyle = UIBarStyle.Black;
-				_mail.Title = "Send e-post";
-				_mail.SetSubject("Jaktrapport for " + jakt.Sted + " " + jakt.DatoFra.ToNorwegianDateAndYearString());
-	            _mail.SetMessageBody (html, true);
+				_mail.Title = Utils.Translate("sendmail");
+				if(jakt != null)
+					_mail.SetSubject(string.Format(Utils.Translate("mailsubject"), jakt.Sted, jakt.DatoFra.ToLocalDateAndYearString()));
+	            else 
+					_mail.SetSubject(Utils.Translate("mailsubject_generic"));
+				
+				_mail.SetMessageBody (html, true);
 	            _mail.Finished += HandleMailFinished;
 				
 				
 				//Get e-mails:
 				var selectedJegerIds = new List<int>();
-				var jegerScreen = new JegerPickerScreen(jakt.JegerIds, screen => {
+				var jegerIds = JaktLoggApp.instance.JegerList.Select(j => j.ID).ToList<int>();
+				if(jakt != null)
+					jegerIds = jakt.JegerIds;
+				
+				var jegerScreen = new JegerPickerScreen(jegerIds, screen => {
 					selectedJegerIds = screen.jegerIds;
 					//get email pr. jegerid
 					if(selectedJegerIds.Count > 0){
@@ -63,7 +77,7 @@ namespace JaktLogg
 							if(jeger.Email != "")
 								emails.Add(jeger.Email);
 							else
-								MessageBox.Show("Kan ikke legge til e-post for " + jeger.Fornavn, "E-post adresse mangler i jegeroppsettet.");
+								MessageBox.Show(string.Format(Utils.Translate("report.mailmissing"), jeger.Fornavn), "");
 						}
 						if(emails.Count > 0)
 							_mail.SetToRecipients(emails.ToArray());
@@ -71,14 +85,15 @@ namespace JaktLogg
 					}
 					this.PresentModalViewController (_mail, true);
 				});
-				jegerScreen.Title = "Velg mottakere";
-				jegerScreen.Footer = "Jegerne du velger må ha registrert e-post";
+				jegerScreen.Title = Utils.Translate("report.jegereheader");
+				jegerScreen.Footer = Utils.Translate("report.jegerefooter");
+				jegerScreen.ModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
+				
 				this.NavigationController.PushViewController(jegerScreen, true);
-
 	            
 	        } 
 			else {
-	        	MessageBox.Show("Beklager", "Denne enheten kan desverre ikke sende e-post");
+	        	MessageBox.Show(Utils.Translate("sorry"), Utils.Translate("error_mailnotsupported"));
 	        }
 
 		}
@@ -86,10 +101,10 @@ namespace JaktLogg
 		void HandleMailFinished (object sender, MFComposeResultEventArgs e)
 		{
 		    if (e.Result == MFMailComposeResult.Sent) {
-				MessageBox.Show("E-post sendt", "");
+				MessageBox.Show(Utils.Translate("emailsent"), "");
 		    }
 			else if(e.Result == MFMailComposeResult.Failed){
-				MessageBox.Show("Å nei!", "E-post feilet. Prøv igjen senere, eller meld inn feil.");
+				MessageBox.Show(Utils.Translate("error"), Utils.Translate("error_mailfail"));
 			}
 			
 		    e.Controller.DismissModalViewControllerAnimated (true);
@@ -99,19 +114,20 @@ namespace JaktLogg
 		{
 			var logger = JaktLoggApp.instance.LoggList.Where(l => l.JaktId == jakt.ID).ToList<Logg>();
 			var jegere = JaktLoggApp.instance.JegerList.Where(j => jakt.JegerIds.Contains(j.ID)).ToList<Jeger>();
+			var dogs =  JaktLoggApp.instance.DogList.Where(d => jakt.DogIds.Contains(d.ID)).ToList<Dog>();
 			
 			StringBuilder s = new StringBuilder();
 			
 			//JAKT
-			s.Append("<html><head><title>Jaktrapport - "+jakt.Sted+"</title></head><body>");
+			s.Append("<html><head><title>"+jakt.Sted+"</title></head><body>");
 			s.Append("<h1>"+jakt.Sted+"</h1>");
-			s.Append("<span class='dato'>" + jakt.DatoFra.ToNorwegianDateString() == jakt.DatoTil.ToNorwegianDateString() ? jakt.DatoFra.ToNorwegianDateString() : jakt.DatoFra.ToNorwegianDateString() + " til " + jakt.DatoTil.ToNorwegianDateAndYearString()+"</span>");
+			s.Append("<span class='dato'>" + jakt.DatoFra.ToLocalDateString() == jakt.DatoTil.ToLocalDateString() ? jakt.DatoFra.ToLocalDateString() : jakt.DatoFra.ToLocalDateString() + " - " + jakt.DatoTil.ToLocalDateAndYearString()+"</span>");
 			if(jakt.Notes.Length > 0)
 				s.Append("<p>" + jakt.Notes + "</p>");
 			
 			//JEGERE
 			if(jegere.Count() > 0){
-				s.Append("<h2>Jegere</h2>");
+				s.Append("<h2>"+Utils.Translate("hunters")+"</h2>");
 				s.Append("<ul id='Jegere'>");
 				foreach(var jeger in jegere)
 				{
@@ -120,9 +136,25 @@ namespace JaktLogg
 				s.Append("</ul>");
 			}
 			
+			//HUNDER
+			if(dogs.Count() > 0){
+				s.Append("<h2>"+Utils.Translate("dogs")+"</h2>");
+				s.Append("<ul id='Dogs'>");
+				foreach(var dog in dogs)
+				{
+					s.Append("<li>" + dog.Navn + "</li>");
+				}
+				s.Append("</ul>");
+			}
+			
 			//RESULTAT
-			s.Append("<h2>Jaktresultat</h2>");
-			s.Append("<table cellspacing='0'><tr><th>Art</th><th>Sett</th><th>Skudd</th><th>Treff</th></tr>");
+			s.Append("<h2>"+Utils.Translate("result")+"</h2>");
+			s.Append(string.Format("<table cellspacing='0'><tr><th>{0}</th><th>{1}</th><th>{2}</th><th>{3}</th></tr>",
+									Utils.Translate("specie"),
+									Utils.Translate("seen"),
+									Utils.Translate("shots"),
+									Utils.Translate("hits")));
+				
 			foreach(int artid in logger.Select(a => a.ArtId).Distinct())
 			{
 				var l = logger.Where(a => a.ArtId == artid);
@@ -143,11 +175,16 @@ namespace JaktLogg
 			//RESULTAT PR JEGER
 			if(jegere.Count() > 1)
 			{
-				s.Append("<h2>Resultat pr. jeger</h2>");
+				s.Append("<h2>"+Utils.Translate("result")+", "+Utils.Translate("hunter")+"</h2>");
 				foreach(var jeger in jegere)
 				{
 					s.Append("<h3>-"+jeger.Navn + "-</h3>");
-					s.Append("<table cellspacing='0'><tr><th>Art</th><th>Sett</th><th>Skudd</th><th>Treff</th></tr>");
+					s.Append(string.Format("<table cellspacing='0'><tr><th>{0}</th><th>{1}</th><th>{2}</th><th>{3}</th></tr>",
+									Utils.Translate("specie"),
+									Utils.Translate("seen"),
+									Utils.Translate("shots"),
+									Utils.Translate("hits")));
+					
 					foreach(var artid in logger.Where(l => l.JegerId == jeger.ID).Select(a => a.ArtId).Distinct())
 					{
 						var l = logger.Where(a => a.ArtId == artid);
@@ -169,22 +206,23 @@ namespace JaktLogg
 			}
 			
 			//LOGGFØRINGER
-			s.Append("<h2>Loggføringer</h2>");
+			s.Append("<h2>"+Utils.Translate("logs")+"</h2>");
 			
 			
 			s.Append("<table cellspacing='0'>");
 			
 			s.Append("<tr>");
 			
-			s.Append("<th>Dato/Tid</th>");
-			s.Append("<th>Jeger</th>");
-			s.Append("<th>Art</th>");
-			s.Append("<th>Skudd</th>");
-			s.Append("<th>Treff</th>");
-			s.Append("<th>Sett</th>");
-			s.Append("<th>Latitude</th>");
-			s.Append("<th>Longitude</th>");
-			s.Append("<th>Notater</th>");
+			s.Append("<th>"+Utils.Translate("date")+"/"+Utils.Translate("time")+"</th>");
+			s.Append("<th>"+Utils.Translate("hunter")+"</th>");
+			s.Append("<th>"+Utils.Translate("dog")+"</th>");
+			s.Append("<th>"+Utils.Translate("specie")+"</th>");
+			s.Append("<th>"+Utils.Translate("shots")+"</th>");
+			s.Append("<th>"+Utils.Translate("hits")+"</th>");
+			s.Append("<th>"+Utils.Translate("seen")+"</th>");
+			s.Append("<th>"+Utils.Translate("latitude")+"</th>");
+			s.Append("<th>"+Utils.Translate("longitude")+"</th>");
+			s.Append("<th>"+Utils.Translate("notes")+"</th>");
 			
 			foreach(var loggTypeId in JaktLoggApp.instance.SelectedLoggTypeIds)
 			{
@@ -213,8 +251,9 @@ namespace JaktLogg
 			StringBuilder s = new StringBuilder();
 			s.Append("<tr>");
 			
-			s.Append("<td>" + logg.Dato.ToNorwegianDateString()+" kl."+logg.Dato.ToNorwegianTimeString() + "</td>");
+			s.Append("<td>" + logg.Dato.ToLocalDateString()+" kl."+logg.Dato.ToLocalTimeString() + "</td>");
 			s.Append("<td>" + (logg.JegerId > 0 ? JaktLoggApp.instance.GetJeger(logg.JegerId).Fornavn : "") + "</td>");
+			s.Append("<td>" + (logg.DogId > 0 ? JaktLoggApp.instance.GetDog(logg.DogId).Navn : "") + "</td>");
 			s.Append("<td>" + (logg.ArtId == 0 ? "" : JaktLoggApp.instance.GetArt(logg.ArtId).Navn) + "</td>");
 			s.Append("<td>" + logg.Skudd + "</td>");
 			s.Append("<td>" + logg.Treff + "</td>");

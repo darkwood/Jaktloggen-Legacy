@@ -17,7 +17,7 @@ namespace JaktLogg
 		private StatsBesteJegereTableSource _tableSource;
 		public override void ViewDidLoad ()
 		{
-			Title = "Beste jegere";
+			Title = Utils.Translate("title_besthunters");
 			_tableSource = new StatsBesteJegereTableSource(this);
 			TableView.Source = _tableSource;
 			_tableSource.ItemList = GetRanking(false);
@@ -107,7 +107,7 @@ namespace JaktLogg
 			
 			var jeger = JaktLoggApp.instance.GetJeger(currentItem.JegerId);
 			cell.TextLabel.Text = jeger.Navn;
-			cell.DetailTextLabel.Text = currentItem.Hits + " treff av "+currentItem.Shots + " skudd";
+			cell.DetailTextLabel.Text = currentItem.Hits + " "+Utils.Translate("hits")+" / "+currentItem.Shots + " "+Utils.Translate("shots")+"";
 			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 			
 			var imgstr = Utils.GetPath("jeger_"+jeger.ID+".jpg");
@@ -132,8 +132,6 @@ namespace JaktLogg
 				Jeger j = screen.jeger;
 				JaktLoggApp.instance.SaveJegerItem(j);
 			});
-			//artScreen.ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal;
-			//_controller.PresentModalViewController(artScreen, true);
 			_controller.NavigationController.PushViewController(jegerScreen, true);
 		}
 	}

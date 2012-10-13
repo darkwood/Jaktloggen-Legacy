@@ -19,12 +19,6 @@
 	   <GroupId>1</GroupId>
 	</LoggType>
 	<LoggType>
-	  <Key>Dog</Key>
-	   <Navn>Hund</Navn>
-	   <Beskrivelse>For å knytte hund til en jaktsituasjon</Beskrivelse>
-	   <GroupId>1</GroupId>
-	</LoggType>
-	<LoggType>
 	  <Key>Age</Key>
 	   <Navn>Alder, storvilt</Navn>
 	   <Beskrivelse>Aldersgruppe på storvilt.</Beskrivelse>
