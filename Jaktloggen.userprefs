@@ -1,40 +1,31 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Jaktlogg/Screens/Statistics/StatsLoggMap.xib.cs">
-    <Files>
-      <File FileName="Jaktlogg/Language/Norwegian.xml" Line="33" Column="25" />
-      <File FileName="Jaktlogg/Main.cs" Line="11" Column="3" />
-      <File FileName="Jaktlogg/Screens/JaktItemScreen.xib.cs" Line="10" Column="53" />
-      <File FileName="Jaktlogg/Base/UIJaktTableViewController.cs" Line="21" Column="64" />
-      <File FileName="Jaktlogg/Screens/Statistics/StatsHitrate.xib.cs" Line="45" Column="30" />
-      <File FileName="Jaktlogg/DataServices/DataService.cs" Line="79" Column="31" />
-      <File FileName="Jaktlogg/Screens/MoreTableScreen.xib.cs" Line="1" Column="1" />
-      <File FileName="Jaktlogg/TableSources/MoreScreenTableSource.cs" Line="75" Column="6" />
-      <File FileName="Jaktlogg/Screens/Fields/FieldImagePickerScreen.xib.cs" Line="95" Column="30" />
-      <File FileName="Jaktlogg/Screens/Helpers/LoadingView.cs" Line="7" Column="2" />
-      <File FileName="Jaktlogg/Screens/Statistics/StatsLoggMap.xib.cs" Line="163" Column="7" />
-    </Files>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" />
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="JaktLogg" expanded="True">
             <Node name="Base" expanded="True" />
+            <Node name="Data" expanded="True" />
             <Node name="DataServices" expanded="True" />
-            <Node name="Language" expanded="True" />
-            <Node name="Screens" expanded="True">
-              <Node name="Fields" expanded="True">
-                <Node name="FieldImagePickerScreen.xib" expanded="True" />
+            <Node name="Images" expanded="True">
+              <Node name="Icons" expanded="True">
+                <Node name="Tabs" expanded="True" />
               </Node>
-              <Node name="Helpers" expanded="True" />
-              <Node name="Statistics" expanded="True">
-                <Node name="StatsHitrate.xib" expanded="True" />
-                <Node name="StatsLoggMap.xib" expanded="True">
-                  <Node name="StatsLoggMap.xib.cs" selected="True" />
-                </Node>
+            </Node>
+            <Node name="Language" expanded="True" />
+            <Node name="Repositories" expanded="True" />
+            <Node name="Screens" expanded="True">
+              <Node name="Upload" expanded="True" />
+              <Node name="ArterTableScreen.xib" expanded="True" />
+              <Node name="FeedbackScreen.xib" expanded="True">
+                <Node name="FeedbackScreen.xib.cs" selected="True" />
               </Node>
               <Node name="MoreTableScreen.xib" expanded="True" />
             </Node>
-            <Node name="TableSources" expanded="True" />
+            <Node name="TableSources" expanded="True">
+              <Node name="Arter" expanded="True" />
+            </Node>
             <Node name="Forside.xib" expanded="True" />
             <Node name="JaktScreen.xib" expanded="True" />
             <Node name="MainWindow.xib" expanded="True" />
@@ -53,4 +44,7 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.JaktLogg>
+    <IPhoneTestFlightSettings_27CAd-Hoc ApiToken="b75c0806060e37e0a1779a6d617884cb_MTE2MzIxMjAxMS0wNy0yNCAxNDo0ODozNy41MTgzNzM" TeamToken="f272e32ae8d29a0a52206b6f0e020d08_MjE3MzEyMDEyLTEwLTE0IDE2OjU0OjQzLjU3NzY2Mw" ReleaseNotes="test av versjon 1.5" NotifyTeamMembers="False" ReplaceBinaries="True" DistributionLists="" />
+  </MonoDevelop.Ide.ItemProperties.JaktLogg>
 </Properties>

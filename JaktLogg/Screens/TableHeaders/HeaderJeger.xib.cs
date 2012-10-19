@@ -16,8 +16,8 @@ namespace JaktLogg
 		{
 			_jeger = j;
 		}
-		
-		public override void ViewDidLoad ()
+
+		public override void ViewDidAppear (bool animated)
 		{
 			if(_jeger.ID > 0){
 				labelName.Text = _jeger.Navn;
@@ -37,7 +37,7 @@ namespace JaktLogg
 				labelName.Text = "";
 				labelNotes.Text = "";
 			}
-
+			
 			var imgstr = Utils.GetPath("jeger_"+_jeger.ID+".jpg");
 			
 			if(!File.Exists(imgstr)){
@@ -46,7 +46,11 @@ namespace JaktLogg
 			}
 			else
 				buttonImage.SetImage(new UIImage(Utils.GetPath(imgstr)), UIControlState.Normal);
-			
+
+			base.ViewDidAppear (animated);
+		}
+		public override void ViewDidLoad ()
+		{
 	
 			buttonImage.Layer.MasksToBounds = true;
 			buttonImage.Layer.CornerRadius = 5.0f;

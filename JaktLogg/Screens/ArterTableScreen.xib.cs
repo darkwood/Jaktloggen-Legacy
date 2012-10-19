@@ -34,13 +34,24 @@ namespace JaktLogg
 				MessageBox.Show("Om artslista", title);
 			}
 
-			var rightBtn = new UIBarButtonItem(UIBarButtonSystemItem.Add, BarButtonClicked);
+			var rightBtn = new UIBarButtonItem(Utils.Translate("specie.mygroup"), UIBarButtonItemStyle.Bordered, EditButtonClicked);
 			NavigationItem.RightBarButtonItem = rightBtn;
 		}
 
-		void BarButtonClicked (object sender, EventArgs e)
+		void EditButtonClicked (object sender, EventArgs e)
 		{
+			TableView.SetEditing(true, true);
+			TableView.ReloadData();
+			var rightBtn = new UIBarButtonItem(Utils.Translate("done"), UIBarButtonItemStyle.Done, FinishButtonClicked);
+			NavigationItem.RightBarButtonItem = rightBtn;
+		}
 
+		void FinishButtonClicked (object sender, EventArgs e)
+		{
+			TableView.SetEditing(false, true);
+			TableView.ReloadData();
+			var rightBtn = new UIBarButtonItem(Utils.Translate("specie.mygroup"), UIBarButtonItemStyle.Bordered, EditButtonClicked);
+			NavigationItem.RightBarButtonItem = rightBtn;
 		}
 
 		public void ShowAddScreeen()

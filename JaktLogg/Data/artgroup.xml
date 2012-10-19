@@ -2,7 +2,7 @@
 <ArrayOfArtGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <ArtGroup>
     	<ID>100</ID>
-    	<Navn>Egendefinerte arter</Navn>
+    	<Navn>{navn her defineres i språkoppsettet}</Navn>
 	</ArtGroup>
 	<ArtGroup>
 	  <ID>3</ID>

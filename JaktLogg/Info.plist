@@ -12,7 +12,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>no.toremorkved.jaktloggen</string>
 	<key>CFBundleVersion</key>
-	<string>1.4</string>
+	<string>1.5</string>
 	<key>MinimumOSVersion</key>
 	<string>5.0</string>
 	<key>NSMainNibFile</key>

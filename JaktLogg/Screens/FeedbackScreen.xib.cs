@@ -9,10 +9,18 @@ namespace JaktLogg
 {
 	public partial class FeedbackScreen : UIJaktViewController
 	{
-
-		public FeedbackScreen () : base("FeedbackScreen", null)
+		public string Url {
+			get;
+			set;
+		}
+		public string Header {
+			get;
+			set;
+		}
+		public FeedbackScreen (string url, string header) : base("FeedbackScreen", null)
 		{
-			
+			Url = url;
+			Header = header;
 		}
 		
 		public override void ViewDidLoad ()
@@ -31,10 +39,8 @@ namespace JaktLogg
 		
 		private void LoadWebContent()
 		{
-			var url = "http://www.jaktloggen.no/tilbakemelding";
-			Console.WriteLine(url);
 			Title = "Laster side...";
-			NavigateToUrl(url);
+			NavigateToUrl(Url);
 		}
 		
 		void HandleWebViewLoadStarted (object sender, EventArgs e)
@@ -44,13 +50,13 @@ namespace JaktLogg
 		
 		void HandleWebViewLoadFinished (object sender, EventArgs e)
 		{
-			Title = "Gi tilbakemelding";
+			Title = Header;
 			activityIndicator.StopAnimating();
 		}
 		
 		public void HandleWebViewLoadError (object sender, UIWebErrorArgs e)
 		{
-			MessageBox.Show("Kan ikke åpne side", "Du må ha tilgang til internett for å bruke kontaktskjemaet.");
+			MessageBox.Show("Kan ikke åpne side", "Du må ha tilgang til internett for å se siden.");
 			activityIndicator.StopAnimating();
 		}
 		

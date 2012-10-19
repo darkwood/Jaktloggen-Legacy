@@ -151,9 +151,9 @@ namespace JaktLogg
 			stream.Close();
 
 			//get my species list
-			if(File.Exists(filePath))
+			if(File.Exists(myArtPath))
 			{
-				stream = new FileStream(filePath, FileMode.Open);
+				stream = new FileStream(myArtPath, FileMode.Open);
 				if(stream.Length > 0){
 					var myspecies = (List<Art>) serializer.Deserialize(stream);
 					ArtList.AddRange(myspecies);
@@ -167,14 +167,14 @@ namespace JaktLogg
 		
 		public List<ArtGroup> GetAllArtGroupItems ()
 		{
-			/*string filePath = Path.Combine(path, FILE_ARTGROUP);
-			if(!File.Exists(filePath))
-			{
+			string filePath = Path.Combine(path, FILE_ARTGROUP);
+			//if(!File.Exists(filePath))
+			//{
 				File.Copy("Data/artgroup.xml", filePath, true);
-			}*/
+			//}
 				
 			XmlSerializer serializer = new XmlSerializer( typeof(List<ArtGroup>) );
-			FileStream stream = new FileStream("Data/artgroup.xml", FileMode.Open);
+			FileStream stream = new FileStream(filePath, FileMode.Open);
 			if(stream.Length > 0)
 				ArtGroupList = (List<ArtGroup>) serializer.Deserialize(stream);
 			else
@@ -281,7 +281,7 @@ namespace JaktLogg
 		public void SaveArtList (List<Art> item)
 		{
 			ArtList = item;
-			string filePath = Path.Combine(path, FILE_ART);
+			string filePath = Path.Combine(path, FILE_MY_ART);
 			XmlSerializer serializer = new XmlSerializer( typeof(List<Art>) );
 	        TextWriter writer = new StreamWriter(filePath);
 	        serializer.Serialize(writer, ArtList);

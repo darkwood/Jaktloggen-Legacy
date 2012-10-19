@@ -12,7 +12,7 @@ namespace JaktLogg
 		public static JaktLoggApp instance = new JaktLoggApp();
 		public UITabBarController TabBarController = new UITabBarController();
 		public bool ShouldStartNewJakt = false;
-		public Language CurrentLanguage = Language.Norwegian;
+		public Language CurrentLanguage = Language.English;
 		//private MockJaktRepository _repository;
 		private FileJaktRepository _repository;
 		public List<Jakt> JaktList = new List<Jakt>();
@@ -289,7 +289,11 @@ namespace JaktLogg
 			}
 			_repository.SaveLoggList(LoggList);
 
-			//remove art from doglist
+			//remove art from selected artlist
+			if(SelectedArtIds.Contains(item.ID))
+				SelectedArtIds.Remove(item.ID);
+
+			//remove art from artlist
 			ArtList.Remove(item);
 			_repository.SaveArtList(ArtList);
 		}

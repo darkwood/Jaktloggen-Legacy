@@ -61,16 +61,20 @@
     <CodesignProvision>771E60A0-1728-4EEE-8D24-C471A803197E</CodesignProvision>
     <MtouchI18n />
     <AssemblyName>Jaktloggen</AssemblyName>
+    <MtouchArch>ARMv7</MtouchArch>
+    <IpaPackageName />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Distribution: Tore Morkved</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <AssemblyName>JaktLogg</AssemblyName>
-    <CodesignProvision>489E6063-D450-4518-BF4D-46BABD040066</CodesignProvision>
+    <CodesignProvision>344AEF53-BD2C-46DA-8091-5F953217507E</CodesignProvision>
     <MtouchI18n />
+    <BuildIpa>True</BuildIpa>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -257,12 +261,6 @@
     </Compile>
     <Compile Include="Screens\TableHeaders\FooterStatsArter.xib.designer.cs">
       <DependentUpon>FooterStatsArter.xib</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\TableHeaders\HeaderJaktItem.xib.cs">
-      <DependentUpon>HeaderJaktItem.xib</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\TableHeaders\HeaderJaktItem.xib.designer.cs">
-      <DependentUpon>HeaderJaktItem.xib</DependentUpon>
     </Compile>
     <Compile Include="Screens\TableHeaders\HeaderJeger.xib.cs">
       <DependentUpon>HeaderJeger.xib</DependentUpon>
@@ -505,7 +503,6 @@
     <InterfaceDefinition Include="Screens\TableCells\CellSkuddTreffArt.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\TableCells\TextInputCell.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\TableHeaders\FooterStatsArter.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\TableHeaders\HeaderJaktItem.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\TableHeaders\HeaderJeger.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\TableHeaders\HeaderLoggItem.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\TableHeaders\HeaderTableSection.xib" xmlns="" />
@@ -515,7 +512,6 @@
     <InterfaceDefinition Include="Screens\ArterTableScreen.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\ArtScreen.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\ArtWebViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\FeedbackScreen.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\JaktItemScreen.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\JegereScreen.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\JegerPickerScreen.xib" xmlns="" />
@@ -538,6 +534,7 @@
     <InterfaceDefinition Include="Screens\Upload\UploadJakterScreen.xib" />
     <InterfaceDefinition Include="Screens\Upload\WebScreen.xib" />
     <InterfaceDefinition Include="Screens\JaktsTableScreen.xib" />
+    <InterfaceDefinition Include="Screens\FeedbackScreen.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

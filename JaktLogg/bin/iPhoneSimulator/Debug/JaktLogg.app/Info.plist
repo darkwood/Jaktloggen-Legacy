@@ -30,7 +30,7 @@
 		<string>iPhoneSimulator</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.4</string>
+	<string>1.5</string>
 	<key>DTPlatformName</key>
 	<string>iphonesimulator</string>
 	<key>DTSDKName</key>

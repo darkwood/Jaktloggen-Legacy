@@ -19,14 +19,20 @@ namespace JaktLogg
 			Header = header;
 		}
 
-		public override void ViewDidLoad ()
+		public override void ViewDidAppear (bool animated)
 		{
-			label.Text = Header;
-			label.BackgroundColor = UIColor.Clear;
 			
+			label.Text = Header;
+
 			if(Header.Length == 0)
 				label.Hidden = true;
-			
+
+			base.ViewDidAppear (animated);
+		}
+		public override void ViewDidLoad ()
+		{
+			label.BackgroundColor = UIColor.Clear;
+
 			base.ViewDidLoad ();
 		}
 	}

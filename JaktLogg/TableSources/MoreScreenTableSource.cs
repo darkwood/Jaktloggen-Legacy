@@ -69,6 +69,18 @@ namespace JaktLogg
 				},
 				ImageFile = "Images/Icons/Tabs/Gevir.png"
 			});
+
+			section2.Rows.Add(new RowItemMapping {
+				Label = "Aktuelt",
+				GetValue = () => {
+					return "Oppdateringer og aktuelt";
+				},
+				RowSelected = () => {
+					var fieldScreen = new FeedbackScreen("http://www.jaktloggen.no/aktuelt/", "Aktuelt"); 
+					_controller.NavigationController.PushViewController(fieldScreen, true);
+				},
+				ImageFile = "Images/Icons/Tabs/Gevir.png"
+			});
 			
 			sections.Add(section1);
 			sections.Add(section2);

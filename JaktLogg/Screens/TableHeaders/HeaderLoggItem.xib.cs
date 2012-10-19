@@ -18,8 +18,8 @@ namespace JaktLogg
 		{
 			_logg = logg;
 		}
-		
-		public override void ViewDidLoad ()
+
+		public override void ViewDidAppear (bool animated)
 		{
 			var imgstr = Utils.GetPath("jaktlogg_"+_logg.ID+".jpg");
 			var dogstr = Utils.GetPath("dog_"+_logg.DogId+".jpg");
@@ -28,6 +28,19 @@ namespace JaktLogg
 			SetButtonImage(buttonImage, imgstr, "Images/Icons/pictureplaceholder.png");
 			SetButtonImage(buttonImageDog, dogstr, "Images/Icons/dogplaceholder.png");
 			SetButtonImage(buttonImageJeger, jegerstr, "Images/Icons/jegerplaceholder.png");
+
+			
+			if(_logg.DogId > 0)
+				lblHund.Text =  JaktLoggApp.instance.GetDog(_logg.DogId).Navn;
+			
+			if(_logg.JegerId > 0)
+				lblJeger.Text =  JaktLoggApp.instance.GetJeger(_logg.JegerId).Fornavn;
+
+			base.ViewDidAppear (animated);
+		}
+		public override void ViewDidLoad ()
+		{
+
 			
 			buttonImage.TouchUpInside += HandleButtonImageTouchUpInside;
 			buttonImageDog.TouchUpInside += delegate(object sender, EventArgs e) {
@@ -35,13 +48,7 @@ namespace JaktLogg
 				HandleButtonDogTouchUpInside(sender, e);
 			};
 			buttonImageJeger.TouchUpInside += HandleButtonJegerTouchUpInside;
-			
-			if(_logg.DogId > 0)
-				lblHund.Text =  JaktLoggApp.instance.GetDog(_logg.DogId).Navn;
-			
-			if(_logg.JegerId > 0)
-				lblJeger.Text =  JaktLoggApp.instance.GetJeger(_logg.JegerId).Fornavn;
-			
+
 			base.ViewDidLoad ();
 		}
 		

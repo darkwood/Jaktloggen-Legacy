@@ -37,7 +37,7 @@ namespace JaktLogg
 
 		void HandleButtonFeedbackTouchUpInside (object sender, EventArgs e)
 		{
-			var webView = new FeedbackScreen();
+			var webView = new FeedbackScreen("http://www.jaktloggen.no/tilbakemelding/", "Gi tilbakemelding");
 			webView.ModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
 			this.PresentModalViewController(webView, true);
 		}
