@@ -565,6 +565,7 @@
     <Folder Include="Screens\Upload\" />
     <Folder Include="Language\" />
     <Folder Include="TableSources\Arter\" />
+    <Folder Include="Data\English\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Backgrounds\Stripes.png" />
@@ -627,5 +628,9 @@
     <Content Include="Images\Backgrounds\Bunny%402x.png" />
     <Content Include="Language\Norwegian.xml" />
     <Content Include="Language\English.xml" />
+    <Content Include="Data\English\loggtypegroup.xml" />
+    <Content Include="Data\English\loggtyper.xml" />
+    <Content Include="Data\English\arter.xml" />
+    <Content Include="Data\English\artgroup.xml" />
   </ItemGroup>
 </Project>

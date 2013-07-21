@@ -18,8 +18,7 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
-			Title = "Ekstra felter";
-			
+			Title = Utils.Translate("setup.header");
 			_tableSource = new LoggSetupTableSource(this);
 			TableView.Source = _tableSource;
 			

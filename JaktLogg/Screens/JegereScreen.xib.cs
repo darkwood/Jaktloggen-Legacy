@@ -24,7 +24,7 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
-			Title = "Alle jegere";
+			Title = Utils.Translate("all_hunters");
 			
 			newBarButton = new UIBarButtonItem(UIBarButtonSystemItem.Add, NewItemClicked);
 			NavigationItem.RightBarButtonItem = newBarButton;

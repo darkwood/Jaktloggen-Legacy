@@ -23,6 +23,7 @@ namespace JaktLogg
 		{
 			pickerView.Model = new FooterStatsArterPickerViewModel(this);
 			btDone.Clicked += HandleBtDoneClicked;
+			btDone.Title = Utils.Translate("done");
 			base.ViewDidLoad ();
 		}
 
@@ -116,13 +117,13 @@ namespace JaktLogg
 		{
 			if(component == 0){
 				if(row == 0)
-					return "Alle jegere";	
+					return Utils.Translate("all_hunters");	
 				else
 					return JaktLoggApp.instance.JegerList[row-1].Navn;
 			}
 			else{
 				if(row == 0)
-					return "Alle hunder";	
+					return Utils.Translate("all_dogs");	
 				else
 					return JaktLoggApp.instance.DogList[row-1].Navn;
 			}

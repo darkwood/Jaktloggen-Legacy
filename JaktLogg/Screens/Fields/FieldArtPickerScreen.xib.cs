@@ -24,7 +24,9 @@ namespace JaktLogg
 		{
 			base.ViewDidLoad ();
 			Title = _label;
-			
+
+
+
 			_tableSource = new FieldArtPickerTableSource(this);
 			TableView.Source = _tableSource;
 			

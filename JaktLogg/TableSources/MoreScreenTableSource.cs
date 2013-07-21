@@ -23,9 +23,9 @@ namespace JaktLogg
 
 			
 			section1.Rows.Add(new RowItemMapping {
-				Label = "Jegere",
+				Label = Utils.Translate("hunters"),
 				GetValue = () => {
-					return "Vis og rediger alle jegere";
+					return Utils.Translate("jegere.edit");
 				},
 				RowSelected = () => {
 					var fieldScreen = new JegereScreen(new List<int>(), screen => { });
@@ -35,9 +35,9 @@ namespace JaktLogg
 			});
 			
 			section1.Rows.Add(new RowItemMapping {
-				Label = "Hunder",
+				Label = Utils.Translate("dogs"),
 				GetValue = () => {
-					return "Vis og rediger alle hunder";
+					return Utils.Translate("dogs.edit");
 				},
 				RowSelected = () => {
 					var fieldScreen = new DogsScreen(new List<int>(), screen => { });
@@ -58,18 +58,22 @@ namespace JaktLogg
 				ImageFile = "Images/Icons/Tabs/Jaktloggen.png"
 			});
 			*/
-			section2.Rows.Add(new RowItemMapping {
-				Label = "Om Jaktloggen",
-				GetValue = () => {
-					return "Gi tilbakemelding eller rating";
-				},
-				RowSelected = () => {
-					var fieldScreen = new Forside(); 
-					_controller.NavigationController.PushViewController(fieldScreen, true);
-				},
-				ImageFile = "Images/Icons/Tabs/Gevir.png"
-			});
 
+			if(JaktLoggApp.instance.CurrentLanguage == Language.Norwegian) 
+			{
+				section2.Rows.Add(new RowItemMapping {
+					Label = Utils.Translate("aboutjaktloggen"),
+					GetValue = () => {
+						return Utils.Translate("give_rating");
+					},
+					RowSelected = () => {
+						var fieldScreen = new Forside(); 
+						_controller.NavigationController.PushViewController(fieldScreen, true);
+					},
+					ImageFile = "Images/Icons/Tabs/Gevir.png"
+				});
+			}
+			/*
 			section2.Rows.Add(new RowItemMapping {
 				Label = "Aktuelt",
 				GetValue = () => {
@@ -81,7 +85,7 @@ namespace JaktLogg
 				},
 				ImageFile = "Images/Icons/Tabs/Gevir.png"
 			});
-			
+			*/
 			sections.Add(section1);
 			sections.Add(section2);
 			//sections.Add(section3);

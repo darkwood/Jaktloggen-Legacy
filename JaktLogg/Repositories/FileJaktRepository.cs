@@ -135,11 +135,15 @@ namespace JaktLogg
 		
 		public List<Art> GetAllArtItems ()
 		{	
+			string langPath = JaktLoggApp.instance.CurrentLanguage + "/";
+			if(JaktLoggApp.instance.CurrentLanguage == Language.Norwegian)
+				langPath = "";
+
 			string filePath = Path.Combine(path, FILE_ART);
 			string myArtPath = Path.Combine(path, FILE_MY_ART);
 
 			//if(!File.Exists(filePath)){
-				File.Copy("Data/arter.xml", filePath, true);
+				File.Copy("Data/" + langPath + "arter.xml", filePath, true);
 			//}
 			
 			XmlSerializer serializer = new XmlSerializer( typeof(List<Art>) );
@@ -167,10 +171,14 @@ namespace JaktLogg
 		
 		public List<ArtGroup> GetAllArtGroupItems ()
 		{
+			string langPath = JaktLoggApp.instance.CurrentLanguage + "/";
+			if(JaktLoggApp.instance.CurrentLanguage == Language.Norwegian)
+				langPath = "";
+
 			string filePath = Path.Combine(path, FILE_ARTGROUP);
 			//if(!File.Exists(filePath))
 			//{
-				File.Copy("Data/artgroup.xml", filePath, true);
+				File.Copy("Data/" + langPath + "artgroup.xml", filePath, true);
 			//}
 				
 			XmlSerializer serializer = new XmlSerializer( typeof(List<ArtGroup>) );
@@ -186,10 +194,14 @@ namespace JaktLogg
 		
 		public List<LoggTypeGroup> GetAllLoggtypeGroupItems ()
 		{
+			string langPath = JaktLoggApp.instance.CurrentLanguage + "/";
+			if(JaktLoggApp.instance.CurrentLanguage == Language.Norwegian)
+				langPath = "";
+
 			string filePath = Path.Combine(path, FILE_LOGGTYPE_GROUP);
 			//if(!File.Exists(filePath))
 			//{
-				File.Copy("Data/loggtypegroup.xml", filePath, true);
+			File.Copy("Data/" + langPath + "loggtypegroup.xml", filePath, true);
 			//}
 				
 			XmlSerializer serializer = new XmlSerializer( typeof(List<LoggTypeGroup>) );
@@ -224,10 +236,14 @@ namespace JaktLogg
 		
 		public List<LoggType> GetAllLoggTypeItems ()
 		{	
+			string langPath = JaktLoggApp.instance.CurrentLanguage + "/";
+			if(JaktLoggApp.instance.CurrentLanguage == Language.Norwegian)
+				langPath = "";
+
 			string filePath = Path.Combine(path, FILE_LOGGTYPER);
 			//if(!File.Exists(filePath))
 			//{
-				File.Copy("Data/loggtyper.xml", filePath, true);
+			File.Copy("Data/" + langPath + "loggtyper.xml", filePath, true);
 			//}
 			
 			XmlSerializer serializer = new XmlSerializer( typeof(List<LoggType>) );

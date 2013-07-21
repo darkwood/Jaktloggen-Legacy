@@ -11,9 +11,9 @@ namespace JaktLogg
 	{
 		public Jeger SelectedJeger;
 		public Dog SelectedDog;
-		public string Tittel = Utils.Translate("numberofkilledspecies");
+		public string Tittel = Utils.Translate("stats.kills");
 		public string Mode = "Felt";
-		public bool FilterOnlyThisYear = false;
+		public int FilterMonths = 0;
 		public StatsArter () : base("StatsArter", null)
 		{
 			
@@ -69,12 +69,26 @@ namespace JaktLogg
 			},SelectedJeger, SelectedDog);
 			
 			pickerScreen.ModalTransitionStyle = UIModalTransitionStyle.PartialCurl;
-			this.PresentModalViewController(pickerScreen, true);
+			PresentViewController(pickerScreen, true, null);
 		}
 		
 		public void HandleSegmentedControlValueChange (object sender, EventArgs e)
 		{
-			FilterOnlyThisYear = (sender as UISegmentedControl).SelectedSegment > 0;
+			switch((sender as UISegmentedControl).SelectedSegment){
+			case 1:
+				FilterMonths = -1;
+				break;
+			case 2:
+				FilterMonths = -6;
+				break;
+			case 3:
+				FilterMonths = -12;
+				break;
+			default:
+				FilterMonths = 0;
+				break;
+			}
+
 			_tableSource.ItemList = GetRanking();
 			TableView.ReloadData();
 				
@@ -82,19 +96,26 @@ namespace JaktLogg
 		
 		private List<ArtRanking> GetRanking()
 		{
-			bool onlyThisYear = FilterOnlyThisYear;
+			//bool onlyThisYear = FilterOnlyThisYear;
 			var logger = JaktLoggApp.instance.LoggList.Where(x => x.ArtId > 0 && x.Treff > 0);
 			if(Mode == "Sett")
 				logger = JaktLoggApp.instance.LoggList.Where(x => x.ArtId > 0 && x.Sett > 0);
-			
-			if(onlyThisYear){
+
+			if(FilterMonths != 0)
+			{
+				DateTime fromDate = DateTime.Now.AddMonths(FilterMonths);
+				Console.WriteLine("date from: " + DateTime.Now.Month + ", "+ fromDate.ToShortDateString());
+				logger = logger.Where(x => x.Dato > fromDate);
+
+			}
+			/*if(onlyThisYear){
 				DateTime fromDate = new DateTime(DateTime.Now.Month > Utils.HUNTYEAR_STARTMONTH ? DateTime.Now.Year : DateTime.Now.Year - 1, Utils.HUNTYEAR_STARTMONTH, 1);
 				DateTime toDate = new DateTime(DateTime.Now.Month > Utils.HUNTYEAR_STARTMONTH ? DateTime.Now.Year + 1 : DateTime.Now.Year, Utils.HUNTYEAR_STARTMONTH, 1);
 				
 				Console.WriteLine("date: " + DateTime.Now.Month + ", "+ fromDate.ToShortDateString() + " - " + toDate.ToShortDateString());
 				logger = logger.Where(x => x.Dato > fromDate && x.Dato < toDate);
             }
-			
+			*/
 			if(SelectedJeger != null)
 			{
 				logger = logger.Where(x => x.JegerId == SelectedJeger.ID);
@@ -170,8 +191,9 @@ namespace JaktLogg
 			var cell = tableView.DequeueReusableCell("StatsArterCell");
 			if(cell == null)
 				cell = new UIJaktTableViewCell(UITableViewCellStyle.Value1, "StatsArterCell");
-			
-			cell.TextLabel.Text = JaktLoggApp.instance.GetArt(currentItem.ArtId).Navn;
+
+			var j = JaktLoggApp.instance.GetArt(currentItem.ArtId);
+			cell.TextLabel.Text = j != null ? j.Navn : "?";
 			cell.DetailTextLabel.Text = currentItem.Count.ToString();
 			return cell;
 		}

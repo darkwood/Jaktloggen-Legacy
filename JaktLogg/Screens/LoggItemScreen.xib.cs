@@ -28,7 +28,7 @@ namespace JaktLogg
 		public override void ViewDidLoad ()
 		{
 			
-			Title =IsNewItem ? "Ny loggføring" : "Loggføring";
+			Title =IsNewItem ? Utils.Translate("log.new") : Utils.Translate("log");
 			
 			logg.Dato = new DateTime(JaktLoggApp.instance.CurrentJakt.DatoFra.Year, 
 					                                logg.Dato.Month, 
@@ -56,7 +56,7 @@ namespace JaktLogg
 			_tableSource.loggItem = logg;
 
 			if(logg.ID > 0){
-				Title = "Loggføring";
+				Title = Utils.Translate("log");
 				NavigationItem.RightBarButtonItem = null;
 			}
 			TableView.ReloadData();

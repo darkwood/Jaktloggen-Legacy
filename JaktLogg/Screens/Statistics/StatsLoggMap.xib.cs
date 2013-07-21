@@ -22,8 +22,7 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
-			Title = "Loggføringer i kart";
-			
+			Title = Utils.Translate("stats.map");
 			mapView.Delegate = new MapViewDelegate(this);
 			mapView.ShowsUserLocation = true;
 			RefreshMap();
@@ -38,8 +37,13 @@ namespace JaktLogg
 
 		void HandleBtPageCurlClicked (object sender, EventArgs e)
 		{
-			var actionSheet = new UIActionSheet("") {"Treff", "Bom", "Observasjoner", "Alle loggføringer"};
-			actionSheet.Title = "Vis bare:";
+			var actionSheet = new UIActionSheet("") {
+													Utils.Translate("hits"), 
+													Utils.Translate("miss"), 
+													Utils.Translate("seen"),
+													Utils.Translate("stats.totallogs"),
+												};
+			actionSheet.Title = Utils.Translate("showonly");
 			actionSheet.CancelButtonIndex = 3;
 			actionSheet.ShowFromTabBar(JaktLoggApp.instance.TabBarController.TabBar);
 			
@@ -107,16 +111,17 @@ namespace JaktLogg
 		private string GetPinDescription(Logg l){
 			var desc =  "";
 			if(l.Skudd > 0)
-				desc += l.Skudd + " skudd. " + l.Treff + " treff. "; 
+				desc += l.Skudd + " " + Utils.Translate("shots") + ". " + l.Treff + " " + Utils.Translate("hits") + ". "; 
 			
 			if(l.Sett > 0)
-				desc += l.Sett + " sett. ";
-			
-			if(l.ArtId > 0)
-				desc += JaktLoggApp.instance.GetArt(l.ArtId).Navn + ". ";
+				desc += l.Sett + " " + Utils.Translate("seen") + ". ";
+
+			var art = JaktLoggApp.instance.GetArt(l.ArtId);
+			if(art != null)
+				desc += art.Navn + ". ";
 			
 			if(l.JegerId > 0)
-				desc += "Av " + JaktLoggApp.instance.GetJeger(l.JegerId).Fornavn;
+				desc += Utils.Translate("by") + JaktLoggApp.instance.GetJeger(l.JegerId).Fornavn;
 			
 			return desc;
 		}
@@ -135,7 +140,7 @@ namespace JaktLogg
 			var id = logg.ID;
 			var lat = double.Parse(logg.Latitude);
 			var lon = double.Parse(logg.Longitude);
-			var title = logg.Dato.ToLocalDateString() + " kl." +logg.Dato.ToLocalTimeString();
+			var title = logg.Dato.ToLocalDateString() + ", " +logg.Dato.ToLocalTimeString();
 			var description = GetPinDescription(logg);
 			
 			var a = new MyAnnotation(new CLLocationCoordinate2D(lat,lon), title, description);
@@ -151,24 +156,22 @@ namespace JaktLogg
 		}
 		
 		protected void ZoomToShowAllPins(){
-			
-			if(mapView.Annotations.Count() > 0)
+			var mkAnnotations = mapView.Annotations.Where(x => x is MKAnnotation);
+			if(mkAnnotations.Count() > 0)
 			{
 				var southWest = (mapView.Annotations.First() as MKAnnotation).Coordinate;
 				var northEast = (mapView.Annotations.First() as MKAnnotation).Coordinate;
 				
 				//Calclulate bounds by looking at all annontations:
-				foreach(var obj in mapView.Annotations){
-					if(obj is MKAnnotation)
-					{
-						MKAnnotation a = obj as MKAnnotation;
+				foreach(var obj in mkAnnotations){
+					MKAnnotation a = obj as MKAnnotation;
 
-						southWest.Latitude = Math.Min(southWest.Latitude, a.Coordinate.Latitude);
-						southWest.Longitude = Math.Min(southWest.Longitude, a.Coordinate.Longitude);
-						
-						northEast.Latitude = Math.Max(northEast.Latitude, a.Coordinate.Latitude);
-						northEast.Longitude = Math.Max(northEast.Longitude, a.Coordinate.Longitude);
-					}
+					southWest.Latitude = Math.Min(southWest.Latitude, a.Coordinate.Latitude);
+					southWest.Longitude = Math.Min(southWest.Longitude, a.Coordinate.Longitude);
+					
+					northEast.Latitude = Math.Max(northEast.Latitude, a.Coordinate.Latitude);
+					northEast.Longitude = Math.Max(northEast.Longitude, a.Coordinate.Longitude);
+
 				}
 				
 				var locSouthWest = new CLLocation(southWest.Latitude, southWest.Longitude);

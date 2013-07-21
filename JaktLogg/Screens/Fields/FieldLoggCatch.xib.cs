@@ -44,6 +44,12 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
+			lblChooseSpecies.Text = Utils.Translate("choosespecies");
+			lblHits.Text = Utils.Translate("hits");
+			lblSeen.Text = Utils.Translate("seen");
+			lblShots.Text = Utils.Translate("shots");
+			lblInfo.Hidden = JaktLoggApp.instance.CurrentLanguage == Language.Norwegian;
+
 			Arter = JaktLoggApp.instance.ArtList.Where(a => JaktLoggApp.instance.SelectedArtIds.Contains(a.ID)).ToList<Art>();
 			
 			var leftBtn = new UIBarButtonItem(Utils.Translate("cancel"), UIBarButtonItemStyle.Plain, CancelClicked);

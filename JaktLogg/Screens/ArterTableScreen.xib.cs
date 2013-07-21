@@ -19,17 +19,17 @@ namespace JaktLogg
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad();
-			Title = "Arter";
+			Title = Utils.Translate("species");
 			
 			_tableSource = new ArterTableSource(this);
 			TableView.Source = _tableSource;
 			TableView.ReloadData();
 			
-			if(JaktLoggApp.instance.SelectedArtIds.Count == 0)
+			if(JaktLoggApp.instance.SelectedArtIds.Count == 0 && JaktLoggApp.instance.CurrentLanguage == Language.Norwegian)
 			{	
-				var title = "Dette er alle jaktbare arter i Norge." + Environment.NewLine;
+				var title = "Dette er jaktbare arter i Norge." + Environment.NewLine;
 				title += "Kryss av for de artene du jakter på, slik at de dukker opp i jaktloggen" + Environment.NewLine;
-				title += "Les mer om hver art ved å klikke på pila.";
+				title += "Legg til egne arter med knappen øverst til høyre.";
 
 				MessageBox.Show("Om artslista", title);
 			}

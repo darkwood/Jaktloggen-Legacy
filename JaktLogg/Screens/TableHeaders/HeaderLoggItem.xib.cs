@@ -40,8 +40,10 @@ namespace JaktLogg
 		}
 		public override void ViewDidLoad ()
 		{
+			lblHund.Text = Utils.Translate("dog");
+			lblJaktbilde.Text = Utils.Translate("picture");
+			lblJeger.Text = Utils.Translate("hunter");
 
-			
 			buttonImage.TouchUpInside += HandleButtonImageTouchUpInside;
 			buttonImageDog.TouchUpInside += delegate(object sender, EventArgs e) {
 				Console.WriteLine("ok");

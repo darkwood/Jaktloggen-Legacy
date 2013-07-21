@@ -10,17 +10,20 @@ namespace JaktLogg
 {
 	public partial class StatsBesteJegere : UIJaktTableViewController
 	{
+		
+		public int FilterMonths = 0;
+		private StatsBesteJegereTableSource _tableSource;
+
 		public StatsBesteJegere () : base("StatsBesteJegere", null)
 		{
 			
 		}	
-		private StatsBesteJegereTableSource _tableSource;
 		public override void ViewDidLoad ()
 		{
 			Title = Utils.Translate("title_besthunters");
 			_tableSource = new StatsBesteJegereTableSource(this);
 			TableView.Source = _tableSource;
-			_tableSource.ItemList = GetRanking(false);
+			_tableSource.ItemList = GetRanking();
 			TableView.ReloadData();
 			
 			segmentedControl.ValueChanged += HandleSegmentedControlValueChange;
@@ -31,30 +34,36 @@ namespace JaktLogg
 		
 		void HandleSegmentedControlValueChange (object sender, EventArgs e)
 		{
-			switch(segmentedControl.SelectedSegment){
-			case 0:
-				_tableSource.ItemList = GetRanking(false);
-				break;
+			switch((sender as UISegmentedControl).SelectedSegment){
 			case 1:
-				_tableSource.ItemList = GetRanking(true);
+				FilterMonths = -1;
+				break;
+			case 2:
+				FilterMonths = -6;
+				break;
+			case 3:
+				FilterMonths = -12;
 				break;
 			default:
+				FilterMonths = 0;
 				break;
 			}
-			
+
+			_tableSource.ItemList = GetRanking();
 			TableView.ReloadData();
 				
 		}
 		
-		private List<JegerRanking> GetRanking(bool onlyThisYear)
+		private List<JegerRanking> GetRanking()
 		{
 			var logger = JaktLoggApp.instance.LoggList.Where(x => x.JegerId > 0 && x.Skudd > 0).ToList<Logg>();
-			if(onlyThisYear){
-				DateTime fromDate = new DateTime(DateTime.Now.Month > 9 ? DateTime.Now.Year : DateTime.Now.Year - 1, 9, 1);
-				DateTime toDate = new DateTime(DateTime.Now.Month > 9 ? DateTime.Now.Year + 1 : DateTime.Now.Year, 9, 1);
+			if(FilterMonths != 0)
+			{
+				DateTime fromDate = DateTime.Now.AddMonths(FilterMonths);
+				Console.WriteLine("date from: " + DateTime.Now.Month + ", "+ fromDate.ToShortDateString());
+				logger = logger.Where(x => x.Dato > fromDate).ToList();
 				
-				logger = logger.Where(x => x.Dato > fromDate && x.Dato < toDate).ToList<Logg>();
-            }
+			}
 			
 			var jegereDistinct = (from l in logger
 			               select l.JegerId).Distinct();

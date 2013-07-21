@@ -18,7 +18,7 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
-			Title = "Skuddlogger pr. time";
+			Title = Utils.Translate("stats.timeofday");
 			GoogleGraphURI = "http://chart.apis.google.com/chart" +
 						   "?chxr=0,0,24|1,0,{0}" +
 							"&chxl=0:|0||2||4||6|8||10||12||14|16||18||20||22|24" +
@@ -62,7 +62,7 @@ namespace JaktLogg
 			
 				var str = string.Format(GoogleGraphURI, max, valueList);
 			
-			if(Reachability.IsHostReachable("www.google.no")){
+			if(Reachability.IsHostReachable("www.google.com")){
 				imageView.Image = UIImage.LoadFromData(NSData.FromUrl(NSUrl.FromString(str)));
 				imageView.Hidden = false;
 			}
@@ -110,7 +110,7 @@ namespace JaktLogg
 		{
 			if(row == 0)
 			{
-				return "Alle jegere";	
+				return Utils.Translate("all_hunters");	
 			}
 			else
 			{

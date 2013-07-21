@@ -22,7 +22,7 @@ namespace JaktLogg
 			label1.Text = label2.Text = "";
 			Title = Utils.Translate("title_hitrate");
 			GoogleGraphURI = "http://chart.apis.google.com/chart?chco=c7d7a6|374716&chs=" + 
-			imageView.Frame.Width+"x"+imageView.Frame.Height+"&cht=p3&chd=t:{0},{1}&chdl={0}%20treff|{1}%20bom";
+			imageView.Frame.Width+"x"+imageView.Frame.Height+"&cht=p3&chd=t:{0},{1}&chdl={0}%20"+Utils.Translate("hits")+"|{1}%20"+Utils.Translate("miss");
 			
 			GoogleGraphURI = GoogleGraphURI.Replace("|", "%7C");
 			
@@ -46,7 +46,7 @@ namespace JaktLogg
 			var percent = shots > 0 ? Decimal.Round(hits*100/shots) : 0;
 
 			GoogleGraphURI += jeger != null ? "&chtt="+HttpUtility.UrlEncode(jeger.Navn)+"" : "&chtt="+HttpUtility.UrlEncode(Utils.Translate("all_hunters"));
-			GoogleGraphURI += HttpUtility.UrlEncode(string.Format(": {0} skudd, {1}% treff", shots, percent));
+			GoogleGraphURI += HttpUtility.UrlEncode(string.Format(": {0} "+Utils.Translate("shots") +", {1}% "+Utils.Translate("hits"), shots, percent));
 			var str = string.Format(GoogleGraphURI, hits, misses);
 			
 			if(Reachability.IsHostReachable("www.google.com")){
@@ -59,8 +59,8 @@ namespace JaktLogg
 			{
 				label1.Hidden = label2.Hidden = false;
 				imageView.Hidden = true;
-				label1.Text = string.Format("{0} "+Utils.Translate("hits")+". {1} "+Utils.Translate("miss")+".", hits, misses);
-				label2.Text = string.Format("{0}% treff", percent);
+				label1.Text = string.Format("{0} "+ Utils.Translate("hits")+". {1} "+Utils.Translate("miss")+".", hits, misses);
+				label2.Text = string.Format("{0}% "+ Utils.Translate("hits"), percent);
 			}
 		}
 	}
@@ -102,7 +102,8 @@ namespace JaktLogg
 		{
 			if(row == 0)
 			{
-				return "Alle jegere";	
+				return Utils.Translate("all_hunters");
+
 			}
 			else
 			{

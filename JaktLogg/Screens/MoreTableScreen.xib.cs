@@ -16,7 +16,7 @@ namespace JaktLogg
 		
 		public override void ViewDidLoad ()
 		{
-			this.Title = "Flere valg";
+			this.Title = Utils.Translate("more.header");
 			TableView.Source = new MoreScreenTableSource(this);
 			
 			base.ViewDidLoad ();

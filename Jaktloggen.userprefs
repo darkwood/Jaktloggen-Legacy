@@ -1,30 +1,18 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone.6.1" />
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="JaktLogg" expanded="True">
             <Node name="Base" expanded="True" />
-            <Node name="Data" expanded="True" />
             <Node name="DataServices" expanded="True" />
-            <Node name="Images" expanded="True">
-              <Node name="Icons" expanded="True">
-                <Node name="Tabs" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="Language" expanded="True" />
-            <Node name="Repositories" expanded="True" />
-            <Node name="Screens" expanded="True">
-              <Node name="Upload" expanded="True" />
-              <Node name="ArterTableScreen.xib" expanded="True" />
-              <Node name="FeedbackScreen.xib" expanded="True">
-                <Node name="FeedbackScreen.xib.cs" selected="True" />
-              </Node>
-              <Node name="MoreTableScreen.xib" expanded="True" />
-            </Node>
             <Node name="TableSources" expanded="True">
               <Node name="Arter" expanded="True" />
+              <Node name="Logg" expanded="True" />
+            </Node>
+            <Node name="ViewModel" expanded="True">
+              <Node name="JaktLoggApp.cs" selected="True" />
             </Node>
             <Node name="Forside.xib" expanded="True" />
             <Node name="JaktScreen.xib" expanded="True" />
@@ -45,6 +33,6 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.JaktLogg>
-    <IPhoneTestFlightSettings_27CAd-Hoc ApiToken="b75c0806060e37e0a1779a6d617884cb_MTE2MzIxMjAxMS0wNy0yNCAxNDo0ODozNy41MTgzNzM" TeamToken="f272e32ae8d29a0a52206b6f0e020d08_MjE3MzEyMDEyLTEwLTE0IDE2OjU0OjQzLjU3NzY2Mw" ReleaseNotes="test av versjon 1.5" NotifyTeamMembers="False" ReplaceBinaries="True" DistributionLists="" />
+    <IPhoneTestFlightSettings_27CAd-Hoc ApiToken="b75c0806060e37e0a1779a6d617884cb_MTE2MzIxMjAxMS0wNy0yNCAxNDo0ODozNy41MTgzNzM" TeamToken="f272e32ae8d29a0a52206b6f0e020d08_MjE3MzEyMDEyLTEwLTE0IDE2OjU0OjQzLjU3NzY2Mw" ReleaseNotes="test av versjon 1.5 - again!" NotifyTeamMembers="False" ReplaceBinaries="True" DistributionLists="" />
   </MonoDevelop.Ide.ItemProperties.JaktLogg>
 </Properties>

@@ -201,7 +201,7 @@ namespace JaktLogg
 		*/
 		public Art GetArt(int artId)
 		{
-			var item = ArtList.Where(a => a.ID == artId).First();
+			var item = ArtList.Where(a => a.ID == artId).FirstOrDefault();
 			return item;
 		}
 		

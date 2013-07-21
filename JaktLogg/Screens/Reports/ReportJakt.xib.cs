@@ -248,13 +248,14 @@ namespace JaktLogg
 		
 		private string GenerateLoggItemHtml(Logg logg)
 		{
+			var art = JaktLoggApp.instance.GetArt(logg.ArtId);
 			StringBuilder s = new StringBuilder();
 			s.Append("<tr>");
 			
 			s.Append("<td>" + logg.Dato.ToLocalDateString()+" kl."+logg.Dato.ToLocalTimeString() + "</td>");
 			s.Append("<td>" + (logg.JegerId > 0 ? JaktLoggApp.instance.GetJeger(logg.JegerId).Fornavn : "") + "</td>");
 			s.Append("<td>" + (logg.DogId > 0 ? JaktLoggApp.instance.GetDog(logg.DogId).Navn : "") + "</td>");
-			s.Append("<td>" + (logg.ArtId == 0 ? "" : JaktLoggApp.instance.GetArt(logg.ArtId).Navn) + "</td>");
+			s.Append("<td>" + (art == null ? "" : art.Navn) + "</td>");
 			s.Append("<td>" + logg.Skudd + "</td>");
 			s.Append("<td>" + logg.Treff + "</td>");
 			s.Append("<td>" + logg.Sett + "</td>");

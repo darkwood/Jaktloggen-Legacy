@@ -23,7 +23,7 @@ namespace JaktLogg
 			sections.Add(section1);
 			
 			section1.Rows.Add(new RowItemMapping {
-				Label = "Antall felt vilt",
+				Label = Utils.Translate("stats.kills"),
 				GetValue = () => {
 					return "";
 				},
@@ -34,20 +34,20 @@ namespace JaktLogg
 			});
 			
 			section1.Rows.Add(new RowItemMapping {
-				Label = "Antall observerte arter",
+				Label = Utils.Translate("stats.observed"),
 				GetValue = () => {
 					return "";
 				},
 				RowSelected = () => {
 					var statScreen = new StatsArter(); 
-					statScreen.Tittel ="Antall observerte arter";
+					statScreen.Tittel =Utils.Translate("stats.observed");
 					statScreen.Mode = "Sett";
 					_controller.NavigationController.PushViewController(statScreen, true);
 				}
 			});
 			
 			section1.Rows.Add(new RowItemMapping {
-				Label = "Beste jegere",
+				Label = Utils.Translate("stats.besthunters"),
 				GetValue = () => {
 					return "";
 				},
@@ -58,7 +58,7 @@ namespace JaktLogg
 			});
 			
 			section1.Rows.Add(new RowItemMapping {
-				Label = "Treffprosent",
+				Label = Utils.Translate("stats.hitcount"),
 				GetValue = () => {
 					return "";
 				},
@@ -69,7 +69,7 @@ namespace JaktLogg
 			});
 			
 			section1.Rows.Add(new RowItemMapping {
-				Label = "Jaktsituasjoner i kart",
+				Label = Utils.Translate("stats.map"),
 				GetValue = () => {
 					return "";
 				},
@@ -80,7 +80,7 @@ namespace JaktLogg
 			});
 			
 			section1.Rows.Add(new RowItemMapping {
-				Label = "Beste jakttid på døgnet",
+				Label = Utils.Translate("stats.timeofday"),
 				GetValue = () => {
 					return "";
 				},
