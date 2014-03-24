@@ -475,6 +475,11 @@
     </Compile>
     <Compile Include="TableSources\Arter\ArterTableSource.cs" />
     <Compile Include="TableSources\Arter\ArtTableSource.cs" />
+    <Compile Include="Screens\Upload\WebStorageScreen.cs" />
+    <Compile Include="Screens\Upload\WebStorageScreen.designer.cs">
+      <DependentUpon>WebStorageScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Upload\AlertViews\UIPopupLoginView.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
@@ -535,6 +540,7 @@
     <InterfaceDefinition Include="Screens\Upload\WebScreen.xib" />
     <InterfaceDefinition Include="Screens\JaktsTableScreen.xib" />
     <InterfaceDefinition Include="Screens\FeedbackScreen.xib" />
+    <InterfaceDefinition Include="Screens\Upload\WebStorageScreen.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -566,6 +572,7 @@
     <Folder Include="Language\" />
     <Folder Include="TableSources\Arter\" />
     <Folder Include="Data\English\" />
+    <Folder Include="Screens\Upload\AlertViews\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Backgrounds\Stripes.png" />

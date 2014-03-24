@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfLoggType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<LoggType>
+	  <Key>Weather</Key>
+	   <Navn>Weather</Navn>
+	   <Beskrivelse>Weather conditions</Beskrivelse>
+	   <GroupId>1</GroupId>
+	</LoggType>
+	<LoggType>
+	  <Key>Gender</Key>
+	   <Navn>Gender</Navn>
+	   <Beskrivelse>Male or female animal</Beskrivelse>
+	   <GroupId>1</GroupId>
+	</LoggType>
+	<LoggType>
+	  <Key>WeaponType</Key>
+	   <Navn>Weapon type</Navn>
+	   <Beskrivelse>If you use different weapons</Beskrivelse>
+	   <GroupId>1</GroupId>
+	</LoggType>
+	<LoggType>
+	  <Key>Weight</Key>
+	   <Navn>Weight</Navn>
+	   <Beskrivelse>Weight</Beskrivelse>
+	   <GroupId>2</GroupId>
+	</LoggType>
+	<LoggType>
+	  <Key>ButchWeight</Key>
+	   <Navn>Butch weight</Navn>
+	   <Beskrivelse>Weight after butching</Beskrivelse>
+	   <GroupId>2</GroupId>
+	</LoggType>
+</ArrayOfLoggType>

@@ -1,0 +1,1 @@
+--aot=mtriple=armv7-darwin,full,static,asmonly,direct-icalls,nodebug,outfile=/JaktLogg.exe.7.s "/Users/torem/Projects/Jaktloggen/Jaktlogg/bin/iPhone/Ad-Hoc/JaktLogg.exe"

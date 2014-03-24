@@ -1,0 +1,1 @@
+--aot=mtriple=armv7-darwin,full,static,asmonly,direct-icalls,nodebug,outfile=/System.Core.dll.7.s "/Users/torem/Projects/Jaktloggen/Jaktlogg/bin/iPhone/Release/JaktLogg.app/System.Core.dll"

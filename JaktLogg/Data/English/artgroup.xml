@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfArtGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <ArtGroup>
+    	<ID>100</ID>
+    	<Navn>{navn her defineres i språkoppsettet}</Navn>
+	</ArtGroup>
+	<ArtGroup>
+	  <ID>1</ID>
+	   <Navn>Misc species</Navn>
+	</ArtGroup>
+</ArrayOfArtGroup>

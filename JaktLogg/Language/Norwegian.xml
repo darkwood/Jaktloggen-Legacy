@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lang>
+	<dataloadmessage>Henter jaktdata...</dataloadmessage>
+	<aboutjaktloggen>Om Jaktloggen</aboutjaktloggen>
+	<cancel>Avbryt</cancel>
+	<done>Ferdig</done>
+	<delete>Slett</delete>
+	<send>Send</send>
+	<sorry>Beklager</sorry>
+	<error>Feil</error>
+	<edit>Rediger</edit>
+	
+	<hunter>Jeger</hunter>
+	<hunters>Jegere</hunters>
+	
+	<dog>Hund</dog>
+	<dogs>Hunder</dogs>
+	<dogs.all>All dogs</dogs.all>
+	<dog.name>Navn</dog.name>
+	<dog.noname>Navn mangler</dog.noname>
+	<dog.delete>Slett hund</dog.delete>
+	<dog.image>Bilde</dog.image>
+	<dog.breed>Rase</dog.breed>
+	<dog.licencenr>Lisensnummer</dog.licencenr>
+	<dog.deletewarning>Hund blir slettet permanent, og fjernet fra alle logger</dog.deletewarning>
+	
+	<specie>Art</specie>
+	<species>Arter</species>
+	<specie.new>Ny art</specie.new>
+	<specie.name>Navn</specie.name>
+	<specie.noname>Navn mangler</specie.noname>
+	<specie.delete>Slett art</specie.delete>
+	<specie.deletewarning>Art blir slettet permanent, og fjernet fra alle logger</specie.deletewarning>
+	<specie.wikiword>Wikipedia søkeord</specie.wikiword>
+	<specie.mygroup>Mine arter</specie.mygroup>
+	
+	<seen>Sett</seen>
+	<shots>Skudd</shots>
+	<hits>Treff</hits>
+	<miss>Bom</miss>
+	
+	<logs>Loggføringer</logs>
+	<date>Dato</date>
+	<time>Tid</time>
+	<notes>Notater</notes>
+	<latitude>Latitude</latitude>
+	<longitude>Longitude</longitude>
+	
+	<jakt.header>Jaktloggen</jakt.header>
+	<jakt.jakt>Jakt</jakt.jakt>
+	<jakt.newhunt>Ny jakt</jakt.newhunt>
+	<jakt.setlocationname>Legg inn stedsnavn</jakt.setlocationname>
+	<jakt.delete>Slett jakt</jakt.delete>
+	<jakt.deletewarning>Jakta blir slettet permanent</jakt.deletewarning>
+	<jakt.location>Jaktsted</jakt.location>
+	<jakt.location.earlierused>Tidligere brukt</jakt.location.earlierused>
+	<jakt.hunters>Jegere</jakt.hunters>
+	<jakt.hunter>Jeger</jakt.hunter>
+	<jakt.dogs>Hunder</jakt.dogs>
+	<jakt.dog>Hund</jakt.dog>
+	<jakt.logs>Loggføringer</jakt.logs>
+	<jakt.log>Loggføring</jakt.log>
+	<jakt.datefrom>Dato fra</jakt.datefrom>
+	<jakt.dateto>Dato til</jakt.dateto>
+	<jakt.notes>Notater</jakt.notes>
+	<jakt.image>Jaktbilde</jakt.image>
+	
+	<picture.showimage>Vis bilde</picture.showimage>
+	<picture.addimage>Legg til</picture.addimage>
+	
+	<log.new.title>Loggføringer</log.new.title>
+	<log.new.button>Opprett første loggføring</log.new.button>
+	<log.new>Ny loggføring</log.new>
+	<log>Loggføring</log>
+	<log.showlogsinmap>Vis loggføringer i kart</log.showlogsinmap>
+	<log.viewinmap>Se i kart</log.viewinmap>
+	<log.deletewarning>Loggføringen blir slettet permanent.</log.deletewarning>
+	<log.header.results>Felt/sett vilt</log.header.results>
+	<log.header.position>Posisjon</log.header.position>
+	<log.header.time>Tidspunkt</log.header.time>
+	<log.header.notes>Notater</log.header.notes>
+	<log.header.weather>Værforhold</log.header.weather>
+	<log.header.gender>Kjønn</log.header.gender>
+	<log.gender.male>Hannkjønn</log.gender.male>
+	<log.gender.female>Hunnkjønn</log.gender.female>
+	<log.header.tags>Tagger på geviret</log.header.tags>
+	<log.tags>tagger</log.tags>
+	<log.header.largeage>Alder på storvilt</log.header.largeage>
+	<log.header.weight>Vekt</log.header.weight>
+	<log.header.butchweight>Slaktevekt</log.header.butchweight>
+	<log.header.weapontype>Våpentype</log.header.weapontype>
+	<log.writeweapontype>Skriv inn våpentype</log.writeweapontype>
+	<log.delete>Slett loggføring</log.delete>
+	
+	<log.nohunters.header>Ingen jegere valgt i jakt</log.nohunters.header>
+	<log.nohunters.message>Gå tilbake til jaktoppsett og velg jegere først</log.nohunters.message>
+	<log.nodogs.header>Ingen hunder valgt i jakt</log.nodogs.header>
+	<log.nodogs.message>Gå tilbake til jaktoppsett og velg hunder først</log.nodogs.message>
+	<log.kalv.name>Kalv</log.kalv.name>
+	<log.kalv.age1>1 1/2 år</log.kalv.age1>
+	<log.kalv.age2>2 1/2 år og eldre</log.kalv.age2>
+    <log.jeger.choose>velg jeger</log.jeger.choose>
+	
+	<dogs.choose>Velg hund</dogs.choose>
+	<dogs.new>Ny hund</dogs.new>
+	<dogs.edit>Vis og rediger alle hunder</dogs.edit>
+	
+	<jegere.choose>Velg jegere</jegere.choose>
+	<jegere.edit>Vis og rediger alle jegere</jegere.edit>
+	
+	<jeger.header.accuracy>Treffsikkerhet</jeger.header.accuracy>
+	<jeger.firstname>Fornavn</jeger.firstname>
+	<jeger.lastname>Etternavn</jeger.lastname>
+	<jeger.profilepicture>Profilbilde</jeger.profilepicture>
+	<jeger.email>E-post</jeger.email>
+	<jeger.delete>Slett jeger</jeger.delete>
+	
+	<setup.header>Ekstra felter</setup.header>
+	
+	<stats.kills>Antall felt vilt</stats.kills>
+	<stats.observed>Antall observerte arter</stats.observed>
+	<stats.besthunters>Beste jegere</stats.besthunters>
+	<stats.hitcount>Treffprosent</stats.hitcount>
+	<stats.map>Jaktsituasjoner i kart</stats.map>
+	<stats.timeofday>Beste jakttid på døgnet</stats.timeofday>
+	<stats.totallogs>Antall loggføringer</stats.totallogs>
+	
+	<more.header>Flere valg</more.header>
+	<showonly>Vis bare </showonly>
+	<by>Av</by>
+	<pleasewait>Vennligst vent...</pleasewait>
+	
+	<fieldartpickerscreen.header>Utvalgte arter</fieldartpickerscreen.header>
+	<fieldartpickerscreen.footer>{0} arter. Hvis du ikke finner din art, legg den til under 'Mine arter'</fieldartpickerscreen.footer>
+
+	<confirmdeleteimage>Bildet blir slettet permanent.</confirmdeleteimage>
+	<choosefromlibrary>Velg fra bibliotek</choosefromlibrary>
+	<takepicture>Ta bilde</takepicture>
+	<picture>Bilde</picture>
+	<position>Posisjon</position>
+	<removeposition>Fjern posisjon</removeposition>
+	<localizingposition>Lokaliserer din posisjon...</localizingposition>
+	<error_nogps>Ingen tilgang til GPS</error_nogps>
+	<error_nogps_details>Du må tillate tilgang til GPS for å lokalisere din posisjon</error_nogps_details>
+	<pin_dragtochange>Dra i pin for å endre posisjon.</pin_dragtochange>
+	<confirm_removeposition>Bekreft fjerning av posisjon</confirm_removeposition>
+	<position_removed>Posisjon fjernet</position_removed>
+	<posiont_found_radius>Funnet innenfor {0}m/{1}m radius</posiont_found_radius>
+	<yourposition>Din posisjon</yourposition>
+	
+	<choosespecies>Velg art</choosespecies>
+	<entertext>Skriv inn tekst</entertext>
+	
+	<preview>Forhåndsvisning</preview>
+	<sendmail>Send e-post</sendmail>
+	<mailsubject>Jaktrapport for {0}, {1}</mailsubject>
+	<mailsubject_generic>Melding fra Jaktloggen</mailsubject_generic>
+	<report.emailmissing>Kan ikke legge til e-post for {0}, e-post adresse mangler i jegeroppsettet.</report.emailmissing>
+	<report.jegereheader>Velg mottakere</report.jegereheader>
+	<report.jegerefooter>Jegerne du velger må ha registrert e-post</report.jegerefooter>
+	<error_mailnotsupported>Denne enheten støtter ikke epostutsending.</error_mailnotsupported>
+	<email.sendbymail>Send på e-post</email.sendbymail>
+	<emailsent>E-post sendt.</emailsent>
+	<error_mailfail>E-post feilet. Prøv igjen senere, eller meld inn feil.</error_mailfail>
+	<result>Resultat</result>
+	
+	<showingcountfor>Viser tall for </showingcountfor>
+	<all_hunters_dogs>alle jegere/hunder</all_hunters_dogs>
+	<title_besthunters>Beste jegere</title_besthunters>
+	<title_statistics>Statistikk</title_statistics>
+	<title_hitrate>Treffprosent</title_hitrate>
+	<all_hunters>Alle jegere</all_hunters>
+	<give_rating>Gi tilbakemelding eller rating</give_rating>
+	
+	<error_nointernet_header>Kan ikke åpne side</error_nointernet_header>
+	<error_nointernet_message>Du må ha tilgang til internett for denne tjenesten.</error_nointernet_message>
+	<appstore_id>454071716</appstore_id>
+	
+	<actionsheet.reportheader>Lag rapport</actionsheet.reportheader>
+</lang>

@@ -59,7 +59,6 @@ namespace JaktLogg
 			using(var reader = new StreamReader(response.GetResponseStream())){
 				return reader.ReadToEnd();
 			}
-		
 		}
 		
 		public static string UploadAllData()

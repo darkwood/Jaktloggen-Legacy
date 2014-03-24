@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lang>
+	<dataloadmessage>Loading hunt data...</dataloadmessage>
+	<aboutjaktloggen>About Hunting Log</aboutjaktloggen>
+	<cancel>Cancel</cancel>
+	<done>Done</done>
+	<delete>Delete</delete>
+	<send>Send</send>
+	<sorry>Sorry</sorry>
+	<error>Error</error>
+	<edit>Edit</edit>
+	
+	<hunter>Hunter</hunter>
+	<hunters>Hunters</hunters>
+	
+	<dog>Dog</dog>
+	<dogs>Dogs</dogs>
+	<dog.name>Name</dog.name>
+	<dog.noname>Name missing</dog.noname>
+	<dog.delete>Delete dog</dog.delete>
+	<dog.image>Image</dog.image>
+	<dog.breed>Breed</dog.breed>
+	<dog.licencenr>License number</dog.licencenr>
+	<dog.deletewarning>Dog will be permanently deleted and removed from all logs</dog.deletewarning>
+	<dogs.choose>Choose dog</dogs.choose>
+	<dogs.new>New dog</dogs.new>
+	<dogs.edit>Show and edit all dogs</dogs.edit>
+	<dogs.all>All dogs</dogs.all>
+	
+	<specie>Specie</specie>
+	<species>Species</species>
+	<specie.new>New specie</specie.new>
+	<specie.name>Name</specie.name>
+	<specie.noname>Name missing</specie.noname>
+	<specie.delete>Delete specie</specie.delete>
+	<specie.deletewarning>Specie will be permanently deleted and removed from all logs</specie.deletewarning>
+	<specie.wikiword>Wikipedia searchterm</specie.wikiword>
+	<specie.mygroup>My species</specie.mygroup>
+	
+	<seen>Seen</seen>
+	<shots>Shots</shots>
+	<hits>Hits</hits>
+	<miss>Misses</miss>
+	
+	<logs>Logs</logs>
+	<date>Date</date>
+	<time>Time</time>
+	<notes>Notes</notes>
+	<latitude>Latitude</latitude>
+	<longitude>Longitude</longitude>
+	
+	<jakt.header>Hunting Log</jakt.header>
+	<jakt.jakt>Hunt</jakt.jakt>
+	<jakt.newhunt>New hunt</jakt.newhunt>
+	<jakt.setlocationname>Add location name</jakt.setlocationname>
+	<jakt.delete>Delete hunt</jakt.delete>
+	<jakt.deletewarning>The hunt will be permanently deleted</jakt.deletewarning>
+	<jakt.location>Hunting location</jakt.location>
+	<jakt.location.earlierused>Recent locations</jakt.location.earlierused>
+	<jakt.hunters>Hunters</jakt.hunters>
+	<jakt.hunter>Hunter</jakt.hunter>
+	<jakt.dogs>Dogs</jakt.dogs>
+	<jakt.dog>Dog</jakt.dog>
+	<jakt.logs>Logs</jakt.logs>
+	<jakt.log>Log</jakt.log>
+	<jakt.datefrom>Date from</jakt.datefrom>
+	<jakt.dateto>Date to</jakt.dateto>
+	<jakt.notes>Notes</jakt.notes>
+	<jakt.image>Hunt image</jakt.image>
+	
+	<picture.showimage>Show image</picture.showimage>
+	<picture.addimage>Add</picture.addimage>
+	
+	<log.new.title>Logs</log.new.title>
+	<log.new.button>Create first log</log.new.button>
+	<log.new>New log</log.new>
+	<log>Log</log>
+	<log.showlogsinmap>Show logs in map</log.showlogsinmap>
+	<log.viewinmap>View in map</log.viewinmap>
+	<log.deletewarning>Log will be permanently deleted</log.deletewarning>
+	<log.header.results>Shot/seen animals</log.header.results>
+	<log.header.position>Position</log.header.position>
+	<log.header.time>Time</log.header.time>
+	<log.header.notes>Notes</log.header.notes>
+	<log.header.weather>Weather</log.header.weather>
+	<log.header.gender>Gender</log.header.gender>
+	<log.gender.male>Male</log.gender.male>
+	<log.gender.female>Female</log.gender.female>
+	<log.header.tags>Tags</log.header.tags>
+	<log.tags>Tags</log.tags>
+	<log.header.largeage>Age, big game</log.header.largeage>
+	<log.header.weight>Weight</log.header.weight>
+	<log.header.butchweight>Butch weight</log.header.butchweight>
+	<log.header.weapontype>Weapon type</log.header.weapontype>
+	<log.writeweapontype>Enter weapon type</log.writeweapontype>
+	<log.delete>Delete log entry</log.delete>
+	
+	<log.nohunters.header>No hunters added</log.nohunters.header>
+	<log.nohunters.message>Go back to the hunt setup and add hunters first</log.nohunters.message>
+	<log.nodogs.header>No dogs added</log.nodogs.header>
+	<log.nodogs.message>Go back to the hunt setup and add dogs first</log.nodogs.message>
+	<log.kalv.name>Veal</log.kalv.name>
+	<log.kalv.age1>1 1/2 year</log.kalv.age1>
+	<log.kalv.age2>2 1/2 year and older</log.kalv.age2>
+    <log.jeger.choose>Choose hunter</log.jeger.choose>
+	
+	
+	<jegere.choose>Pick hunters</jegere.choose>
+	<jegere.edit>Show and edit all hunters</jegere.edit>
+	
+	<jeger.header.accuracy>Accuracy</jeger.header.accuracy>
+	<jeger.firstname>First name</jeger.firstname>
+	<jeger.lastname>Last name</jeger.lastname>
+	<jeger.profilepicture>Profile picture</jeger.profilepicture>
+	<jeger.email>Email</jeger.email>
+	<jeger.delete>Delelte hunter</jeger.delete>
+	
+	<setup.header>Extra fields</setup.header>
+	
+	<stats.kills>Number of hits</stats.kills>
+	<stats.observed>Observations</stats.observed>
+	<stats.besthunters>Best hunters</stats.besthunters>
+	<stats.hitcount>Hit rate</stats.hitcount>
+	<stats.map>Hunt situations in map</stats.map>
+	<stats.timeofday>Best hunting time of day</stats.timeofday>
+	<stats.totallogs>Total logs</stats.totallogs>
+	
+	<more.header>More</more.header>
+	<showonly>Show only </showonly>
+	<by>By</by>
+	<pleasewait>Please wait...</pleasewait>
+	
+	<fieldartpickerscreen.header>Chosen species</fieldartpickerscreen.header>
+	<fieldartpickerscreen.footer>{0} species. If you can't find your specie, add it under 'My Species'</fieldartpickerscreen.footer>
+
+	<confirmdeleteimage>Image will be deleted permanently.</confirmdeleteimage>
+	<choosefromlibrary>Choose from library</choosefromlibrary>
+	<takepicture>Take picture</takepicture>
+	<picture>Picture</picture>
+	<position>Position</position>
+	<removeposition>Remove position</removeposition>
+	<localizingposition>Localizing your position...</localizingposition>
+	<error_nogps>No access to GPS</error_nogps>
+	<error_nogps_details>You must allow access to the GPS to enable positioning</error_nogps_details>
+	<pin_dragtochange>Drag the pin to change position.</pin_dragtochange>
+	<confirm_removeposition>Please confirm removing the position</confirm_removeposition>
+	<position_removed>Position removed</position_removed>
+	<posiont_found_radius>Found within {0}m/{1}m radius</posiont_found_radius>
+	<yourposition>Your position</yourposition>
+	
+	<choosespecies>Choose specie</choosespecies>
+	<entertext>Enter text</entertext>
+	
+	<preview>Preview</preview>
+	<sendmail>Send email</sendmail>
+	<mailsubject>Hunt report for {0}, {1}</mailsubject>
+	<mailsubject_generic>Message from the Hunting Log</mailsubject_generic>
+	<report.emailmissing>Cannot add report for {0}, the e-mail address is missing in the setup.</report.emailmissing>
+	<report.jegereheader>Choos receipients</report.jegereheader>
+	<report.jegerefooter>The hunters you select must have an email address</report.jegerefooter>
+	<error_mailnotsupported>This unit does not support email.</error_mailnotsupported>
+	<email.sendbymail>Send by mail</email.sendbymail>
+	<emailsent>Email sent.</emailsent>
+	<error_mailfail>Email failed. Please try again later.</error_mailfail>
+	<result>Result</result>
+	
+	<showingcountfor>Showing count for </showingcountfor>
+	<all_hunters_dogs>all hunters/dogs</all_hunters_dogs>
+	<title_besthunters>Best hunters</title_besthunters>
+	<title_statistics>Statistics</title_statistics>
+	<title_hitrate>Hitrate</title_hitrate>
+	<all_hunters>All hunters</all_hunters>
+	<give_rating>Give feedback or rating</give_rating>
+	
+	<error_nointernet_header>Cannot open page</error_nointernet_header>
+	<error_nointernet_message>You need internet access to use this service.</error_nointernet_message>
+	<appstore_id>454071716</appstore_id>
+	
+	<actionsheet.reportheader>Create report</actionsheet.reportheader>
+</lang>

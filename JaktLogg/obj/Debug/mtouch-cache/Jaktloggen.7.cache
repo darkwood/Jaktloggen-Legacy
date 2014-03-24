@@ -1,0 +1,1 @@
+--debug --aot=mtriple=armv7-darwin,full,static,asmonly,direct-icalls,soft-debug,no-direct-calls,iphone-abi,outfile=/Jaktloggen.exe.7.s "/Users/torem/Projects/Jaktloggen/Jaktlogg/bin/iPhone/Debug/Jaktloggen.exe"

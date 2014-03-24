@@ -1,0 +1,1 @@
+--debug --aot=mtriple=armv7-darwin,full,static,asmonly,direct-icalls,no-direct-calls,iphone-abi,outfile=/System.Xml.dll.7.s "/Users/torem/Projects/Jaktloggen/Jaktlogg/bin/iPhone/Debug/JaktLogg.app/System.Xml.dll"

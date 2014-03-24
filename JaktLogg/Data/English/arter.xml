@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfArt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Art>
+	  <ID>1</ID>
+	   <Navn>Moose</Navn>
+	   <GroupId>1</GroupId>
+	</Art>
+	<Art>
+		<ID>2</ID>
+	   <Navn>Black bear</Navn>
+	   <GroupId>1</GroupId>
+	</Art>
+	<Art>
+		<ID>3</ID>
+	   <Navn>Grouse</Navn>
+	   <GroupId>1</GroupId>
+	</Art>
+	<Art>
+		<ID>4</ID>
+	   <Navn>Deer</Navn>
+	   <GroupId>1</GroupId>
+	</Art>
+</ArrayOfArt>

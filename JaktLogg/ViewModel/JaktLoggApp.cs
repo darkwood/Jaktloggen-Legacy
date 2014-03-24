@@ -12,7 +12,7 @@ namespace JaktLogg
 		public static JaktLoggApp instance = new JaktLoggApp();
 		public UITabBarController TabBarController = new UITabBarController();
 		public bool ShouldStartNewJakt = false;
-		public Language CurrentLanguage = Language.English;
+		public Language CurrentLanguage = Language.Norwegian;
 		//private MockJaktRepository _repository;
 		private FileJaktRepository _repository;
 		public List<Jakt> JaktList = new List<Jakt>();

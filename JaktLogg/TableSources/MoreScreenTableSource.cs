@@ -45,19 +45,19 @@ namespace JaktLogg
 				},
 				ImageFile = "Images/Icons/Tabs/dog-paw.png"
 			});
-			/*
+
 			section2.Rows.Add(new RowItemMapping {
 				Label = "Last opp data",
 				GetValue = () => {
 					return "Under utvikling. Kun for testing.";
 				},
 				RowSelected = () => {
-					var fieldScreen = new UploadJakterScreen(); 
+					var fieldScreen = new WebStorageScreen(); 
 					_controller.NavigationController.PushViewController(fieldScreen, true);
 				},
 				ImageFile = "Images/Icons/Tabs/Jaktloggen.png"
 			});
-			*/
+
 
 			if(JaktLoggApp.instance.CurrentLanguage == Language.Norwegian) 
 			{
